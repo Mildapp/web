@@ -1251,6 +1251,10 @@ body {
 }
 
 @media (max-width: 768px) {
+    .hero-section {
+        overflow: visible !important;
+    }
+    
     .hero-container {
         width: 100%;
         max-width: 100%;
@@ -1259,6 +1263,7 @@ body {
         padding-left: 30px;
         padding-right: 30px;
         gap: 40px;
+        overflow: visible !important;
     }
     
     .header {
