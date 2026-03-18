@@ -558,21 +558,6 @@ body {
     z-index: 1;
 }
 
-.phone-frame::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--background-white);
-    border-radius: 40px;
-    z-index: 10;
-    opacity: 1;
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
-}
-
 .phone-frame.active {
     opacity: 1;
     transform: translateX(0);
@@ -658,18 +643,10 @@ body {
     }
 }
 
-.phone-frame.active::after {
-    opacity: 0;
-}
-
 .phone-frame.slide-out-left {
     transform: translateX(-100%);
     opacity: 0;
     z-index: 1;
-}
-
-.phone-frame.slide-out-left::after {
-    opacity: 1;
 }
 
 .phone-frame.slide-in-right {
@@ -678,28 +655,16 @@ body {
     z-index: 1;
 }
 
-.phone-frame.slide-in-right::after {
-    opacity: 1;
-}
-
 .phone-frame.slide-out-right {
     transform: translateX(100%);
     opacity: 0;
     z-index: 1;
 }
 
-.phone-frame.slide-out-right::after {
-    opacity: 1;
-}
-
 .phone-frame.slide-in-left {
     transform: translateX(-100%);
     opacity: 0;
     z-index: 1;
-}
-
-.phone-frame.slide-in-left::after {
-    opacity: 1;
 }
 
 .phone-status-bar {
