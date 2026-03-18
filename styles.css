@@ -1400,9 +1400,8 @@ body {
         position: relative;
         border-radius: 0 !important;
         background: transparent !important;
-        padding-top: 10px; 
-        padding-bottom: 60px; /* Отступ для тени/декора */
-        touch-action: pan-y !important; /* Блокировка диагонального свайпа */
+        padding-top: 20px; /* Увеличено на 10px, чтобы сдвинуть телефон вниз */
+        padding-bottom: 40px; /* Уменьшено на 20px, чтобы убрать лишнее белое пространство */
         margin: 0 auto; 
     }
     
@@ -1591,7 +1590,6 @@ body {
         -ms-overflow-style: none; 
         padding: 10px 10px 10px 10px;
         box-sizing: border-box;
-        touch-action: pan-y !important; 
     }
     
     .features-carousel-wrapper::-webkit-scrollbar {
@@ -1604,7 +1602,6 @@ body {
         gap: 0;
         padding-bottom: 60px; 
         align-items: flex-start;
-        touch-action: pan-y !important;
     }
     
     .feature-card {
