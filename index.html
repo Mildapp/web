@@ -47,6 +47,9 @@
         .feature-text {
             margin-top: 0 !important;
         }
+        .feature-card {
+            margin-bottom: -10px !important;
+        }
         
         /* Pricing buttons - height 46px, font 16px */
         .pricing-button {
@@ -680,8 +683,10 @@
                     
                     // Find parent container - try multiple selectors
                     var container = video.closest('.feature-card') || 
+                                    video.closest('.feature-phone-mockup') ||
                                     video.closest('.phone-mockup') || 
                                     video.closest('.phone-frame') || 
+                                    video.closest('.phone-screen') ||
                                     video.closest('.hero-frame') || 
                                     video.closest('.hero-frame-content') ||
                                     video.parentElement.parentElement ||
