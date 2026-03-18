@@ -1293,16 +1293,15 @@ body {
     }
     
     .logo-section {
-        flex-shrink: 1;
-        min-width: 0;
+        flex-shrink: 0;
+        min-width: auto;
         width: auto;
     }
     
     .logo {
-        font-size: 20px;
+        font-size: 26px;
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        flex-shrink: 0;
     }
     
     .icons-section {
@@ -1396,6 +1395,7 @@ body {
     .phone-mockup {
         width: 100%;
         max-width: 472px;
+        padding-bottom: 8px;
     }
     
     .phones-container {
@@ -1404,7 +1404,7 @@ body {
         aspect-ratio: 393 / 852;
         max-width: 472px;
         overflow-x: auto;
-        overflow-y: hidden;
+        overflow-y: visible;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;

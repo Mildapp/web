@@ -117,66 +117,6 @@
             stroke-linecap: round;
             stroke-linejoin: round;
         }
-        
-        /* Cookie Banner */
-        .cookie-banner {
-            position: fixed;
-            bottom: 10px;
-            left: 10px;
-            max-width: 462px;
-            padding: 31px 42px 35px 42px;
-            background: #F4F5F0;
-            border-radius: 32px;
-            display: inline-flex;
-            flex-wrap: wrap;
-            align-content: flex-end;
-            align-items: flex-end;
-            gap: 11px;
-            z-index: 1001;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-        }
-        .cookie-banner.hidden {
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-        }
-        .cookie-text {
-            width: 100%;
-            color: var(--Text-primary, black);
-            font-size: 14px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            line-height: 20px;
-            margin-bottom: 16px;
-        }
-        .cookie-btn {
-            width: 117px;
-            height: 36px;
-            padding: 11px 10px;
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            line-height: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.2s;
-        }
-        .cookie-btn:hover {
-            opacity: 0.8;
-        }
-        .cookie-btn-accept {
-            background: black;
-            color: #F4F5F0;
-        }
-        .cookie-btn-reject {
-            background: #ECECE5;
-            color: black;
-        }
     </style>
 </head>
 <body>
@@ -624,13 +564,6 @@
         </div>
     </footer>
     
-    <!-- Cookie Banner -->
-    <div class="cookie-banner" id="cookieBanner">
-        <div class="cookie-text">We use cookies to analyze traffic, personalize content, and improve your experience. You can accept or reject non-essential cookies.</div>
-        <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Accept all</button>
-        <button class="cookie-btn cookie-btn-reject" id="cookieReject">Reject all</button>
-    </div>
-    
     <!-- Scroll to top button -->
     <button class="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Scroll to top">
         <svg viewBox="0 0 24 24">
@@ -723,29 +656,6 @@
                     videos.forEach(function(v) { v.load(); });
                     document.removeEventListener('click', warmUp);
                 }, { once: true });
-            });
-        })();
-        
-        // Cookie Banner functionality
-        (function() {
-            var banner = document.getElementById('cookieBanner');
-            var acceptBtn = document.getElementById('cookieAccept');
-            var rejectBtn = document.getElementById('cookieReject');
-            
-            // Check if user already made a choice
-            var cookieChoice = localStorage.getItem('cookieConsent');
-            if (cookieChoice) {
-                banner.classList.add('hidden');
-            }
-            
-            acceptBtn.addEventListener('click', function() {
-                localStorage.setItem('cookieConsent', 'accepted');
-                banner.classList.add('hidden');
-            });
-            
-            rejectBtn.addEventListener('click', function() {
-                localStorage.setItem('cookieConsent', 'rejected');
-                banner.classList.add('hidden');
             });
         })();
     </script>
