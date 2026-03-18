@@ -9,6 +9,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Hide video controls and play button */
+        video::-webkit-media-controls {
+            display: none !important;
+        }
+        video::-webkit-media-controls-enclosure {
+            display: none !important;
+        }
+        video::-webkit-media-controls-panel {
+            display: none !important;
+        }
+        video::-webkit-media-controls-play-button {
+            display: none !important;
+        }
+        video::-webkit-media-controls-start-playback-button {
+            display: none !important;
+        }
+        
         /* Hero decor images - reduce size by 10% without affecting transform animations */
         .hero-decor {
             zoom: 0.9;
@@ -626,19 +643,63 @@
             }
         })();
         
-        // Force autoplay for Safari
-        document.addEventListener('DOMContentLoaded', function() {
-            var videos = document.querySelectorAll('video');
-            videos.forEach(function(video) {
-                video.play().catch(function() {
-                    // If autoplay fails, try again on user interaction
-                    document.addEventListener('click', function playOnce() {
-                        video.play();
-                        document.removeEventListener('click', playOnce);
-                    }, { once: true });
+        // Force autoplay for Safari and all browsers
+        (function() {
+            function playAllVideos() {
+                var videos = document.querySelectorAll('video');
+                videos.forEach(function(video) {
+                    video.muted = true;
+                    video.setAttribute('muted', '');
+                    video.setAttribute('playsinline', '');
+                    video.setAttribute('webkit-playsinline', '');
+                    
+                    var playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(function() {
+                            // Autoplay blocked, hide controls
+                            video.controls = false;
+                            video.removeAttribute('controls');
+                        });
+                    }
                 });
-            });
-        });
+            }
+            
+            // Try on DOMContentLoaded
+            document.addEventListener('DOMContentLoaded', playAllVideos);
+            
+            // Try on load
+            window.addEventListener('load', playAllVideos);
+            
+            // Try on scroll (user interaction)
+            var scrolled = false;
+            window.addEventListener('scroll', function() {
+                if (!scrolled) {
+                    scrolled = true;
+                    playAllVideos();
+                }
+            }, { passive: true });
+            
+            // Try on any touch/click
+            document.addEventListener('touchstart', playAllVideos, { once: true, passive: true });
+            document.addEventListener('click', playAllVideos, { once: true });
+            
+            // Intersection Observer - play when visible
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            var video = entry.target;
+                            video.muted = true;
+                            video.play().catch(function() {});
+                        }
+                    });
+                }, { threshold: 0.25 });
+                
+                document.querySelectorAll('video').forEach(function(video) {
+                    observer.observe(video);
+                });
+            }
+        })();
     </script>
 </body>
 </html>
