@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mild</title>
+    <style>
+        @font-face {
+            font-family: 'Druk Wide';
+            src: url('fonts/Druk_Wide-Medium-Web.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Consistent logo styling across all pages */
+        .logo, .footer-brand, .privacy-brand {
+            font-family: 'Druk Wide', 'Inter', sans-serif !important;
+            font-weight: 500 !important;
+            font-size: 24px !important;
+            line-height: 1 !important;
+            letter-spacing: 0 !important;
+            color: #000 !important;
+            text-decoration: none !important;
+            display: inline-block !important;
+            text-transform: none !important;
+        }
+        
+        /* Extended background for subscription plans */
+        .pricing-plan.subscription-plan .pricing-plan-content {
+            padding-bottom: 50px !important;
+        }
+    </style>
+</head>
+<body>
+    <main class="hero-section">
+        <div class="hero-container">
+            <header class="header">
+                <div class="header-container">
+                    <div class="logo-section">
+                        <div class="logo">Mild</div>
+                    </div>
+                    <div class="icons-section">
+                        <div class="icons-wrapper">
+                            <button class="icon-button" aria-label="iOS">
+                                <img src="images/ios.svg" alt="iOS" class="icon-image">
+                            </button>
+                            <button class="icon-button" aria-label="Android">
+                                <img src="images/android.svg" alt="Android" class="icon-image">
+                                <span class="android-tooltip">🤖 Soon</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="actions-section">
+                        <img src="images/App_Store_Badge.svg" alt="Download on the App Store" class="app-store-badge">
+                    </div>
+                </div>
+            </header>
+            <img src="images/garlic.svg" alt="Garlic" class="hero-decor hero-decor-1">
+            <img src="images/oliveoil.svg" alt="Olive Oil" class="hero-decor hero-decor-2">
+            <img src="images/pepper.svg" alt="Pepper" class="hero-decor hero-decor-3">
+            <img src="images/cheese.svg" alt="Cheese" class="hero-decor hero-decor-4">
+            <img src="images/pasta.svg" alt="Pasta" class="hero-decor hero-decor-5">
+            <img src="images/zucchini.svg" alt="Zucchini" class="hero-decor hero-decor-6">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Just snap a photo, say it, or select ingredients</h1>
+                    <p class="hero-description">Find recipes from what you have as AI turns simple ingredients into fast, smart, everyday meals, helping you cook with confidence and waste less food.</p>
+                </div>
+                <button class="btn btn-primary hero-cta-button" data-color="Accent" data-size="Big 60" data-type="Fill">
+                    Start Cooking with Mild
+                </button>
+            </div>
+            <div class="phone-mockup">
+            <div class="hero-tabs">
+                <button class="hero-tab" data-tab="voice" data-state="default">
+                    <div class="hero-tab-text">By voice</div>
+                </button>
+                <button class="hero-tab active" data-tab="snap" data-state="active">
+                    <div class="hero-tab-text">By snap</div>
+                </button>
+                <button class="hero-tab" data-tab="text" data-state="default">
+                    <div class="hero-tab-text">By text</div>
+                </button>
+            </div>
+            <div class="phones-container">
+                <!-- Phone for Voice Tab -->
+                <div class="phone-frame phone-slide" data-tab="voice">
+                    <video class="hero-frame-video" muted loop playsinline data-video="hero-voice">
+                        <source src="Video/BY VOICE (size X3).mp4" type="video/mp4">
+                    </video>
+                    <div class="video-preloader">
+                        <div class="video-preloader-dots">
+                            <div class="video-preloader-dot"></div>
+                            <div class="video-preloader-dot"></div>
+                            <div class="video-preloader-dot"></div>
+                            <div class="video-preloader-dot"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phone for Snap Tab (Active by default) -->
+                <div class="phone-frame phone-slide active" data-tab="snap">
+                    <video class="hero-frame-video" muted loop playsinline data-video="hero-snap">
+                        <source src="Video/BY PHOTO (size X3).mp4" type="video/mp4">
+                    </video>
+                    <div class="video-preloader">
+                        <div class="video-preloader-dots">
+                            <div class="video-preloader-dot"></div>
+                            <div class="video-preloader-dot"></div>
+                            <div class="video-preloader-dot"></div>
+                            <div class="video-preloader-dot"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phone for Text Tab -->
+                <div class="phone-frame phone-slide" data-tab="text">
+                    <video class="hero-frame-video" muted loop playsinline data-video="hero-text">
+                        <source src="Video/BY TEXT (size X3).mp4" type="video/mp4">
+                    </video>
+                    <div class="video-preloader">
+                        <div class="video-preloader-dots">
+                            <div class="video-preloader-dot"></div>
+                            <div class="video-preloader-dot"></div>
+                            <div class="video-preloader-dot"></div>
+                            <div class="video-preloader-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+    
+    <section class="reasons-section">
+        <h2 class="reasons-title">Reasons to Choose <br/>Our Recipe App</h2>
+        <div class="reasons-content">
+            <div class="reasons-cards">
+                <div class="reason-card" data-platform="Web">
+                    <div class="reason-header">
+                        <div class="reason-percent">50%</div>
+                        <div class="reason-title-text">Reduce Food Waste</div>
+                    </div>
+                    <div class="reason-description">The app helps you turn your ingredients into tasty meals, making everyday cooking simple and reducing food waste.</div>
+                </div>
+                <div class="reason-card" data-platform="Web">
+                    <div class="reason-header">
+                        <div class="reason-percent">Up to 10</div>
+                        <div class="reason-title-text">ingredients. Under 1 hour</div>
+                    </div>
+                    <div class="reason-description">We focus on simple recipes that take less than one hour to cook and use no more than ten ingredients, making everyday meals easier to prepare.</div>
+                </div>
+                <div class="reason-card" data-platform="Web">
+                    <div class="reason-header">
+                        <div class="reason-percent">2000+</div>
+                        <div class="reason-title-text">Recipes</div>
+                    </div>
+                    <div class="reason-description">Discover thousands of meals you can cook with ingredients you already have at home, with simple recipes you can prepare quickly.</div>
+                </div>
+                <div class="reason-card" data-platform="Web">
+                    <div class="reason-header">
+                     
+                        <div class="reason-title-text">Available in 17 Languages</div>
+                    </div>
+                    <div class="reason-description">EN, ES, IT, DE, FR, PT, CS, PL, UK, HU, DA, FI, SV, TR, RU, ZH, JA.</div>
+                </div>
+            </div>
+            <img src="images/reasons.svg" alt="App features" class="reasons-image">
+        </div>
+    </section>
+    
+    <section class="features-section">
+        <h2 class="features-title">What features <br/>do we offer</h2>
+        <div class="features-carousel-wrapper">
+            <div class="features-grid">
+            <div class="feature-card" data-number="1">
+                <div class="feature-phone-mockup">
+                    <div class="phone-screen">
+                        <video class="phone-video" muted loop playsinline>
+                            <source src="Video/WEB_1_sizeX3.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-preloader">
+                            <div class="video-preloader-dots">
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                            </div>
+                        </div>
+                        <div class="feature-video-slot" aria-hidden="true"></div>
+                    </div>
+                </div>
+                <div class="feature-description">
+                    <div class="feature-icon">
+                        <img src="images/Icons/done.svg" alt="Done" class="feature-icon-img">
+                    </div>
+                    <div class="feature-text">Just take a photo of your ingredients to find recipes in our database.</div>
+                </div>
+            </div>
+            
+            <div class="feature-card" data-number="2">
+                <div class="feature-phone-mockup">
+                    <div class="phone-screen">
+                        <video class="phone-video" muted loop playsinline>
+                            <source src="Video/WEB_2_sizeX3.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-preloader">
+                            <div class="video-preloader-dots">
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                            </div>
+                        </div>
+                        <div class="feature-video-slot" aria-hidden="true"></div>
+                    </div>
+                </div>
+                <div class="feature-description">
+                    <div class="feature-icon">
+                        <img src="images/Icons/done.svg" alt="Done" class="feature-icon-img">
+                    </div>
+                    <div class="feature-text">You can also choose ingredients quickly or use voice to search for recipes.</div>
+                </div>
+            </div>
+            
+            <div class="feature-card" data-number="3">
+                <div class="feature-phone-mockup">
+                    <div class="phone-screen">
+                        <video class="phone-video" muted loop playsinline>
+                            <source src="Video/WEB_3_sizeX3.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-preloader">
+                            <div class="video-preloader-dots">
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                            </div>
+                        </div>
+                        <div class="feature-video-slot" aria-hidden="true"></div>
+                    </div>
+                </div>
+                <div class="feature-description">
+                    <div class="feature-icon">
+                        <img src="images/Icons/done.svg" alt="Done" class="feature-icon-img">
+                    </div>
+                    <div class="feature-text">Find simple and quick recipes and see which ingredients you still need.</div>
+                </div>
+            </div>
+            
+            <div class="feature-card" data-number="4">
+                <div class="feature-phone-mockup">
+                    <div class="phone-screen">
+                        <video class="phone-video" muted loop playsinline>
+                            <source src="Video/WEB_4_sizeX3.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-preloader">
+                            <div class="video-preloader-dots">
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                            </div>
+                        </div>
+                        <div class="feature-video-slot" aria-hidden="true"></div>
+                    </div>
+                </div>
+                <div class="feature-description">
+                    <div class="feature-icon">
+                        <img src="images/Icons/done.svg" alt="Done" class="feature-icon-img">
+                    </div>
+                    <div class="feature-text">Follow each step with a timer and sound alerts to keep you on track.</div>
+                </div>
+            </div>
+            
+            <div class="feature-card" data-number="5">
+                <div class="feature-phone-mockup">
+                    <div class="phone-screen">
+                        <video class="phone-video" muted loop playsinline>
+                            <source src="Video/WEB_5_sizeX3.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-preloader">
+                            <div class="video-preloader-dots">
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                            </div>
+                        </div>
+                        <div class="feature-video-slot" aria-hidden="true"></div>
+                    </div>
+                </div>
+                <div class="feature-description">
+                    <div class="feature-icon">
+                        <img src="images/Icons/done.svg" alt="Done" class="feature-icon-img">
+                    </div>
+                    <div class="feature-text">Start by setting your dietary restrictions to get more suitable recipes.</div>
+                </div>
+            </div>
+            
+            <div class="feature-card" data-number="6">
+                <div class="feature-phone-mockup">
+                    <div class="phone-screen">
+                        <video class="phone-video" muted loop playsinline>
+                            <source src="Video/WEB_6_sizeX3.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-preloader">
+                            <div class="video-preloader-dots">
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                                <div class="video-preloader-dot"></div>
+                            </div>
+                        </div>
+                        <div class="feature-video-slot" aria-hidden="true"></div>
+                    </div>
+                </div>
+                <div class="feature-description">
+                    <div class="feature-icon">
+                        <img src="images/Icons/done.svg" alt="Done" class="feature-icon-img">
+                    </div>
+                    <div class="feature-text">The app is available worldwide and supports 17 languages.</div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="features-dots" aria-hidden="true">
+            <button class="feature-dot active" data-index="0"></button>
+            <button class="feature-dot" data-index="1"></button>
+            <button class="feature-dot" data-index="2"></button>
+            <button class="feature-dot" data-index="3"></button>
+            <button class="feature-dot" data-index="4"></button>
+            <button class="feature-dot" data-index="5"></button>
+        </div>
+    </section>
+    
+    <section class="try-section">
+        <div class="try-container">
+            <div class="try-content">
+                <h2 class="try-title">Give it a try and<br>decide for yourself!</h2>
+                <div class="pricing-table">
+                    <div class="pricing-features">
+                        <div class="pricing-features-list">
+                            <div class="pricing-feature-header">
+                                <div class="pricing-feature-text"></div>
+                            </div>
+                            <div class="pricing-feature-item">
+                                <div class="pricing-feature-text">Select ingredients for quick recipe search</div>
+                            </div>
+                            <div class="pricing-feature-item">
+                                <div class="pricing-feature-text">Displaying missing ingredients</div>
+                            </div>
+                            <div class="pricing-feature-item">
+                                <div class="pricing-feature-text">Step-by-step cooking guides</div>
+                            </div>
+                            <div class="pricing-feature-item">
+                                <div class="pricing-feature-text">Ingredient facts and nutritional info</div>
+                            </div>
+                            <div class="pricing-feature-item">
+                                <div class="pricing-feature-text">AI photo, voice ingredient search</div>
+                            </div>
+                            <div class="pricing-feature-item">
+                                <div class="pricing-feature-text">Filter recipes by time, calories, cuisine</div>
+                            </div>
+                            <div class="pricing-feature-item">
+                                <div class="pricing-feature-text">Timers with sound alerts for each cooking step</div>
+                            </div>
+                            <div class="pricing-feature-item">
+                                <div class="pricing-feature-text">Save favorite recipes</div>
+                            </div>
+                            <div class="pricing-feature-item">
+                                <div class="pricing-feature-text">Quick access to recently used ingredients</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pricing-plan-group">
+                        <div class="pricing-plan free-plan">
+                            <div class="pricing-plan-content">
+                                <div class="pricing-plan-header">
+                                    <div class="pricing-plan-meta">
+                                        <div class="pricing-plan-title">Free</div>
+                                    </div>
+                                    <div class="pricing-plan-price">
+                                        <span class="price-amount">$0</span>
+                                        <span class="price-period">/forever</span>
+                                    </div>
+                                    <button class="pricing-button pricing-button-free">Get App</button>
+                                </div>
+                                <div class="pricing-feature-check">
+                                    <div class="check-icon check-yes">
+                                        <img src="images/Icons/done.svg" alt="Done" class="check-icon-img">
+                                    </div>
+                                    <div class="pricing-feature-text">Select ingredients for quick recipe search</div>
+                                </div>
+                                <div class="pricing-feature-check">
+                                    <div class="check-icon check-yes">
+                                        <img src="images/Icons/done.svg" alt="Done" class="check-icon-img">
+                                    </div>
+                                    <div class="pricing-feature-text">Displaying missing ingredients</div>
+                                </div>
+                                <div class="pricing-feature-check">
+                                    <div class="check-icon check-yes">
+                                        <img src="images/Icons/done.svg" alt="Done" class="check-icon-img">
+                                    </div>
+                                    <div class="pricing-feature-text">Step-by-step cooking guides</div>
+                                </div>
+                                <div class="pricing-feature-check">
+                                    <div class="check-icon check-yes">
+                                        <img src="images/Icons/done.svg" alt="Done" class="check-icon-img">
+                                    </div>
+                                    <div class="pricing-feature-text">Ingredient facts and nutritional info</div>
+                                </div>
+                                <div class="pricing-feature-check">
+                                    <div class="check-icon check-yes">
+                                        <img src="images/Icons/done.svg" alt="Done" class="check-icon-img">
+                                    </div>
+                                    <div class="pricing-feature-text">AI photo, voice ingredient search</div>
+                                </div>
+                                <div class="pricing-feature-check">
+                                    <div class="check-icon check-no">
+                                        <img src="images/Icons/close.svg" alt="Close" class="check-icon-img-close">
+                                    </div>
+                                    <div class="pricing-feature-text">Filter recipes by time, calories, cuisine</div>
+                                </div>
+                                <div class="pricing-feature-check">
+                                    <div class="check-icon check-no">
+                                        <img src="images/Icons/close.svg" alt="Close" class="check-icon-img-close">
+                                    </div>
+                                    <div class="pricing-feature-text">Timers with sound alerts for each cooking step</div>
+                                </div>
+                                <div class="pricing-feature-check">
+                                    <div class="check-icon check-no">
+                                        <img src="images/Icons/close.svg" alt="Close" class="check-icon-img-close">
+                                    </div>
+                                    <div class="pricing-feature-text">Save favorite recipes</div>
+                                </div>
+                                <div class="pricing-feature-check">
+                                    <div class="check-icon check-no">
+                                        <img src="images/Icons/close.svg" alt="Close" class="check-icon-img-close">
+                                    </div>
+                                    <div class="pricing-feature-text">Quick access to recently used ingredients</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pricing-plan subscription-plan weekly-plan">
+                            <div class="pricing-plan-content">
+                                <div class="pricing-plan-header">
+                                    <div class="pricing-plan-meta">
+                                        <div class="pricing-plan-title">Weekly</div>
+                                        <div class="pricing-plan-trial">1-day trial</div>
+                                    </div>
+                                    <div class="pricing-plan-price">
+                                        <span class="price-amount">$1.49</span>
+                                        <span class="price-period">/wk</span>
+                                    </div>
+                                    <button class="pricing-button pricing-button-subscription">Get App</button>
+                                </div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Select ingredients for quick recipe search</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Displaying missing ingredients</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Step-by-step cooking guides</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Ingredient facts and nutritional info</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">AI photo, voice ingredient search</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Filter recipes by time, calories, cuisine</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Timers with sound alerts for each cooking step</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Save favorite recipes</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Quick access to recently used ingredients</div></div>
+                            </div>
+                        </div>
+
+                        <div class="pricing-plan subscription-plan monthly-plan">
+                            <div class="pricing-plan-content">
+                                <div class="pricing-plan-header">
+                                    <div class="pricing-plan-meta">
+                                        <div class="pricing-plan-badge">23% OFF</div>
+                                        <div class="pricing-plan-title">Monthly</div>
+                                        <div class="pricing-plan-trial">5-day trial</div>
+                                    </div>
+                                    <div class="pricing-plan-price">
+                                        <span class="price-amount">$4.99</span>
+                                        <span class="price-period">/mo</span>
+                                    </div>
+                                    <button class="pricing-button pricing-button-subscription">Get App</button>
+                                </div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Select ingredients for quick recipe search</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Displaying missing ingredients</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Step-by-step cooking guides</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Ingredient facts and nutritional info</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">AI photo, voice ingredient search</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Filter recipes by time, calories, cuisine</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Timers with sound alerts for each cooking step</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Save favorite recipes</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Quick access to recently used ingredients</div></div>
+                            </div>
+                        </div>
+
+                        <div class="pricing-plan subscription-plan yearly-plan">
+                            <div class="pricing-plan-content">
+                                <div class="pricing-plan-header">
+                                    <div class="pricing-plan-meta">
+                                        <div class="pricing-plan-badge">30% OFF</div>
+                                        <div class="pricing-plan-title">Yearly</div>
+                                        <div class="pricing-plan-trial">7-day trial</div>
+                                    </div>
+                                    <div class="pricing-plan-price">
+                                        <span class="price-amount">$41.49</span>
+                                        <span class="price-period">/yr</span>
+                                    </div>
+                                    <button class="pricing-button pricing-button-subscription">Get App</button>
+                                </div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Select ingredients for quick recipe search</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Displaying missing ingredients</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Step-by-step cooking guides</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Ingredient facts and nutritional info</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">AI photo, voice ingredient search</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Filter recipes by time, calories, cuisine</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Timers with sound alerts for each cooking step</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Save favorite recipes</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Quick access to recently used ingredients</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="waitlist-section" aria-label="Join waitlist">
+        <div class="waitlist-card">
+            <div class="waitlist-inner">
+                <h2 class="waitlist-title">Get Our Newsletter</h2>
+                <div class="waitlist-form" role="group" aria-label="Waitlist signup">
+                    <input class="waitlist-input" type="email" placeholder="Enter your Email" aria-label="Enter your email">
+                    <button class="waitlist-button" type="button">Get Early Access</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-container">
+            <a href="index.html" class="footer-brand">Mild</a>
+            <div class="footer-copy">©2026</div>
+            <div class="footer-right">
+                <a href="privacy.html" class="footer-link">Privacy</a>
+                <a href="contact.html" class="footer-link footer-link-contact">Get in touch</a>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
