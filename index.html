@@ -41,8 +41,8 @@
             height: 24px !important;
             min-width: 24px !important;
             min-height: 24px !important;
-            margin-top: 10px !important;
-            margin-bottom: 10px !important;
+            margin-top: 5px !important;
+            margin-bottom: 5px !important;
         }
         .feature-text {
             margin-top: 0 !important;
@@ -678,7 +678,23 @@
                     video.controls = false;
                     video.removeAttribute('controls');
                     
-                    var container = video.closest('.feature-card') || video.closest('.phone-frame') || video.closest('.hero-frame') || video.parentElement;
+                    // Find parent container - try multiple selectors
+                    var container = video.closest('.feature-card') || 
+                                    video.closest('.phone-mockup') || 
+                                    video.closest('.phone-frame') || 
+                                    video.closest('.hero-frame') || 
+                                    video.closest('.hero-frame-content') ||
+                                    video.parentElement.parentElement ||
+                                    video.parentElement;
+                    
+                    // Also add hover to video itself
+                    video.addEventListener('mouseenter', function() {
+                        video.play().catch(function() {});
+                    });
+                    
+                    video.addEventListener('mouseleave', function() {
+                        video.pause();
+                    });
                     
                     container.addEventListener('mouseenter', function() {
                         video.play().catch(function() {});
