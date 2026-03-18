@@ -157,7 +157,7 @@
             <div class="phones-container">
                 <!-- Phone for Voice Tab -->
                 <div class="phone-frame phone-slide" data-tab="voice">
-                    <video class="hero-frame-video" muted loop playsinline preload="metadata" data-video="hero-voice">
+                    <video class="hero-frame-video" muted loop playsinline preload="none" data-video="hero-voice">
                         <source src="Video/BY VOICE (size X3).mp4" type="video/mp4">
                     </video>
                     <div class="video-preloader">
@@ -172,7 +172,7 @@
                 
                 <!-- Phone for Snap Tab (Active by default) -->
                 <div class="phone-frame phone-slide active" data-tab="snap">
-                    <video class="hero-frame-video" muted loop playsinline preload="metadata" data-video="hero-snap">
+                    <video class="hero-frame-video" muted loop playsinline preload="none" data-video="hero-snap">
                         <source src="Video/BY PHOTO (size X3).mp4" type="video/mp4">
                     </video>
                     <div class="video-preloader">
@@ -187,7 +187,7 @@
                 
                 <!-- Phone for Text Tab -->
                 <div class="phone-frame phone-slide" data-tab="text">
-                    <video class="hero-frame-video" muted loop playsinline preload="metadata" data-video="hero-text">
+                    <video class="hero-frame-video" muted loop playsinline preload="none" data-video="hero-text">
                         <source src="Video/BY TEXT (size X3).mp4" type="video/mp4">
                     </video>
                     <div class="video-preloader">
@@ -248,7 +248,7 @@
             <div class="feature-card" data-number="1">
                 <div class="feature-phone-mockup">
                     <div class="phone-screen">
-                        <video class="phone-video" muted loop playsinline preload="metadata">
+                        <video class="phone-video" muted loop playsinline preload="none">
                             <source src="Video/WEB_1_sizeX3.mp4" type="video/mp4">
                         </video>
                         <div class="video-preloader">
@@ -273,7 +273,7 @@
             <div class="feature-card" data-number="2">
                 <div class="feature-phone-mockup">
                     <div class="phone-screen">
-                        <video class="phone-video" muted loop playsinline preload="metadata">
+                        <video class="phone-video" muted loop playsinline preload="none">
                             <source src="Video/WEB_2_sizeX3.mp4" type="video/mp4">
                         </video>
                         <div class="video-preloader">
@@ -298,7 +298,7 @@
             <div class="feature-card" data-number="3">
                 <div class="feature-phone-mockup">
                     <div class="phone-screen">
-                        <video class="phone-video" muted loop playsinline preload="metadata">
+                        <video class="phone-video" muted loop playsinline preload="none">
                             <source src="Video/WEB_3_sizeX3.mp4" type="video/mp4">
                         </video>
                         <div class="video-preloader">
@@ -323,7 +323,7 @@
             <div class="feature-card" data-number="4">
                 <div class="feature-phone-mockup">
                     <div class="phone-screen">
-                        <video class="phone-video" muted loop playsinline preload="metadata">
+                        <video class="phone-video" muted loop playsinline preload="none">
                             <source src="Video/WEB_4_sizeX3.mp4" type="video/mp4">
                         </video>
                         <div class="video-preloader">
@@ -348,7 +348,7 @@
             <div class="feature-card" data-number="5">
                 <div class="feature-phone-mockup">
                     <div class="phone-screen">
-                        <video class="phone-video" muted loop playsinline preload="metadata">
+                        <video class="phone-video" muted loop playsinline preload="none">
                             <source src="Video/WEB_5_sizeX3.mp4" type="video/mp4">
                         </video>
                         <div class="video-preloader">
@@ -373,7 +373,7 @@
             <div class="feature-card" data-number="6">
                 <div class="feature-phone-mockup">
                     <div class="phone-screen">
-                        <video class="phone-video" muted loop playsinline preload="metadata">
+                        <video class="phone-video" muted loop playsinline preload="none">
                             <source src="Video/WEB_6_sizeX3.mp4" type="video/mp4">
                         </video>
                         <div class="video-preloader">
@@ -647,12 +647,37 @@
         (function() {
             document.addEventListener('DOMContentLoaded', function() {
                 var videos = document.querySelectorAll('video');
+                
+                // Lazy load videos when they come into view
+                if ('IntersectionObserver' in window) {
+                    var lazyObserver = new IntersectionObserver(function(entries) {
+                        entries.forEach(function(entry) {
+                            if (entry.isIntersecting) {
+                                var video = entry.target;
+                                video.preload = 'auto';
+                                video.load();
+                                lazyObserver.unobserve(video);
+                            }
+                        });
+                    }, { rootMargin: '200px' }); // Start loading 200px before visible
+                    
+                    videos.forEach(function(video) {
+                        lazyObserver.observe(video);
+                    });
+                } else {
+                    // Fallback: load all videos
+                    videos.forEach(function(video) {
+                        video.preload = 'auto';
+                        video.load();
+                    });
+                }
+                
+                // Hover play/pause
                 videos.forEach(function(video) {
                     video.muted = true;
                     video.controls = false;
                     video.removeAttribute('controls');
                     
-                    // Find parent container (feature-card or phone-frame)
                     var container = video.closest('.feature-card') || video.closest('.phone-frame') || video.closest('.hero-frame') || video.parentElement;
                     
                     container.addEventListener('mouseenter', function() {
@@ -661,10 +686,8 @@
                     
                     container.addEventListener('mouseleave', function() {
                         video.pause();
-                        // Keep current position, don't reset
                     });
                     
-                    // Touch support for mobile
                     container.addEventListener('touchstart', function() {
                         if (video.paused) {
                             video.play().catch(function() {});
