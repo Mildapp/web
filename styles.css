@@ -1283,9 +1283,7 @@ body {
     }
     
     .header {
-        padding: 0;
-        align-self: stretch;
-        width: 100%;
+        padding: 20px 20px 0;
     }
     
     .header-container {
@@ -1295,15 +1293,16 @@ body {
     }
     
     .logo-section {
-        flex-shrink: 0;
-        min-width: auto;
+        flex-shrink: 1;
+        min-width: 0;
         width: auto;
     }
     
     .logo {
-        font-size: 26px;
+        font-size: 20px;
         white-space: nowrap;
-        flex-shrink: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
     .icons-section {
@@ -1404,7 +1403,8 @@ body {
         height: auto;
         aspect-ratio: 393 / 852;
         max-width: 472px;
-        overflow: hidden;
+        overflow-x: auto;
+        overflow-y: hidden;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
@@ -1427,8 +1427,7 @@ body {
         position: relative;
         scroll-snap-align: center;
         scroll-snap-stop: always;
-        border: 6px solid black;
-        outline: none !important;
+        outline: 4px var(--Text-primary) solid !important;
         opacity: 1;
         transform: translateX(0) !important;
         pointer-events: auto;
