@@ -231,17 +231,17 @@
                 </button>
             </div>
             <div class="phones-container">
+                <!-- Phone for Snap Tab (Active by default) - FIRST for mobile -->
+                <div class="phone-frame phone-slide active" data-tab="snap">
+                    <video class="hero-frame-video" muted loop playsinline preload="none" data-video="hero-snap">
+                        <source src="Video/BY PHOTO (size X3).mp4" type="video/mp4">
+                    </video>
+                </div>
+                
                 <!-- Phone for Voice Tab -->
                 <div class="phone-frame phone-slide" data-tab="voice">
                     <video class="hero-frame-video" muted loop playsinline preload="none" data-video="hero-voice">
                         <source src="Video/BY VOICE (size X3).mp4" type="video/mp4">
-                    </video>
-                </div>
-                
-                <!-- Phone for Snap Tab (Active by default) -->
-                <div class="phone-frame phone-slide active" data-tab="snap">
-                    <video class="hero-frame-video" muted loop playsinline preload="none" data-video="hero-snap">
-                        <source src="Video/BY PHOTO (size X3).mp4" type="video/mp4">
                     </video>
                 </div>
                 
@@ -700,8 +700,10 @@
                                     video.parentElement;
                     
                     function playVideo() {
-                        if (video.readyState < 2) video.load();
-                        video.currentTime = 0;
+                        if (video.readyState < 2) {
+                            video.load();
+                            video.currentTime = 0;
+                        }
                         var p = video.play();
                         if (p) p.catch(function() {
                             setTimeout(function() { video.play().catch(function(){}); }, 50);
