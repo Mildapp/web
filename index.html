@@ -41,8 +41,8 @@
             height: 24px !important;
             min-width: 24px !important;
             min-height: 24px !important;
-            margin-top: 20px !important;
-            margin-bottom: 20px !important;
+            margin-top: 10px !important;
+            margin-bottom: 10px !important;
         }
         .feature-text {
             margin-top: 0 !important;
@@ -157,7 +157,7 @@
             <div class="phones-container">
                 <!-- Phone for Voice Tab -->
                 <div class="phone-frame phone-slide" data-tab="voice">
-                    <video class="hero-frame-video" autoplay muted loop playsinline webkit-playsinline preload="auto" data-video="hero-voice">
+                    <video class="hero-frame-video" muted loop playsinline preload="metadata" data-video="hero-voice">
                         <source src="Video/BY VOICE (size X3).mp4" type="video/mp4">
                     </video>
                     <div class="video-preloader">
@@ -172,7 +172,7 @@
                 
                 <!-- Phone for Snap Tab (Active by default) -->
                 <div class="phone-frame phone-slide active" data-tab="snap">
-                    <video class="hero-frame-video" autoplay muted loop playsinline webkit-playsinline preload="auto" data-video="hero-snap">
+                    <video class="hero-frame-video" muted loop playsinline preload="metadata" data-video="hero-snap">
                         <source src="Video/BY PHOTO (size X3).mp4" type="video/mp4">
                     </video>
                     <div class="video-preloader">
@@ -187,7 +187,7 @@
                 
                 <!-- Phone for Text Tab -->
                 <div class="phone-frame phone-slide" data-tab="text">
-                    <video class="hero-frame-video" autoplay muted loop playsinline webkit-playsinline preload="auto" data-video="hero-text">
+                    <video class="hero-frame-video" muted loop playsinline preload="metadata" data-video="hero-text">
                         <source src="Video/BY TEXT (size X3).mp4" type="video/mp4">
                     </video>
                     <div class="video-preloader">
@@ -248,7 +248,7 @@
             <div class="feature-card" data-number="1">
                 <div class="feature-phone-mockup">
                     <div class="phone-screen">
-                        <video class="phone-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+                        <video class="phone-video" muted loop playsinline preload="metadata">
                             <source src="Video/WEB_1_sizeX3.mp4" type="video/mp4">
                         </video>
                         <div class="video-preloader">
@@ -273,7 +273,7 @@
             <div class="feature-card" data-number="2">
                 <div class="feature-phone-mockup">
                     <div class="phone-screen">
-                        <video class="phone-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+                        <video class="phone-video" muted loop playsinline preload="metadata">
                             <source src="Video/WEB_2_sizeX3.mp4" type="video/mp4">
                         </video>
                         <div class="video-preloader">
@@ -298,7 +298,7 @@
             <div class="feature-card" data-number="3">
                 <div class="feature-phone-mockup">
                     <div class="phone-screen">
-                        <video class="phone-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+                        <video class="phone-video" muted loop playsinline preload="metadata">
                             <source src="Video/WEB_3_sizeX3.mp4" type="video/mp4">
                         </video>
                         <div class="video-preloader">
@@ -323,7 +323,7 @@
             <div class="feature-card" data-number="4">
                 <div class="feature-phone-mockup">
                     <div class="phone-screen">
-                        <video class="phone-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+                        <video class="phone-video" muted loop playsinline preload="metadata">
                             <source src="Video/WEB_4_sizeX3.mp4" type="video/mp4">
                         </video>
                         <div class="video-preloader">
@@ -348,7 +348,7 @@
             <div class="feature-card" data-number="5">
                 <div class="feature-phone-mockup">
                     <div class="phone-screen">
-                        <video class="phone-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+                        <video class="phone-video" muted loop playsinline preload="metadata">
                             <source src="Video/WEB_5_sizeX3.mp4" type="video/mp4">
                         </video>
                         <div class="video-preloader">
@@ -373,7 +373,7 @@
             <div class="feature-card" data-number="6">
                 <div class="feature-phone-mockup">
                     <div class="phone-screen">
-                        <video class="phone-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+                        <video class="phone-video" muted loop playsinline preload="metadata">
                             <source src="Video/WEB_6_sizeX3.mp4" type="video/mp4">
                         </video>
                         <div class="video-preloader">
@@ -643,62 +643,37 @@
             }
         })();
         
-        // Force autoplay for Safari and all browsers
+        // Video play on hover, pause on mouse leave
         (function() {
-            function playAllVideos() {
+            document.addEventListener('DOMContentLoaded', function() {
                 var videos = document.querySelectorAll('video');
                 videos.forEach(function(video) {
                     video.muted = true;
-                    video.setAttribute('muted', '');
-                    video.setAttribute('playsinline', '');
-                    video.setAttribute('webkit-playsinline', '');
+                    video.controls = false;
+                    video.removeAttribute('controls');
                     
-                    var playPromise = video.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(function() {
-                            // Autoplay blocked, hide controls
-                            video.controls = false;
-                            video.removeAttribute('controls');
-                        });
-                    }
-                });
-            }
-            
-            // Try on DOMContentLoaded
-            document.addEventListener('DOMContentLoaded', playAllVideos);
-            
-            // Try on load
-            window.addEventListener('load', playAllVideos);
-            
-            // Try on scroll (user interaction)
-            var scrolled = false;
-            window.addEventListener('scroll', function() {
-                if (!scrolled) {
-                    scrolled = true;
-                    playAllVideos();
-                }
-            }, { passive: true });
-            
-            // Try on any touch/click
-            document.addEventListener('touchstart', playAllVideos, { once: true, passive: true });
-            document.addEventListener('click', playAllVideos, { once: true });
-            
-            // Intersection Observer - play when visible
-            if ('IntersectionObserver' in window) {
-                var observer = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            var video = entry.target;
-                            video.muted = true;
-                            video.play().catch(function() {});
-                        }
+                    // Find parent container (feature-card or phone-frame)
+                    var container = video.closest('.feature-card') || video.closest('.phone-frame') || video.closest('.hero-frame') || video.parentElement;
+                    
+                    container.addEventListener('mouseenter', function() {
+                        video.play().catch(function() {});
                     });
-                }, { threshold: 0.25 });
-                
-                document.querySelectorAll('video').forEach(function(video) {
-                    observer.observe(video);
+                    
+                    container.addEventListener('mouseleave', function() {
+                        video.pause();
+                        // Keep current position, don't reset
+                    });
+                    
+                    // Touch support for mobile
+                    container.addEventListener('touchstart', function() {
+                        if (video.paused) {
+                            video.play().catch(function() {});
+                        } else {
+                            video.pause();
+                        }
+                    }, { passive: true });
                 });
-            }
+            });
         })();
     </script>
 </body>
