@@ -1,27 +1,6 @@
 @font-face {
-    font-family: 'Base Neue';
-    src: url('Druk Wide-Medium-Web.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Druk Wide Cy App';
-    src: url('Druk Wide-Medium-Web.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Druk Wide Cy TT';
-    src: url('Druk Wide-Medium-Web.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Druk Wide Cy TT';
-    src: url('Druk Wide-Medium-Web.ttf') format('truetype');
+    font-family: 'Druk Wide';
+    src: url('Druk Wide-Medium-Web.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
 }
@@ -78,7 +57,7 @@ body {
 .logo {
     color: var(--Text-primary);
     font-size: 26px;
-    font-family: 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 700;
     word-wrap: break-word;
 }
@@ -140,7 +119,7 @@ body {
     color: var(--Text-primary);
     padding: 8px 16px;
     border-radius: 12px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
@@ -425,7 +404,7 @@ body {
     text-align: center;
     color: var(--Text-primary);
     font-size: 72px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 86px;
     word-wrap: break-word;
@@ -749,7 +728,7 @@ body {
     text-align: center;
     color: var(--Text-primary);
     font-size: 30px;
-    font-family: 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 700;
     line-height: 30px;
     word-wrap: break-word;
@@ -969,7 +948,7 @@ body {
     text-align: center;
     color: var(--Text-primary);
     font-size: 56px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 64px;
     word-wrap: break-word;
@@ -1020,7 +999,7 @@ body {
 .reason-percent {
     color: var(--Text-primary);
     font-size: 22px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 26px;
     word-wrap: break-word;
@@ -1032,7 +1011,7 @@ body {
     min-width: 0;
     color: var(--Text-primary);
     font-size: 22px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 26px;
     word-wrap: break-word;
@@ -1075,7 +1054,7 @@ body {
     text-align: center;
     color: var(--Text-primary);
     font-size: 56px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 64px;
     word-wrap: break-word;
@@ -1365,7 +1344,7 @@ body {
     
     .hero-title {
         font-size: 42px;
-        font-family: 'Base Neue', sans-serif;
+        font-family: 'Druk Wide', sans-serif;
         font-weight: 600;
         line-height: 46.20px;
         word-wrap: break-word;
@@ -2004,7 +1983,7 @@ body {
     text-align: center;
     color: var(--Text-primary);
     font-size: 85.56px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 94.11px;
     word-wrap: break-word;
@@ -2106,7 +2085,7 @@ body {
     text-align: center;
     color: var(--Text-primary);
     font-size: 56px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 64px;
     word-wrap: break-word;
@@ -2301,7 +2280,7 @@ body {
 .pricing-plan-title {
     color: var(--Text-primary, black);
     font-size: 24px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 32px;
     letter-spacing: 0;
@@ -2605,7 +2584,7 @@ body {
 .footer-brand {
     color: var(--Text-primary);
     font-size: 26px;
-    font-family: 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 700;
     flex-shrink: 0;
     text-decoration: none;
@@ -2724,7 +2703,7 @@ body {
 .waitlist-title {
     margin: 0;
     color: var(--Text-primary);
-    font-family: 'Druk Wide Cy TT', 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', 'Druk Wide', sans-serif;
     font-weight: 500;
     font-style: normal;
     font-size: 56px;
@@ -2922,7 +2901,7 @@ body {
 .privacy-brand {
     color: var(--Text-primary);
     font-size: 26px;
-    font-family: 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 700;
     text-decoration: none;
 }
@@ -2968,7 +2947,7 @@ body {
 .privacy-title {
     color: var(--Text-primary);
     font-size: 72px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 80px;
 }
@@ -3007,7 +2986,7 @@ body {
     margin-bottom: 18px;
     color: var(--Text-primary);
     font-size: 24px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 32px;
 }
@@ -3021,7 +3000,7 @@ body {
     margin-top: 18px;
     color: var(--Text-primary);
     font-size: 18px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 28px;
     text-decoration: none;
@@ -3104,7 +3083,7 @@ body {
 .contact-title {
     color: var(--Text-primary);
     font-size: 72px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 80px;
 }
@@ -3118,7 +3097,7 @@ body {
 .contact-section-title {
     color: var(--Text-primary);
     font-size: 24px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 32px;
 }
@@ -3135,7 +3114,7 @@ body {
     margin-top: 20px;
     color: var(--Text-primary);
     font-size: 28px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 36px;
     text-decoration: none;
@@ -3155,7 +3134,7 @@ body {
     margin-top: 20px;
     color: var(--Text-primary);
     font-size: 28px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 36px;
     text-decoration: underline;
@@ -3173,7 +3152,7 @@ body {
 .founder-title {
     color: var(--Text-primary);
     font-size: 24px;
-    font-family: 'Druk Wide Cy App', 'Base Neue', sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 32px;
 }
