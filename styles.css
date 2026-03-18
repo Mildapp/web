@@ -1411,7 +1411,7 @@ body {
     
     .phone-frame {
         width: 100%;
-        height: 100%;
+        height: calc(100% + 20px) !important;
         min-width: 100%;
         flex: 0 0 100%;
         position: relative;
@@ -1439,6 +1439,13 @@ body {
     
     .phone-frame:not(:first-child) {
         margin-left: 0;
+    }
+    
+    .hero-frame-video {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        border-radius: 36px !important;
     }
     
     .phone-status-bar {
@@ -1605,7 +1612,7 @@ body {
         gap: 0;
         align-self: stretch;
         width: 100%;
-        overflow: hidden;
+        overflow: visible;
     }
     
     /* Возвращаем рамку телефона на мобильных, увеличиваем размер */
@@ -1614,10 +1621,10 @@ body {
         max-width: 528px;
         min-width: 0;
         height: auto;
-        aspect-ratio: 312 / 650;
+        aspect-ratio: 312 / 670;
         position: relative;
         background: black;
-        overflow: hidden;
+        overflow: visible;
         border-top-left-radius: 36px;
         border-top-right-radius: 36px;
         border-bottom-left-radius: 36px;
