@@ -1744,12 +1744,38 @@ body {
     .header .icons-section {
         display: none;
     }
+    
+    .hero-container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
+    .privacy-card {
+        padding: 32px 16px 40px;
+    }
+    
+    .contact-card {
+        padding: 32px 16px 40px;
+    }
 }
 
 /* Для экранов меньше 350px: табы перестраиваются в несколько строк */
 @media (max-width: 350px) {
     .hero-tabs {
         flex-wrap: wrap;
+    }
+    
+    .hero-container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
+    .privacy-card {
+        padding: 32px 16px 40px;
+    }
+    
+    .contact-card {
+        padding: 32px 16px 40px;
     }
 }
 
@@ -2883,7 +2909,7 @@ body {
     min-height: calc(100vh - 20px);
     background: var(--background-white);
     border-radius: 32px;
-    padding: 22px 80px 48px;
+    padding: 32px 110px 48px;
 }
 
 .privacy-header {
@@ -3009,7 +3035,7 @@ body {
 @media (max-width: 768px) {
     .privacy-card {
         min-height: auto;
-        padding: 20px 20px 40px;
+        padding: 32px 20px 40px;
     }
 
     .privacy-header {
@@ -3066,7 +3092,7 @@ body {
     width: 100%;
     background: var(--background-white);
     border-radius: 32px;
-    padding: 22px 80px 64px;
+    padding: 32px 110px 64px;
 }
 
 .contact-hero {
@@ -3182,7 +3208,7 @@ body {
 
 @media (max-width: 768px) {
     .contact-card {
-        padding: 20px 20px 40px;
+        padding: 32px 20px 40px;
     }
 
     .contact-hero {
