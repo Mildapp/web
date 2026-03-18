@@ -1382,8 +1382,8 @@ body {
         height: auto;
         aspect-ratio: 393 / 852;
         max-width: 472px;
-        overflow-x: auto;
-        overflow-y: visible;
+        overflow: visible !important;
+        overflow-x: auto !important;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
@@ -1413,6 +1413,7 @@ body {
         scroll-snap-stop: always;
         border: 4px var(--Text-primary) solid !important;
         outline: none !important;
+        overflow: visible !important;
         opacity: 1;
         transform: translateX(0) !important;
         pointer-events: auto;
