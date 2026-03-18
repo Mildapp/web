@@ -1385,7 +1385,7 @@ body {
     .phones-container {
         width: 100%;
         height: auto;
-        aspect-ratio: 393 / 852;
+        aspect-ratio: 401 / 860;
         max-width: 472px;
         overflow: visible !important;
         overflow-x: auto !important;
@@ -1397,11 +1397,12 @@ body {
         display: flex;
         flex-direction: row;
         position: relative;
-        /* Safari iOS fix for border-radius clipping */
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
+        border-radius: 0 !important;
+        background: transparent !important;
+    }
+    
+    .phones-container::before {
+        display: none !important;
     }
     
     .phones-container::-webkit-scrollbar {
