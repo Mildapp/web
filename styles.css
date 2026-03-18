@@ -1383,7 +1383,7 @@ body {
         aspect-ratio: 393 / 852;
         max-width: 472px;
         overflow-x: auto;
-        overflow-y: hidden;
+        overflow-y: visible;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
@@ -1392,6 +1392,11 @@ body {
         display: flex;
         flex-direction: row;
         position: relative;
+        /* Safari iOS fix for border-radius clipping */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
     }
     
     .phones-container::-webkit-scrollbar {
@@ -1406,7 +1411,8 @@ body {
         position: relative;
         scroll-snap-align: center;
         scroll-snap-stop: always;
-        outline: 4px var(--Text-primary) solid !important;
+        border: 4px var(--Text-primary) solid !important;
+        outline: none !important;
         opacity: 1;
         transform: translateX(0) !important;
         pointer-events: auto;
