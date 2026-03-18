@@ -1254,15 +1254,15 @@ body {
     .hero-container {
         width: 100%;
         max-width: 100%;
-        padding-top: 32px;
+        padding-top: 54px;
         padding-bottom: 60px;
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 30px;
+        padding-right: 30px;
         gap: 40px;
     }
     
     .header {
-        padding: 20px 20px 0;
+        padding: 0;
     }
     
     .header-container {
@@ -1725,16 +1725,16 @@ body {
     }
     
     .hero-container {
-        padding-left: 16px;
-        padding-right: 16px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
     
     .privacy-card {
-        padding: 32px 16px 40px;
+        padding: 54px 20px 40px;
     }
     
     .contact-card {
-        padding: 32px 16px 40px;
+        padding: 54px 20px 40px;
     }
 }
 
@@ -1750,11 +1750,11 @@ body {
     }
     
     .privacy-card {
-        padding: 32px 16px 40px;
+        padding: 54px 16px 40px;
     }
     
     .contact-card {
-        padding: 32px 16px 40px;
+        padding: 54px 16px 40px;
     }
 }
 
