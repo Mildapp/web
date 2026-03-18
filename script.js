@@ -1,36 +1,36 @@
-// Глобальная переменная для функции автозапуска видео
+// Global variable for video autoplay function
 let triggerHeroVideoAutoPlay = null;
 
-// Функция для обработки скролла и анимации декоративных элементов
+// Function to handle scroll and animate decorative elements
 function initScrollAnimation() {
     const heroSection = document.querySelector('.hero-section');
     const heroContainer = document.querySelector('.hero-container');
-    // Важно: .phone-mockup теперь включает Tabs, поэтому центр нужно брать по области телефона
-    // (phones-container), иначе при некоторых ресайзах декор не попадает строго "за телефон".
+    // Important: .phone-mockup now includes Tabs, so center should be taken from phone area
+    // (phones-container), otherwise on some resizes decor doesnt align strictly behind phone.
     const phoneTarget = document.querySelector('.phones-container')
         || document.querySelector('.phone-frame.active')
         || document.querySelector('.phone-frame')
         || document.querySelector('.phone-mockup');
     
-    // Элементы по рядам
+    // Elements by rows
     const row1 = [
-        document.querySelector('.hero-decor-1'), // Чеснок
-        document.querySelector('.hero-decor-3')   // Перец
+        document.querySelector('.hero-decor-1'), // Garlic
+        document.querySelector('.hero-decor-3')   // Pepper
     ];
     
     const row2 = [
-        document.querySelector('.hero-decor-2'), // Оливковое масло
-        document.querySelector('.hero-decor-4')  // Сыр
+        document.querySelector('.hero-decor-2'), // Olive oil
+        document.querySelector('.hero-decor-4')  // Cheese
     ];
     
     const row3 = [
-        document.querySelector('.hero-decor-5'), // Паста
-        document.querySelector('.hero-decor-6')  // Цукини
+        document.querySelector('.hero-decor-5'), // Pasta
+        document.querySelector('.hero-decor-6')  // Zucchini
     ];
     
     if (!heroSection || !heroContainer || !phoneTarget) return;
     
-    // Вычисляем центр телефона и применяем смещения для всех элементов
+    // Calculate phone center and apply offsets for all elements
     function calculateAndApplyOffsets() {
         const phoneRect = phoneTarget.getBoundingClientRect();
         const containerRect = heroContainer.getBoundingClientRect();
@@ -47,21 +47,21 @@ function initScrollAnimation() {
                 const imageHeight = 72; 
                 const row1Top = Math.round(descTop - imageHeight - 10);
                 
-                // 2-й ряд (оливки и сыр) на 6px ниже конца текста описания
+                // Row 2 (olives and cheese) 6px below description text end
                 const row2Top = Math.round(descBottom -30);
-                const rowGap = 72; // для 3-го ряда
+                const rowGap = 72; // for row 3
                 const row3Top = row2Top + rowGap;
 
                 heroContainer.style.setProperty('--decor-row1-top', `${row1Top}px`);
                 heroContainer.style.setProperty('--decor-row2-top', `${row2Top}px`);
                 heroContainer.style.setProperty('--decor-row3-top', `${row3Top}px`);
 
-                // "Каскад" по ширине: 2-й ряд уже на 20%, 3-й ещё на 20%.
-                // Реализуем через симметричный inset слева/справа.
+                // Cascade by width: row 2 narrower by 20%, row 3 by another 20%.
+                // Implemented via symmetric inset left/right.
                 const base = 20;
                 const span = Math.max(0, containerRect.width - base * 2);
-                const inset2 = Math.round(span * 0.10); // сужаем на 20% => по 10% с каждой стороны
-                const inset3 = Math.round(span * 0.20); // ещё на 20% => по 20% с каждой стороны
+                const inset2 = Math.round(span * 0.10); // narrow by 20% => 10% from each side
+                const inset3 = Math.round(span * 0.20); // another 20% => 20% from each side
 
                 heroContainer.style.setProperty('--decor-inset-1', `0px`);
                 heroContainer.style.setProperty('--decor-inset-2', `${inset2}px`);
@@ -69,11 +69,11 @@ function initScrollAnimation() {
             }
         }
         
-        // Центр телефона относительно контейнера
+        // Phone center relative to container
         const phoneCenterX = phoneRect.left - containerRect.left + phoneRect.width / 2;
         const phoneCenterY = phoneRect.top - containerRect.top + phoneRect.height / 2;
         
-        // Применяем смещения ко всем элементам
+        // Apply offsets to all elements
         const allElements = [...row1, ...row2, ...row3];
         
         allElements.forEach((el) => {
@@ -81,21 +81,21 @@ function initScrollAnimation() {
             
             const elRect = el.getBoundingClientRect();
             
-            // Текущий центр элемента относительно контейнера
+            // Current element center relative to container
             const elCenterX = elRect.left - containerRect.left + elRect.width / 2;
             const elCenterY = elRect.top - containerRect.top + elRect.height / 2;
             
-            // Смещение к центру телефона
+            // Offset to phone center
             const offsetX = phoneCenterX - elCenterX;
             const offsetY = phoneCenterY - elCenterY;
             
-            // Применяем через CSS переменные
+            // Apply via CSS variables
             el.style.setProperty('--target-x', `${offsetX}px`);
             el.style.setProperty('--target-y', `${offsetY}px`);
         });
     }
     
-    // Вызываем при загрузке и при ресайзе
+    // Call on load and resize
     calculateAndApplyOffsets();
     window.addEventListener('resize', calculateAndApplyOffsets);
     
@@ -106,26 +106,26 @@ function initScrollAnimation() {
         const phoneTop = phoneTarget.getBoundingClientRect().top + scrollTop;
         const scrollProgress = scrollTop - heroSectionTop;
         
-        // Вычисляем относительный прогресс скролла (0-1)
+        // Calculate relative scroll progress (0-1)
         const maxScroll = heroSectionHeight;
         const scrollRatio = Math.max(0, Math.min(1, scrollProgress / maxScroll));
         
-        // Проверяем, находимся ли мы в пределах hero-section
+        // Check if we are within hero-section bounds
         if (scrollProgress < 0 || scrollProgress > heroSectionHeight) {
-            // Если вышли за пределы секции, сбрасываем все классы
+            // If outside section, reset all classes
             [...row1, ...row2, ...row3].forEach(el => {
                 if (el) el.classList.remove('hide-behind-phone');
             });
             return;
         }
         
-        // Пороги скролла для каждого ряда (в процентах от высоты секции)
-        // Анимация начинается сразу при начале скролла
-        const threshold1 = 0.01; // 1% прокрутки секции - начинается сразу
-        const threshold2 = 0.05; // 5% прокрутки секции
-        const threshold3 = 0.10; // 10% прокрутки секции
+        // Scroll thresholds for each row (as percentage of section height)
+        // Animation starts immediately on scroll
+        const threshold1 = 0.01; // 1% section scroll - starts immediately
+        const threshold2 = 0.05; // 5% section scroll
+        const threshold3 = 0.10; // 10% section scroll
         
-        // Ряд 1: Чеснок и Перец - прячутся первыми
+        // Row 1: Garlic and Pepper - hide first
         if (scrollRatio >= threshold1) {
             row1.forEach(el => {
                 if (el) el.classList.add('hide-behind-phone');
@@ -136,7 +136,7 @@ function initScrollAnimation() {
             });
         }
         
-        // Ряд 2: Оливковое масло и Сыр - прячутся вторыми
+        // Row 2: Olive oil and Cheese - hide second
         if (scrollRatio >= threshold2) {
             row2.forEach(el => {
                 if (el) el.classList.add('hide-behind-phone');
@@ -147,12 +147,12 @@ function initScrollAnimation() {
             });
         }
         
-        // Ряд 3: Паста и Цукини - прячутся последними
+        // Row 3: Pasta and Zucchini - hide last
         if (scrollRatio >= threshold3) {
             row3.forEach(el => {
                 if (el) el.classList.add('hide-behind-phone');
             });
-            // Автозапуск первого видео когда row3 прячется
+            // Autoplay first video when row3 hides
             if (triggerHeroVideoAutoPlay) {
                 triggerHeroVideoAutoPlay();
             }
@@ -163,7 +163,7 @@ function initScrollAnimation() {
         }
     }
     
-    // Используем requestAnimationFrame для плавной анимации
+    // Use requestAnimationFrame for smooth animation
     let ticking = false;
     
     function onScroll() {
@@ -176,14 +176,14 @@ function initScrollAnimation() {
         }
     }
     
-    // Слушаем события скролла
+    // Listen for scroll events
     window.addEventListener('scroll', onScroll, { passive: true });
     
-    // Вызываем сразу для начального состояния
+    // Call immediately for initial state
     handleScroll();
 }
 
-// Функция для переключения табов и анимации телефонов
+// Function to switch tabs and animate phones
 function initTabSwitcher() {
     const tabs = document.querySelectorAll('.hero-tab');
     const phones = document.querySelectorAll('.phone-slide');
@@ -194,18 +194,18 @@ function initTabSwitcher() {
     let isAnimating = false;
     const tabOrder = ['voice', 'snap', 'text'];
     
-    // Проверка, мобильная ли версия
+    // Check if mobile version
     function isMobile() {
         return window.matchMedia('(max-width: 768px)').matches;
     }
     
-    // Инициализация: устанавливаем первый таб активным, если нет активного
+    // Initialize: set first tab active if none is active
     function initializeActiveTab() {
         const activeTab = Array.from(tabs).find(t => t.classList.contains('active'));
         const activePhone = Array.from(phones).find(p => p.classList.contains('active'));
         
         if (!activeTab) {
-            // Если нет активного таба, активируем первый (snap по умолчанию в HTML)
+            // If no active tab, activate first (snap by default in HTML)
             const defaultTab = Array.from(tabs).find(t => t.getAttribute('data-tab') === 'snap') || tabs[0];
             if (defaultTab) {
                 defaultTab.classList.add('active');
@@ -214,7 +214,7 @@ function initTabSwitcher() {
         }
         
         if (!activePhone) {
-            // Если нет активного телефона, активируем соответствующий
+            // If no active phone, activate corresponding one
             const activeTabName = (Array.from(tabs).find(t => t.classList.contains('active')) || {}).getAttribute('data-tab') || 'snap';
             const defaultPhone = Array.from(phones).find(p => p.getAttribute('data-tab') === activeTabName);
             if (defaultPhone) {
@@ -222,21 +222,21 @@ function initTabSwitcher() {
             }
         }
         
-        // На мобильных: скроллим к активному телефону
+        // On mobile: scroll to active phone
         if (isMobile() && phonesContainer) {
             const activeTabName = (Array.from(tabs).find(t => t.classList.contains('active')) || {}).getAttribute('data-tab') || 'snap';
             const activePhone = Array.from(phones).find(p => p.getAttribute('data-tab') === activeTabName);
             if (activePhone) {
-                // Небольшая задержка для правильного позиционирования элементов
+                // Small delay for proper element positioning
                 setTimeout(() => {
                     phonesContainer.scrollTo({
                         left: activePhone.offsetLeft - phonesContainer.offsetLeft,
-                        behavior: 'auto' // без анимации при инициализации
+                        behavior: 'auto' // no animation on init
                     });
-                    // Обновляем активный класс у телефонов
+                    // Update active class on phones
                     phones.forEach(p => p.classList.remove('active'));
                     activePhone.classList.add('active');
-                    // Инициализируем opacity
+                    // Initialize opacity
                     if (window.updatePhonesOpacity) {
                         window.updatePhonesOpacity();
                     }
@@ -245,7 +245,7 @@ function initTabSwitcher() {
         }
     }
     
-    // Получить индекс активного телефона на основе скролла (для мобильных)
+    // Get active phone index based on scroll (for mobile)
     function getActivePhoneIndexFromScroll() {
         if (!isMobile() || !phonesContainer) return -1;
         
@@ -270,7 +270,7 @@ function initTabSwitcher() {
     }
     
     
-    // Обновить активный таб на основе активного телефона
+    // Update active tab based on active phone
     function updateActiveTabFromPhone() {
         if (!isMobile()) return;
         
@@ -284,70 +284,70 @@ function initTabSwitcher() {
         const activeTab = Array.from(tabs).find(t => t.getAttribute('data-tab') === activeTabName);
         
         if (activeTab && !activeTab.classList.contains('active')) {
-            // Убираем активный класс со всех табов
+            // Remove active class from all tabs
             tabs.forEach(t => {
                 t.classList.remove('active');
                 t.setAttribute('data-state', 'default');
             });
             
-            // Добавляем активный класс к выбранному табу
+            // Add active class to selected tab
             activeTab.classList.add('active');
             activeTab.setAttribute('data-state', 'active');
             
-            // Переключаем видео
+            // Switch video
             if (window.playActiveTabVideo) {
                 window.playActiveTabVideo();
             }
         }
     }
     
-    // Функция для переключения на конкретный таб
+    // Function to switch to specific tab
     function switchToTab(tabName) {
-        // Предотвращаем множественные переключения во время анимации
+        // Prevent multiple switches during animation
         if (isAnimating) return;
         
-        // Находим таб по имени
+        // Find tab by name
         const targetTab = Array.from(tabs).find(t => t.getAttribute('data-tab') === tabName);
         if (!targetTab) return;
         
-        // Находим текущий активный таб
+        // Find current active tab
         const currentActiveTab = Array.from(tabs).find(t => t.classList.contains('active'));
         
-        // Проверяем, не выбран ли уже этот таб
+        // Check if this tab is already selected
         if (currentActiveTab && currentActiveTab.getAttribute('data-tab') === tabName) return;
         
         isAnimating = true;
         
-        // Убираем активный класс со всех табов (сразу)
+        // Remove active class from all tabs (immediately)
         tabs.forEach(t => {
             t.classList.remove('active');
             t.setAttribute('data-state', 'default');
         });
         
-        // Находим целевой телефон
+        // Find target phone
         const targetPhone = document.querySelector(`.phone-slide[data-tab="${tabName}"]`);
         
         if (isMobile() && phonesContainer && targetPhone) {
-            // На мобильных: используем скролл
+            // On mobile: use scroll
             phonesContainer.scrollTo({
                 left: targetPhone.offsetLeft - phonesContainer.offsetLeft,
                 behavior: 'smooth'
             });
             
-            // Обновляем активный класс у телефонов
+            // Update active class on phones
             phones.forEach(p => p.classList.remove('active'));
             targetPhone.classList.add('active');
             
-            // Обновляем opacity после скролла
+            // Update opacity after scroll
             setTimeout(() => {
                 if (window.updatePhonesOpacity) {
                     window.updatePhonesOpacity();
                 }
             }, 100);
             
-            // Активируем таб и переключаем видео после завершения анимации
+            // Activate tab and switch video after animation completes
             setTimeout(() => {
-                // Активируем таб только когда телефон полностью появился
+                // Activate tab only when phone fully appeared
                 targetTab.classList.add('active');
                 targetTab.setAttribute('data-state', 'active');
                 
@@ -357,29 +357,29 @@ function initTabSwitcher() {
                 isAnimating = false;
             }, 250);
         } else {
-            // На десктопе: используем старый механизм с классами
+            // On desktop: use old mechanism with classes
             const currentActivePhone = document.querySelector('.phone-slide.active');
             
             if (currentActivePhone && targetPhone && currentActivePhone !== targetPhone) {
-                // Очищаем все классы анимации у всех телефонов
+                // Clear all animation classes from all phones
                 phones.forEach(p => {
                     p.classList.remove('slide-out-left', 'slide-out-right', 'slide-in-left', 'slide-in-right');
                 });
                 
-                // Убеждаемся, что новый телефон не имеет активного класса перед анимацией
+                // Ensure new phone doesnt have active class before animation
                 targetPhone.classList.remove('active');
                 
-                // Определяем направление анимации
+                // Determine animation direction
                 const currentIndex = tabOrder.indexOf(currentActivePhone.getAttribute('data-tab'));
                 const targetIndex = tabOrder.indexOf(tabName);
                 
                 if (targetIndex > currentIndex) {
-                    // Переход вправо: текущий уходит влево, новый приходит справа
+                    // Transition right: current exits left, new enters from right
                     currentActivePhone.classList.remove('active');
                     currentActivePhone.classList.add('slide-out-left');
                     targetPhone.classList.add('slide-in-right');
                 } else {
-                    // Переход влево: текущий уходит вправо, новый приходит слева
+                    // Transition left: current exits right, new enters from left
                     currentActivePhone.classList.remove('active');
                     currentActivePhone.classList.add('slide-out-right');
                     targetPhone.classList.add('slide-in-left');
@@ -401,12 +401,12 @@ function initTabSwitcher() {
                         currentActivePhone.classList.remove('slide-out-right');
                     }
                     
-                    // Активируем таб только когда телефон полностью появился
+                    // Activate tab only when phone fully appeared
                     targetTab.classList.add('active');
                     targetTab.setAttribute('data-state', 'active');
                     
                     isAnimating = false;
-                    // Переключаем видео после завершения анимации
+                    // Switch video after animation completes
                     if (window.playActiveTabVideo) {
                         window.playActiveTabVideo();
                     }
@@ -417,7 +417,7 @@ function initTabSwitcher() {
         }
     }
     
-    // Функция для переключения видео в активном табе (доступна глобально)
+    // Function to switch video in active tab (available globally)
     window.playActiveTabVideo = function() {
         const allPhones = document.querySelectorAll('.phone-slide');
         const container = document.querySelector('.phones-container');
@@ -426,7 +426,7 @@ function initTabSwitcher() {
         let activePhone;
         
         if (isMobileView && container && allPhones.length > 0) {
-            // На мобильных: находим активный телефон через скролл
+            // On mobile: find active phone via scroll
             const containerRect = container.getBoundingClientRect();
             const containerCenter = containerRect.left + containerRect.width / 2;
             
@@ -448,7 +448,7 @@ function initTabSwitcher() {
                 activePhone = allPhones[closestIndex];
             }
         } else {
-            // На десктопе: используем класс active
+            // On desktop: use active class
             activePhone = document.querySelector('.phone-slide.active');
         }
         
@@ -458,22 +458,22 @@ function initTabSwitcher() {
         const allHeroVideos = document.querySelectorAll('.hero-frame-video');
         
         if (activeVideo && allHeroVideos.length > 0) {
-            // Останавливаем все видео
+            // Stop all videos
             allHeroVideos.forEach(video => {
                 if (video !== activeVideo) {
                     video.pause();
                     video.currentTime = 0;
                 }
             });
-            // Запускаем активное видео
+            // Play active video
             activeVideo.play().catch(err => {
                 console.log('Hero video play error:', err);
             });
             
-            // Сбрасываем прелодер для активного видео, если оно еще не загружено
+            // Reset preloader for active video if not loaded yet
             const activePreloader = activePhone.querySelector('.video-preloader');
             if (activePreloader && activeVideo.readyState < 2) {
-                // Если видео еще не загружено, показываем прелодер с задержкой
+                // If video not loaded yet, show preloader with delay
                 setTimeout(() => {
                     if (activeVideo.readyState < 2 && !activePreloader.classList.contains('active')) {
                         activePreloader.classList.add('active');
@@ -483,7 +483,7 @@ function initTabSwitcher() {
         }
     };
     
-    // Обработчики кликов на табы
+    // Tab click handlers
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const tabName = tab.getAttribute('data-tab');
@@ -491,7 +491,7 @@ function initTabSwitcher() {
         });
     });
     
-    // Функция для плавного изменения opacity телефонов при скролле
+    // Function for smooth phone opacity change on scroll
     function updatePhonesOpacity() {
         if (!isMobile() || !phonesContainer) return;
         
@@ -499,44 +499,44 @@ function initTabSwitcher() {
         const containerCenter = containerRect.left + containerRect.width / 2;
         const containerWidth = containerRect.width;
         
-        // Порог для полного исчезновения (когда телефон полностью за пределами видимости)
-        // Используем 35% ширины контейнера для более плавного перехода
+        // Threshold for full fade (when phone is completely out of view)
+        // Use 35% of container width for smoother transition
         const fadeThreshold = containerWidth * 0.35;
         
         phones.forEach((phone) => {
             const phoneRect = phone.getBoundingClientRect();
             const phoneCenter = phoneRect.left + phoneRect.width / 2;
             
-            // Расстояние от центра телефона до центра контейнера
+            // Distance from phone center to container center
             const distance = Math.abs(phoneCenter - containerCenter);
             
-            // Вычисляем opacity: 1 когда телефон в центре, 0 когда далеко
-            // Нормализуем расстояние
+            // Calculate opacity: 1 when phone is centered, 0 when far
+            // Normalize distance
             let normalizedDistance = Math.min(1, distance / fadeThreshold);
             
-            // Используем кубическую кривую для более плавного fade (ease-out)
-            // Это создает более естественный переход
+            // Use cubic curve for smoother fade (ease-out)
+            // This creates more natural transition
             let opacity = 1 - normalizedDistance;
-            opacity = opacity * opacity * opacity; // Кубическая кривая
+            opacity = opacity * opacity * opacity; // Cubic curve
             
-            // Ограничиваем opacity от 0 до 1
+            // Limit opacity from 0 to 1
             opacity = Math.max(0, Math.min(1, opacity));
             
-            // Применяем opacity
+            // Apply opacity
             phone.style.opacity = opacity;
         });
     }
     
-    // Делаем функцию доступной глобально для вызова из других мест
+    // Make function globally available for calls from other places
     window.updatePhonesOpacity = updatePhonesOpacity;
     
-    // Обработчик скролла для синхронизации табов и плавного изменения opacity (только на мобильных)
+    // Scroll handler for tab sync and smooth opacity change (mobile only)
     if (phonesContainer && isMobile()) {
         let scrollTimeout;
         let scrollAnimationFrame = null;
         
         phonesContainer.addEventListener('scroll', () => {
-            // Обновляем opacity при каждом скролле (используем requestAnimationFrame для плавности)
+            // Update opacity on each scroll (use requestAnimationFrame for smoothness)
             if (scrollAnimationFrame) {
                 cancelAnimationFrame(scrollAnimationFrame);
             }
@@ -544,26 +544,26 @@ function initTabSwitcher() {
                 updatePhonesOpacity();
             });
             
-            // Обновляем табы с небольшой задержкой
+            // Update tabs with small delay
             clearTimeout(scrollTimeout);
             scrollTimeout = setTimeout(() => {
                 updateActiveTabFromPhone();
             }, 100);
         }, { passive: true });
         
-        // Инициализируем opacity при загрузке
+        // Initialize opacity on load
         setTimeout(() => {
             updatePhonesOpacity();
         }, 150);
     }
     
-    // Обработчики свайпа для десктопной версии (если нужно)
+    // Swipe handlers for desktop version (if needed)
     if (phonesContainer && !isMobile()) {
         let touchStartX = 0;
         let touchEndX = 0;
         let touchStartY = 0;
         let touchEndY = 0;
-        const minSwipeDistance = 50; // Минимальное расстояние для свайпа
+        const minSwipeDistance = 50; // Minimum swipe distance
         
         phonesContainer.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
@@ -580,13 +580,13 @@ function initTabSwitcher() {
             const swipeDistanceX = touchEndX - touchStartX;
             const swipeDistanceY = touchEndY - touchStartY;
             
-            // Проверяем, что это горизонтальный свайп (а не вертикальный скролл)
+            // Check that this is horizontal swipe (not vertical scroll)
             if (Math.abs(swipeDistanceY) > Math.abs(swipeDistanceX)) return;
             
-            // Проверяем, достаточно ли длинный свайп
+            // Check if swipe is long enough
             if (Math.abs(swipeDistanceX) < minSwipeDistance) return;
             
-            // Находим текущий активный таб
+            // Find current active tab
             const activeTab = Array.from(tabs).find(t => t.classList.contains('active'));
             if (!activeTab) return;
             
@@ -595,15 +595,15 @@ function initTabSwitcher() {
             
             if (currentIndex === -1) return;
             
-            // Определяем направление свайпа
+            // Determine swipe direction
             if (swipeDistanceX > 0) {
-                // Свайп вправо (пальцем слева направо) → показываем ПРЕДЫДУЩИЙ таб
+                // Swipe right (finger left to right) -> show PREVIOUS tab
                 if (currentIndex > 0) {
                     const prevIndex = currentIndex - 1;
                     switchToTab(tabOrder[prevIndex]);
                 }
             } else {
-                // Свайп влево (пальцем справа налево) → показываем СЛЕДУЮЩИЙ таб
+                // Swipe left (finger right to left) -> show NEXT tab
                 if (currentIndex < tabOrder.length - 1) {
                     const nextIndex = currentIndex + 1;
                     switchToTab(tabOrder[nextIndex]);
@@ -612,24 +612,24 @@ function initTabSwitcher() {
         }
     }
     
-    // Инициализация активного таба при загрузке
+    // Initialize active tab on load
     initializeActiveTab();
     
-    // Инициализация управления видео
+    // Initialize video control
     initHeroVideoControl();
 }
 
-// Функция для управления видео в hero-секции
+// Function to control video in hero section
 function initHeroVideoControl() {
     const heroVideos = document.querySelectorAll('.hero-frame-video');
     let hasAutoPlayed = false;
     
-    // Функция для автозапуска первого видео (вызывается при скролле)
+    // Function for first video autoplay (called on scroll)
     triggerHeroVideoAutoPlay = function() {
         if (hasAutoPlayed) return;
         hasAutoPlayed = true;
         
-        // Находим активный телефон и его видео
+        // Find active phone and its video
         const activePhone = document.querySelector('.phone-slide.active');
         if (!activePhone) {
             console.log('Hero autoplay: No active phone found');
@@ -642,7 +642,7 @@ function initHeroVideoControl() {
             return;
         }
         
-        // Останавливаем все остальные видео
+        // Stop all other videos
         heroVideos.forEach(video => {
             if (video !== activeVideo) {
                 video.pause();
@@ -650,21 +650,21 @@ function initHeroVideoControl() {
             }
         });
         
-        // Убеждаемся, что видео загружено перед запуском
+        // Ensure video is loaded before playing
         function attemptPlay() {
-            if (activeVideo.readyState >= 2) { // HAVE_CURRENT_DATA или выше
-                // Убеждаемся, что видео имеет необходимые атрибуты для автозапуска
+            if (activeVideo.readyState >= 2) { // HAVE_CURRENT_DATA or higher
+                // Ensure video has required attributes for autoplay
                 if (!activeVideo.muted) {
                     activeVideo.muted = true;
                 }
                 activeVideo.setAttribute('playsinline', '');
                 
                 activeVideo.play().then(() => {
-                    // Проверяем, действительно ли видео воспроизводится
+                    // Check if video is actually playing
                     setTimeout(() => {
                         if (activeVideo.paused) {
                             console.log('Hero video autoplay: Video was paused after play() - browser policy');
-                            // Пробуем запустить еще раз после взаимодействия пользователя
+                            // Try to play again after user interaction
                             document.addEventListener('touchstart', function retryPlay() {
                                 activeVideo.play().catch(e => console.log('Retry after touch error:', e));
                                 document.removeEventListener('touchstart', retryPlay);
@@ -675,7 +675,7 @@ function initHeroVideoControl() {
                     }, 100);
                 }).catch(err => {
                     console.log('Hero video autoplay error:', err);
-                    // Пробуем еще раз после небольшой задержки
+                    // Try again after small delay
                     setTimeout(() => {
                         activeVideo.play().catch(e => {
                             console.log('Hero video autoplay retry error:', e);
@@ -683,16 +683,16 @@ function initHeroVideoControl() {
                     }, 500);
                 });
             } else {
-                // Ждем загрузки видео
+                // Wait for video to load
                 activeVideo.addEventListener('canplay', attemptPlay, { once: true });
-                activeVideo.load(); // Принудительно начинаем загрузку
+                activeVideo.load(); // Force start loading
             }
         }
         
         attemptPlay();
     };
     
-    // Инициализация видео при загрузке (устанавливаем на первый кадр)
+    // Initialize video on load (set to first frame)
     heroVideos.forEach(video => {
         video.addEventListener('loadeddata', () => {
             video.currentTime = 0;
@@ -701,9 +701,9 @@ function initHeroVideoControl() {
     });
 }
 
-// Функция для обработки видео при наведении мыши
+// Function to handle video on mouse hover
 function initVideoHover() {
-    // Находим все карточки с видео
+    // Find all cards with video
     const featureCards = document.querySelectorAll('.feature-card');
     
     featureCards.forEach((card) => {
@@ -712,61 +712,61 @@ function initVideoHover() {
         
         if (!video || !description) return;
         
-        // Устанавливаем видео на первый кадр при загрузке
+        // Set video to first frame on load
         video.addEventListener('loadeddata', () => {
             video.currentTime = 0;
             video.pause();
         });
         
-        // Находим прелодер для этого видео
+        // Find preloader for this video
         const preloader = card.querySelector('.video-preloader');
         
-        // При наведении мыши на карточку
+        // On mouse enter card
         card.addEventListener('mouseenter', () => {
-            // Если видео не загружено, показываем лоадер
+            // If video not loaded, show loader
             if (video.readyState < 2 && preloader) {
                 preloader.classList.add('active');
             }
             
-            // Обработчик для скрытия лоадера когда видео загрузится
+            // Handler to hide loader when video loads
             const handleLoaded = () => {
-                // Проверяем, что видео действительно загружено перед скрытием лоадера
+                // Check that video is actually loaded before hiding loader
                 if (video.readyState >= 2 && preloader) {
                     preloader.classList.remove('active');
                 }
             };
             
-            // Добавляем обработчики для всех событий загрузки
+            // Add handlers for all load events
             video.addEventListener('canplay', handleLoaded, { once: true });
             video.addEventListener('loadeddata', handleLoaded, { once: true });
             video.addEventListener('loadedmetadata', handleLoaded, { once: true });
             
-            // Проигрываем видео
+            // Play video
             video.play().then(() => {
-                // Скрываем лоадер после успешного запуска, если видео загружено
+                // Hide loader after successful start if video loaded
                 if (preloader && video.readyState >= 2) {
                     preloader.classList.remove('active');
                 }
             }).catch(err => {
                 console.log('Video play error:', err);
             });
-            // Скрываем описание (через CSS класс или напрямую)
+            // Hide description (via CSS class or directly)
             description.style.opacity = '0';
             description.style.visibility = 'hidden';
         });
         
-        // При убирании мыши с карточки
+        // On mouse leave card
         card.addEventListener('mouseleave', () => {
-            // Останавливаем видео на текущем кадре (не возвращаем к началу!)
+            // Stop video on current frame (dont reset to beginning!)
             video.pause();
-            // Показываем описание
+            // Show description
             description.style.opacity = '1';
             description.style.visibility = 'visible';
         });
     });
 }
 
-// Функция для мобильной карусели в блоке features
+// Function for mobile carousel in features section
 function initFeaturesCarousel() {
     const wrapper = document.querySelector('.features-carousel-wrapper');
     const slides = document.querySelectorAll('.features-grid .feature-card');
@@ -820,13 +820,13 @@ function initFeaturesCarousel() {
         }
     }
 
-    // Обработчики кликов на dots
+    // Dot click handlers
     dots.forEach(dot => {
         dot.addEventListener('click', () => {
             const index = Number(dot.getAttribute('data-index'));
             if (!Number.isNaN(index)) {
                 goToIndex(index);
-                // Запускаем видео после перехода (с небольшой задержкой для завершения скролла)
+                // Play video after transition (with small delay for scroll completion)
                 setTimeout(() => {
                     playVideoForActiveSlide();
                 }, 400);
@@ -834,7 +834,7 @@ function initFeaturesCarousel() {
         });
     });
 
-    // Функция для управления видео на мобильных
+    // Function to control video on mobile
     let currentPlayingVideo = null;
     
     function playVideoForActiveSlide() {
@@ -845,7 +845,7 @@ function initFeaturesCarousel() {
         
         if (!activeSlide) return;
         
-        // Останавливаем все видео, кроме активного
+        // Stop all videos except active
         slides.forEach((slide, index) => {
             if (index !== activeIndex) {
                 const video = slide.querySelector('.phone-video:not(.hero-phone-video)');
@@ -856,37 +856,37 @@ function initFeaturesCarousel() {
             }
         });
         
-        // Запускаем видео в активной карточке
+        // Play video in active card
         const video = activeSlide.querySelector('.phone-video:not(.hero-phone-video)');
         if (!video) return;
         
         if (currentPlayingVideo !== activeSlide) {
-            // Находим лоадер для этого видео
+            // Find loader for this video
             const preloader = activeSlide.querySelector('.video-preloader');
             
-            // Убеждаемся, что видео загружено перед запуском
+            // Ensure video is loaded before playing
             function attemptPlay() {
-                if (video.readyState >= 2) { // HAVE_CURRENT_DATA или выше
-                    // Убеждаемся, что видео имеет необходимые атрибуты для автозапуска
+                if (video.readyState >= 2) { // HAVE_CURRENT_DATA or higher
+                    // Ensure video has required attributes for autoplay
                     if (!video.muted) {
                         video.muted = true;
                     }
                     video.setAttribute('playsinline', '');
                     
-                    // Скрываем лоадер перед запуском, если видео загружено
+                    // Hide loader before start if video loaded
                     if (preloader) {
                         preloader.classList.remove('active');
                     }
                     
                     video.play().then(() => {
-                        // Проверяем, действительно ли видео воспроизводится
+                        // Check if video is actually playing
                         setTimeout(() => {
                             if (video.paused) {
                                 console.log('Features video autoplay: Video was paused after play() - browser policy');
                             } else {
                                 console.log('Features video autoplay: Success for slide', activeIndex);
                                 currentPlayingVideo = activeSlide;
-                                // Убеждаемся, что лоадер скрыт
+                                // Ensure loader is hidden
                                 if (preloader) {
                                     preloader.classList.remove('active');
                                 }
@@ -894,7 +894,7 @@ function initFeaturesCarousel() {
                         }, 100);
                     }).catch(err => {
                         console.log('Features video play error:', err);
-                        // Пробуем еще раз после небольшой задержки
+                        // Try again after small delay
                         setTimeout(() => {
                             video.play().then(() => {
                                 currentPlayingVideo = activeSlide;
@@ -907,29 +907,29 @@ function initFeaturesCarousel() {
                         }, 500);
                     });
                 } else {
-                    // Если видео не загружено, показываем лоадер сразу
+                    // If video not loaded, show loader immediately
                     if (preloader) {
                         preloader.classList.add('active');
                     }
                     
-                    // Обработчики для скрытия лоадера когда видео загрузится
+                    // Handlers to hide loader when video loads
                     const handleLoaded = () => {
-                        // Проверяем, что видео действительно загружено перед скрытием лоадера
+                        // Check that video is actually loaded before hiding loader
                         if (video.readyState >= 2) {
                             if (preloader) {
                                 preloader.classList.remove('active');
                             }
-                            // Запускаем видео только если оно загружено
+                            // Play video only if loaded
                             attemptPlay();
                         }
                     };
                     
-                    // Добавляем обработчики для всех событий загрузки
+                    // Add handlers for all load events
                     video.addEventListener('canplay', handleLoaded, { once: true });
                     video.addEventListener('loadeddata', handleLoaded, { once: true });
                     video.addEventListener('loadedmetadata', handleLoaded, { once: true });
                     
-                    // Также проверяем readyState периодически на случай, если события не сработали
+                    // Also check readyState periodically in case events didnt fire
                     const checkInterval = setInterval(() => {
                         if (video.readyState >= 2) {
                             clearInterval(checkInterval);
@@ -937,10 +937,10 @@ function initFeaturesCarousel() {
                         }
                     }, 100);
                     
-                    // Очищаем интервал через 10 секунд, чтобы не проверять бесконечно
+                    // Clear interval after 10 seconds to avoid infinite checking
                     setTimeout(() => clearInterval(checkInterval), 10000);
                     
-                    // Принудительно начинаем загрузку
+                    // Force start loading
                     video.load();
                 }
             }
@@ -949,7 +949,7 @@ function initFeaturesCarousel() {
         }
     }
 
-    // Синхронизация dots при скролле
+    // Sync dots on scroll
     let scrollTimeout;
     wrapper.addEventListener('scroll', () => {
         if (!isMobile()) return;
@@ -962,39 +962,39 @@ function initFeaturesCarousel() {
         }, 100);
     }, { passive: true });
 
-    // Инициализация при загрузке
+    // Initialize on load
     if (isMobile()) {
         updateDots(0);
-        // Показываем лоадер для первого слайда, если видео не загружено
+        // Show loader for first slide if video not loaded
         const firstSlide = slides[0];
         if (firstSlide) {
             const firstVideo = firstSlide.querySelector('.phone-video:not(.hero-phone-video)');
             const firstPreloader = firstSlide.querySelector('.video-preloader');
             if (firstVideo && firstPreloader) {
                 if (firstVideo.readyState < 2) {
-                    // Видео не загружено, показываем лоадер сразу
+                    // Video not loaded, show loader immediately
                     firstPreloader.classList.add('active');
                 }
             }
         }
-        // Запускаем первое видео при загрузке
+        // Play first video on load
         setTimeout(() => {
             playVideoForActiveSlide();
         }, 300);
     }
 }
 
-// Функция для инициализации прелодеров видео
+// Function to initialize video preloaders
 function initVideoPreloaders() {
-    // Уменьшаем задержку для мобильной версии для быстрого показа лоадера
+    // Reduce delay for mobile version for quick loader display
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const PRELOADER_DELAY = 0;
     
-    // Находим все видео телефонов
+    // Find all phone videos
     const phoneVideos = document.querySelectorAll('.hero-frame-video, .phone-video');
     
     phoneVideos.forEach(video => {
-        // Находим прелодер для этого видео
+        // Find preloader for this video
         const preloader = video.parentElement.querySelector('.video-preloader');
         if (!preloader) return;
         
@@ -1002,7 +1002,7 @@ function initVideoPreloaders() {
         let isLoaded = false;
         let isError = false;
         
-        // Функция для скрытия прелодера
+        // Function to hide preloader
         function hidePreloader() {
             if (showTimer) {
                 clearTimeout(showTimer);
@@ -1012,15 +1012,15 @@ function initVideoPreloaders() {
             isLoaded = true;
         }
         
-        // Функция для показа прелодера (немедленно)
+        // Function to show preloader (immediately)
         function showPreloader() {
             if (isLoaded || isError) return;
             
-            // Показываем лоадер сразу, без задержки
+            // Show loader immediately, no delay
             preloader.classList.add('active');
         }
         
-        // Функция для сброса состояния
+        // Function to reset state
         function resetPreloader() {
             if (showTimer) {
                 clearTimeout(showTimer);
@@ -1031,7 +1031,7 @@ function initVideoPreloaders() {
             preloader.classList.remove('active');
         }
         
-        // Обработчики событий загрузки видео
+        // Video load event handlers
         const handleLoaded = () => {
             hidePreloader();
         };
@@ -1042,21 +1042,21 @@ function initVideoPreloaders() {
             console.log('Video loading error:', video.src || video.querySelector('source')?.src);
         };
         
-        // Добавляем обработчики событий
+        // Add event handlers
         video.addEventListener('loadeddata', handleLoaded);
         video.addEventListener('canplay', handleLoaded);
         video.addEventListener('loadedmetadata', handleLoaded);
         video.addEventListener('error', handleError);
         
-        // Проверяем, не загружено ли видео уже
-        if (video.readyState >= 2) { // HAVE_CURRENT_DATA или выше
+        // Check if video already loaded
+        if (video.readyState >= 2) { // HAVE_CURRENT_DATA or higher
             hidePreloader();
         } else {
-            // Если видео еще не загружено, начинаем отсчет для показа прелодера
+            // If video not loaded yet, start countdown to show preloader
             showPreloader();
         }
         
-        // Обработка смены источника видео (для динамической загрузки)
+        // Handle video source change (for dynamic loading)
         const source = video.querySelector('source');
         if (source) {
             const observer = new MutationObserver(() => {
@@ -1072,7 +1072,7 @@ function initVideoPreloaders() {
             });
         }
         
-        // Обработка смены src у самого video элемента
+        // Handle src change on video element itself
         const videoObserver = new MutationObserver(() => {
             resetPreloader();
             if (video.readyState < 2) {
@@ -1087,7 +1087,7 @@ function initVideoPreloaders() {
     });
 }
 
-// Инициализация при загрузке страницы (один раз)
+// Initialize on page load (once)
 let didInit = false;
 function initAll() {
     if (didInit) return;
