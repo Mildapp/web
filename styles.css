@@ -502,21 +502,12 @@ body {
     aspect-ratio: 393 / 864;
     position: relative;
     overflow: visible;
-    background: var(--background-white);
+    background: transparent;
     border-radius: 40px;
 }
 
 .phones-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--background-white);
-    border-radius: 40px;
-    z-index: 0;
-    pointer-events: none;
+    display: none;
 }
 
 .phone-frame {
