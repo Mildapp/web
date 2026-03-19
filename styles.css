@@ -2739,7 +2739,7 @@ body {
 
 .waitlist-title {
     margin: 0;
-    color: var(--Text-primary);
+    color: #FFFFFF;
     font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -3039,11 +3039,13 @@ body {
 .privacy-email {
     margin-top: 18px;
     color: var(--Text-primary);
-    font-size: 18px;
+    font-size: 24px;
     font-family: 'Druk Wide', sans-serif;
     font-weight: 500;
     line-height: 28px;
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
     display: inline-block;
 }
 
