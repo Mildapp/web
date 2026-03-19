@@ -251,7 +251,9 @@
                 </div>
 
                 <div class="phone-frame phone-slide active" data-tab="snap">
-                    <video class="hero-frame-video" autoplay muted loop playsinline preload="auto" data-video="hero-snap">
+                    <!-- Safari gets WebP, Chrome gets video -->
+                    <img class="hero-frame-video hero-frame-safari" src="Video/BY_PHOTO_X3.webp" alt="" style="display:none;">
+                    <video class="hero-frame-video hero-frame-chrome" autoplay muted loop playsinline preload="auto" data-video="hero-snap">
                         <source src="Video/BY PHOTO (size X3).mp4" type="video/mp4">
                     </video>
                 </div>
@@ -742,25 +744,12 @@
             function playAutoplayVideos() {
                 var videos = document.querySelectorAll('video[autoplay]');
                 videos.forEach(function(video) {
-                    // Remove controls completely
-                    video.controls = false;
-                    video.removeAttribute('controls');
-                    
-                    // Safari requirements
+                    // Make sure it's muted (Safari requirement)
                     video.muted = true;
                     video.setAttribute('muted', '');
                     video.setAttribute('playsinline', '');
-                    video.setAttribute('webkit-playsinline', '');
-                    video.setAttribute('x-webkit-airplay', 'deny');
-                    video.setAttribute('disablePictureInPicture', '');
-                    video.setAttribute('disableRemotePlayback', '');
-                    video.preload = 'auto';
                     
                     if (video.paused) {
-                        // Force load first
-                        if (video.readyState < 3) {
-                            video.load();
-                        }
                         var playPromise = video.play();
                         if (playPromise !== undefined) {
                             playPromise.catch(function(e) {
@@ -817,39 +806,22 @@
             }
         })();
         
-        // Force play hero video when tab becomes active (Safari fix)
+        // Safari detection: show WebP for Safari, video for Chrome/others
         (function() {
-            document.addEventListener('DOMContentLoaded', function() {
-                var tabs = document.querySelectorAll('.hero-tab');
-                
-                tabs.forEach(function(tab) {
-                    tab.addEventListener('click', function() {
-                        var tabName = this.getAttribute('data-tab');
-                        var targetFrame = document.querySelector('.phone-frame[data-tab="' + tabName + '"]');
-                        
-                        if (targetFrame) {
-                            var video = targetFrame.querySelector('video');
-                            if (video) {
-                                video.muted = true;
-                                video.currentTime = 0;
-                                setTimeout(function() {
-                                    video.play().catch(function() {});
-                                }, 50);
-                            }
-                        }
-                    });
-                });
-                
-                // Also play active video on load
-                var activeFrame = document.querySelector('.phone-frame.active');
-                if (activeFrame) {
-                    var activeVideo = activeFrame.querySelector('video');
-                    if (activeVideo) {
-                        activeVideo.muted = true;
-                        activeVideo.play().catch(function() {});
-                    }
-                }
-            });
+            var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            
+            var safariElements = document.querySelectorAll('.hero-frame-safari');
+            var chromeElements = document.querySelectorAll('.hero-frame-chrome');
+            
+            if (isSafari) {
+                // Safari: show WebP, hide video
+                safariElements.forEach(function(el) { el.style.display = 'block'; });
+                chromeElements.forEach(function(el) { el.style.display = 'none'; });
+            } else {
+                // Chrome/others: show video, hide WebP
+                safariElements.forEach(function(el) { el.style.display = 'none'; });
+                chromeElements.forEach(function(el) { el.style.display = 'block'; });
+            }
         })();
     </script>
 </body>
