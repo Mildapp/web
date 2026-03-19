@@ -587,7 +587,7 @@
 
     <section class="waitlist-section" aria-label="Join waitlist">
         <div class="waitlist-card">
-            <video class="waitlist-video" autoplay muted loop playsinline preload="auto">
+            <video class="waitlist-video" muted loop playsinline preload="none">
                 <source src="Video/mild_video_bg.mp4" type="video/mp4">
             </video>
             <div class="waitlist-inner">
@@ -741,6 +741,25 @@
         (function() {
             var video = document.querySelector('.reasons-video');
             var container = document.querySelector('.reasons-video-container');
+            if (video && container) {
+                function playVideo() {
+                    video.play().catch(function() {});
+                }
+                function pauseVideo() {
+                    video.pause();
+                }
+                container.addEventListener('mouseenter', playVideo);
+                container.addEventListener('mouseleave', pauseVideo);
+                container.addEventListener('touchstart', function() {
+                    video.paused ? playVideo() : pauseVideo();
+                }, { passive: true });
+            }
+        })();
+        
+        // Waitlist video hover-to-play
+        (function() {
+            var video = document.querySelector('.waitlist-video');
+            var container = document.querySelector('.waitlist-card');
             if (video && container) {
                 function playVideo() {
                     video.play().catch(function() {});
