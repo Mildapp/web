@@ -251,9 +251,7 @@
                 </div>
 
                 <div class="phone-frame phone-slide active" data-tab="snap">
-                    <!-- Safari gets GIF, Chrome gets video -->
-                    <img class="hero-frame-video hero-frame-safari" src="Video/BY_PHOTO_X3.gif" alt="" style="display:none;">
-                    <video class="hero-frame-video hero-frame-chrome" autoplay muted loop playsinline preload="auto" data-video="hero-snap">
+                    <video class="hero-frame-video" autoplay muted loop playsinline preload="auto" data-video="hero-snap">
                         <source src="Video/BY PHOTO (size X3).mp4" type="video/mp4">
                     </video>
                 </div>
@@ -806,47 +804,22 @@
             }
         })();
         
-        // Safari detection: show GIF for Safari, video for Chrome/others
+        // Safari fix: first click anywhere starts all videos
         (function() {
-            function initBrowserSwitch() {
-                var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-                
-                var safariElements = document.querySelectorAll('.hero-frame-safari');
-                var chromeElements = document.querySelectorAll('.hero-frame-chrome');
-                
-                if (isSafari) {
-                    // Safari: show GIF, hide video
-                    safariElements.forEach(function(el) { el.style.display = 'block'; });
-                    chromeElements.forEach(function(el) { el.style.display = 'none'; });
-                } else {
-                    // Chrome/others: show video, hide GIF
-                    safariElements.forEach(function(el) { el.style.display = 'none'; });
-                    chromeElements.forEach(function(el) { 
-                        el.style.display = 'block';
-                        // Force autoplay
-                        if (el.tagName === 'VIDEO') {
-                            el.muted = true;
-                            el.setAttribute('muted', '');
-                            el.setAttribute('playsinline', '');
-                            el.load();
-                            setTimeout(function() {
-                                el.play().catch(function(e) { console.log('Play error:', e); });
-                            }, 100);
-                        }
-                    });
-                }
+            function startAllVideos() {
+                document.querySelectorAll('video').forEach(function(video) {
+                    video.muted = true;
+                    video.play().catch(function(){});
+                });
+                // Remove listeners after first trigger
+                document.removeEventListener('click', startAllVideos);
+                document.removeEventListener('touchstart', startAllVideos);
+                document.removeEventListener('scroll', startAllVideos);
             }
             
-            // Run immediately
-            initBrowserSwitch();
-            
-            // Also run on DOMContentLoaded
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initBrowserSwitch);
-            }
-            
-            // And on window load as fallback
-            window.addEventListener('load', initBrowserSwitch);
+            document.addEventListener('click', startAllVideos, { once: true });
+            document.addEventListener('touchstart', startAllVideos, { once: true, passive: true });
+            document.addEventListener('scroll', startAllVideos, { once: true, passive: true });
         })();
     </script>
 </body>
