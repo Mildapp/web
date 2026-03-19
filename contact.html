@@ -64,7 +64,7 @@
                         We're happy to assist with technical problems, feedback, suggestions, or general questions about the app,
                         its features, and how to use them properly to get the most out of everyday cooking with Mild.
                     </p>
-                    <a href="/cdn-cgi/l/email-protection#d9adb8aaadbc99b4b0b5bdbab6b6b2f7b8a9a9" class="contact-email"><span class="__cf_email__" data-cfemail="9aeefbe9eeffdaf7f3f6fef9f5f5f1b4fbeaea">[email&#160;protected]</span></a>
+                    <a href="#" class="contact-email" id="contact-email-link">taste@mildcook.app</a>
                 </div>
             </section>
 
@@ -115,7 +115,19 @@
         </svg>
     </button>
     
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+        // Email protection bypass
+        (function() {
+            var user = 'taste';
+            var domain = 'mildcook.app';
+            var link = document.getElementById('contact-email-link');
+            if (link) {
+                link.href = 'mail' + 'to:' + user + '@' + domain;
+                link.textContent = user + '@' + domain;
+            }
+        })();
+    </script>
+    <script>
         // Scroll to top button visibility
         (function() {
             var scrollBtn = document.querySelector('.scroll-to-top');

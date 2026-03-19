@@ -407,7 +407,7 @@
             </div>
 
             <div class="collab-contact">
-                <a href="/cdn-cgi/l/email-protection#364257454253765b5f5a525559595d18574646" class="collab-email"><span class="__cf_email__" data-cfemail="d5a1b4a6a1b095b8bcb9b1b6bababefbb4a5a5">[email&#160;protected]</span></a>
+                <a href="#" class="collab-email" id="collab-email-link">taste@mildcook.app</a>
                 <a href="https://calendly.com/mitaras/30min" class="collab-call" target="_blank" rel="noopener noreferrer">Book a call</a>
             </div>
         </div>
@@ -432,7 +432,17 @@
         </svg>
     </button>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+        // Email protection bypass
+        (function() {
+            var user = 'taste';
+            var domain = 'mildcook.app';
+            var link = document.getElementById('collab-email-link');
+            if (link) {
+                link.href = 'mail' + 'to:' + user + '@' + domain;
+                link.textContent = user + '@' + domain;
+            }
+        })();
         // Scroll to top button visibility
         (function() {
             var scrollBtn = document.querySelector('.scroll-to-top');

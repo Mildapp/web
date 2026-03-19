@@ -169,7 +169,7 @@
                 <section class="privacy-section">
                     <h2 class="privacy-section-title">Contact</h2>
                     <p class="privacy-text">If you have questions regarding this Privacy Policy, you may contact us:</p>
-                    <a href="/cdn-cgi/l/email-protection#f98d988a8d9cb99490959d9a969692d7988989" class="privacy-email"><span class="__cf_email__" data-cfemail="6e1a0f1d1a0b2e0307020a0d010105400f1e1e">[email&#160;protected]</span></a>
+                    <a href="#" class="privacy-email" id="privacy-email-link">taste@mildcook.app</a>
                 </section>
             </div>
         </div>
@@ -194,7 +194,19 @@
         </svg>
     </button>
     
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+        // Email protection bypass
+        (function() {
+            var user = 'taste';
+            var domain = 'mildcook.app';
+            var link = document.getElementById('privacy-email-link');
+            if (link) {
+                link.href = 'mail' + 'to:' + user + '@' + domain;
+                link.textContent = user + '@' + domain;
+            }
+        })();
+    </script>
+    <script>
         // Scroll to top button visibility
         (function() {
             var scrollBtn = document.querySelector('.scroll-to-top');
