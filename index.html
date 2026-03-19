@@ -32,54 +32,21 @@
             max-width: none !important;
         }
         
-        /* Hide video controls and play button - aggressive Safari fix */
+        /* Hide video controls and play button */
         video::-webkit-media-controls {
             display: none !important;
-            -webkit-appearance: none !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
         }
         video::-webkit-media-controls-enclosure {
             display: none !important;
-            -webkit-appearance: none !important;
         }
         video::-webkit-media-controls-panel {
             display: none !important;
-            -webkit-appearance: none !important;
         }
         video::-webkit-media-controls-play-button {
             display: none !important;
-            -webkit-appearance: none !important;
         }
         video::-webkit-media-controls-start-playback-button {
             display: none !important;
-            -webkit-appearance: none !important;
-            position: absolute !important;
-            top: -9999px !important;
-            left: -9999px !important;
-        }
-        video::-webkit-media-controls-overlay-play-button {
-            display: none !important;
-            opacity: 0 !important;
-        }
-        video::--webkit-media-controls-container {
-            display: none !important;
-        }
-        video {
-            -webkit-tap-highlight-color: transparent;
-        }
-        /* Wrapper to block Safari overlay */
-        .video-wrapper {
-            position: relative;
-        }
-        .video-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
         }
         
         /* Hero decor images - reduce size by 10% without affecting transform animations */
