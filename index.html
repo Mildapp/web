@@ -231,21 +231,18 @@
                 </button>
             </div>
             <div class="phones-container">
-                <!-- Phone for Snap Tab (Active by default) - FIRST for mobile -->
+                <div class="phone-frame phone-slide" data-tab="voice">
+                    <video class="hero-frame-video" muted loop playsinline preload="none" data-video="hero-voice">
+                        <source src="Video/BY VOICE (size X3).mp4" type="video/mp4">
+                    </video>
+                </div>
+
                 <div class="phone-frame phone-slide active" data-tab="snap">
                     <video class="hero-frame-video" muted loop playsinline preload="none" data-video="hero-snap">
                         <source src="Video/BY PHOTO (size X3).mp4" type="video/mp4">
                     </video>
                 </div>
                 
-                <!-- Phone for Voice Tab -->
-                <div class="phone-frame phone-slide" data-tab="voice">
-                    <video class="hero-frame-video" muted loop playsinline preload="none" data-video="hero-voice">
-                        <source src="Video/BY VOICE (size X3).mp4" type="video/mp4">
-                    </video>
-                </div>
-                
-                <!-- Phone for Text Tab -->
                 <div class="phone-frame phone-slide" data-tab="text">
                     <video class="hero-frame-video" muted loop playsinline preload="none" data-video="hero-text">
                         <source src="Video/BY TEXT (size X3).mp4" type="video/mp4">
@@ -624,14 +621,12 @@
         </div>
     </footer>
     
-    <!-- Cookie Banner -->
     <div class="cookie-banner" id="cookieBanner">
         <div class="cookie-text">We use cookies to analyze traffic, personalize content, and improve your experience. You can accept or reject non-essential cookies.</div>
         <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Accept all</button>
         <button class="cookie-btn cookie-btn-reject" id="cookieReject">Reject all</button>
     </div>
     
-    <!-- Scroll to top button -->
     <button class="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Scroll to top">
         <svg viewBox="0 0 24 24">
             <polyline points="18 15 12 9 6 15"></polyline>

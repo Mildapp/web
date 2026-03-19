@@ -1260,11 +1260,11 @@ body {
         width: 100%;
         max-width: 100%;
         padding-top: 50px;
-        padding-bottom: 10px !important; 
-        padding-left: 20px;
-        padding-right: 20px;
-        gap: 30px;
-        overflow: hidden !important;
+        padding-bottom: 40px; /* Reduced by 20px to cut extra white space below */
+        padding-left: 30px;
+        padding-right: 30px;
+        gap: 40px;
+        overflow: visible !important;
     }
     
     .header {
@@ -1387,6 +1387,7 @@ body {
         margin-bottom: 0 !important;
     }
     
+    /* Phones Container Adjustments */
     .phones-container {
         width: 100vw !important;
         max-width: 100vw !important;
@@ -1402,8 +1403,9 @@ body {
         flex-direction: row;
         gap: 40px !important; 
         position: relative;
+        z-index: 5 !important; /* Hides the floating ingredients during swipe */
         border-radius: 0 !important;
-        background: transparent !important;
+        background: var(--background-white) !important; /* Solid background to cover gap */
         padding-top: 40px !important; 
         padding-bottom: 10px !important; 
         padding-left: calc(50vw - 140px) !important; 
