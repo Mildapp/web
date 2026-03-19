@@ -498,8 +498,7 @@ body {
 
 .phones-container {
     width: 440px;
-    height: auto;
-    aspect-ratio: 393 / 864;
+    height: 968px;
     position: relative;
     overflow: visible;
     background: transparent;
@@ -512,8 +511,7 @@ body {
 
 .phone-frame {
     width: 440px;
-    height: auto;
-    aspect-ratio: 393 / 864;
+    height: 968px;
     position: absolute;
     top: 0;
     left: 0;
@@ -522,15 +520,13 @@ body {
     border-radius: 40px;
     box-sizing: border-box;
     opacity: 0;
-    transform: translateX(100%);
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.3s ease;
     pointer-events: none;
     z-index: 1;
 }
 
 .phone-frame.active {
     opacity: 1;
-    transform: translateX(0);
     pointer-events: auto;
     z-index: 2;
 }
@@ -613,29 +609,6 @@ body {
     }
 }
 
-.phone-frame.slide-out-left {
-    transform: translateX(-100%);
-    opacity: 0;
-    z-index: 1;
-}
-
-.phone-frame.slide-in-right {
-    transform: translateX(100%);
-    opacity: 0;
-    z-index: 1;
-}
-
-.phone-frame.slide-out-right {
-    transform: translateX(100%);
-    opacity: 0;
-    z-index: 1;
-}
-
-.phone-frame.slide-in-left {
-    transform: translateX(-100%);
-    opacity: 0;
-    z-index: 1;
-}
 
 .phone-status-bar {
     width: 390px;
@@ -1420,8 +1393,7 @@ body {
         width: 280px !important;
         min-width: 280px !important;
         max-width: 280px !important;
-        height: auto !important;
-        aspect-ratio: 312 / 676 !important; 
+        height: 616px !important;
         position: relative;
         scroll-snap-align: center; 
         scroll-snap-stop: always;
@@ -1452,7 +1424,7 @@ body {
     .hero-frame-video {
         width: 100% !important;
         height: 100% !important;
-        object-fit: cover !important;
+        object-fit: contain !important;
         border-radius: 36px !important;
     }
     
