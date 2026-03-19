@@ -32,21 +32,54 @@
             max-width: none !important;
         }
         
-        /* Hide video controls and play button */
+        /* Hide video controls and play button - aggressive Safari fix */
         video::-webkit-media-controls {
             display: none !important;
+            -webkit-appearance: none !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
         }
         video::-webkit-media-controls-enclosure {
             display: none !important;
+            -webkit-appearance: none !important;
         }
         video::-webkit-media-controls-panel {
             display: none !important;
+            -webkit-appearance: none !important;
         }
         video::-webkit-media-controls-play-button {
             display: none !important;
+            -webkit-appearance: none !important;
         }
         video::-webkit-media-controls-start-playback-button {
             display: none !important;
+            -webkit-appearance: none !important;
+            position: absolute !important;
+            top: -9999px !important;
+            left: -9999px !important;
+        }
+        video::-webkit-media-controls-overlay-play-button {
+            display: none !important;
+            opacity: 0 !important;
+        }
+        video::--webkit-media-controls-container {
+            display: none !important;
+        }
+        video {
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* Wrapper to block Safari overlay */
+        .video-wrapper {
+            position: relative;
+        }
+        .video-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
         }
         
         /* Hero decor images - reduce size by 10% without affecting transform animations */
@@ -742,12 +775,25 @@
             function playAutoplayVideos() {
                 var videos = document.querySelectorAll('video[autoplay]');
                 videos.forEach(function(video) {
-                    // Make sure it's muted (Safari requirement)
+                    // Remove controls completely
+                    video.controls = false;
+                    video.removeAttribute('controls');
+                    
+                    // Safari requirements
                     video.muted = true;
                     video.setAttribute('muted', '');
                     video.setAttribute('playsinline', '');
+                    video.setAttribute('webkit-playsinline', '');
+                    video.setAttribute('x-webkit-airplay', 'deny');
+                    video.setAttribute('disablePictureInPicture', '');
+                    video.setAttribute('disableRemotePlayback', '');
+                    video.preload = 'auto';
                     
                     if (video.paused) {
+                        // Force load first
+                        if (video.readyState < 3) {
+                            video.load();
+                        }
                         var playPromise = video.play();
                         if (playPromise !== undefined) {
                             playPromise.catch(function(e) {
@@ -802,6 +848,41 @@
                     observer.observe(video);
                 });
             }
+        })();
+        
+        // Force play hero video when tab becomes active (Safari fix)
+        (function() {
+            document.addEventListener('DOMContentLoaded', function() {
+                var tabs = document.querySelectorAll('.hero-tab');
+                
+                tabs.forEach(function(tab) {
+                    tab.addEventListener('click', function() {
+                        var tabName = this.getAttribute('data-tab');
+                        var targetFrame = document.querySelector('.phone-frame[data-tab="' + tabName + '"]');
+                        
+                        if (targetFrame) {
+                            var video = targetFrame.querySelector('video');
+                            if (video) {
+                                video.muted = true;
+                                video.currentTime = 0;
+                                setTimeout(function() {
+                                    video.play().catch(function() {});
+                                }, 50);
+                            }
+                        }
+                    });
+                });
+                
+                // Also play active video on load
+                var activeFrame = document.querySelector('.phone-frame.active');
+                if (activeFrame) {
+                    var activeVideo = activeFrame.querySelector('video');
+                    if (activeVideo) {
+                        activeVideo.muted = true;
+                        activeVideo.play().catch(function() {});
+                    }
+                }
+            });
         })();
     </script>
 </body>
