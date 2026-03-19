@@ -1111,8 +1111,8 @@ body {
 }
 
 .feature-phone-mockup {
-    width: 312px;
-    height: 650px;
+    width: 324px;
+    height: 662px;
     position: relative;
     background: black;
     overflow: hidden;
@@ -1123,8 +1123,8 @@ body {
 }
 
 .phone-screen {
-    width: 300px;
-    height: 670px;
+    width: 312px;
+    height: 682px;
     position: relative;
     background: var(--background-dark);
     border-top-left-radius: 14.25px;
@@ -1427,7 +1427,7 @@ body {
         min-width: 280px !important;
         max-width: 280px !important;
         height: auto !important;
-        aspect-ratio: 312 / 670 !important; 
+        aspect-ratio: 324 / 682 !important; 
         position: relative;
         scroll-snap-align: center; 
         scroll-snap-stop: always;
@@ -1635,7 +1635,7 @@ body {
         max-width: 528px;
         min-width: 0;
         height: auto;
-        aspect-ratio: 312 / 670;
+        aspect-ratio: 324 / 682;
         position: relative;
         background: black;
         overflow: visible;
@@ -1652,17 +1652,17 @@ body {
     
     .feature-card .phone-screen {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        top: 6px;
+        left: 6px;
+        right: 6px;
+        bottom: 6px;
         width: auto;
         height: auto;
         background: var(--background-dark);
-        border-top-left-radius: 36px;
-        border-top-right-radius: 36px;
-        border-bottom-left-radius: 36px;
-        border-bottom-right-radius: 36px;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
         overflow: hidden;
         display: block;
         margin: 0;
