@@ -300,7 +300,7 @@
                 </div>
             </div>
             <div class="reasons-video-container">
-                <video class="reasons-video" autoplay muted loop playsinline>
+                <video class="reasons-video" autoplay muted loop playsinline webkit-playsinline>
                     <source src="Video/plate.mp4" type="video/mp4">
                 </video>
             </div>
@@ -735,6 +735,17 @@
                 localStorage.setItem('cookieConsent', 'rejected');
                 banner.classList.add('hidden');
             });
+        })();
+        
+        // Force autoplay for reasons-video (Safari fix)
+        (function() {
+            var reasonsVideo = document.querySelector('.reasons-video');
+            if (reasonsVideo) {
+                reasonsVideo.play().catch(function() {});
+                document.addEventListener('touchstart', function() {
+                    reasonsVideo.play().catch(function() {});
+                }, { once: true });
+            }
         })();
     </script>
 </body>
