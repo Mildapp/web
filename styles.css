@@ -293,7 +293,7 @@ body {
 }
   
 
-/* Top-left: Garlic - верхний левый угол, выше текста, повернут против часовой стрелки */
+/* Top-left: Garlic - upper left corner, above text, rotated counterclockwise */
 .hero-decor-1 {
     width: 157px;
     height: 157px;
@@ -303,7 +303,7 @@ body {
     transform-origin: center center;
 }
 
-/* Mid-left: Olive Oil - средняя левая часть, ниже чеснока, слева от телефона */
+/* Mid-left: Olive Oil - middle left area, below garlic, left of phone */
 .hero-decor-2 {
     width: 157px;
     height: 157px;
@@ -311,7 +311,7 @@ body {
     top: 560px;
 }
 
-/* Bottom-left: Pasta - нижняя левая часть, ниже оливкового масла */
+/* Bottom-left: Pasta - lower left area, below olive oil */
 .hero-decor-5 {
     width: 140px;
     height: 143px;
@@ -320,7 +320,7 @@ body {
     bottom: auto;
 }
 
-/* Top-right: Pepper - верхний правый угол, выше текста, повернут по часовой стрелке */
+/* Top-right: Pepper - upper right corner, above text, rotated clockwise */
 .hero-decor-3 {
     width: 157px;
     height: 146.66px;
@@ -330,7 +330,7 @@ body {
     transform-origin: center center;
 }
 
-/* Mid-right: Cheese - средняя правая часть, ниже перца, справа от телефона, повернут по часовой стрелке */
+/* Mid-right: Cheese - middle right area, below pepper, right of phone, rotated clockwise */
 .hero-decor-4 {
     width: 157px;
     height: 157px;
@@ -340,7 +340,7 @@ body {
     transform-origin: center center;
 }
 
-/* Bottom-right: Zucchini - нижняя правая часть, ниже сыра, справа от телефона */
+/* Bottom-right: Zucchini - lower right area, below cheese, right of phone */
 .hero-decor-6 {
     width: 162px;
     height: 162px;
@@ -357,7 +357,7 @@ body {
     }
 }
 
-/* Ограничение позиций декоративных элементов, чтобы они не поднимались выше текста */
+/* Limit decorative element positions so they don't rise above the text */
 @media (max-width: 1400px) {
     .hero-decor-1 {
         top: 400px;
@@ -527,7 +527,6 @@ body {
     background: var(--background-dark);
     overflow: hidden;
     border-radius: 40px;
-    border: 6px solid black;
     box-sizing: border-box;
     opacity: 0;
     transform: translateX(100%);
@@ -808,7 +807,6 @@ body {
     object-fit: cover;
     border-radius: 12px;
     display: block;
-    border: 6px black solid;
     box-sizing: border-box;
 }
 
@@ -1122,10 +1120,6 @@ body {
     border-top-right-radius: 36px;
     border-bottom-left-radius: 36px;
     border-bottom-right-radius: 36px;
-    border-left: 6px black solid;
-    border-top: 6px black solid;
-    border-right: 6px black solid;
-    border-bottom: 6px black solid;
 }
 
 .phone-screen {
@@ -1437,7 +1431,6 @@ body {
         position: relative;
         scroll-snap-align: center; 
         scroll-snap-stop: always;
-        border: 3px black solid !important; 
         border-radius: 32px !important; 
         outline: none !important;
         overflow: hidden !important;
@@ -1650,10 +1643,6 @@ body {
         border-top-right-radius: 36px;
         border-bottom-left-radius: 36px;
         border-bottom-right-radius: 36px;
-        border-left: 3px black solid !important;
-        border-top: 3px black solid !important;
-        border-right: 3px black solid !important;
-        border-bottom: 3px black solid !important;
         margin: 0 auto;
         flex-shrink: 1;
         display: flex;
@@ -1663,17 +1652,17 @@ body {
     
     .feature-card .phone-screen {
         position: absolute;
-        top: 3px;
-        left: 3px;
-        right: 3px;
-        bottom: 3px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         width: auto;
         height: auto;
         background: var(--background-dark);
-        border-top-left-radius: 30px;
-        border-top-right-radius: 30px;
-        border-bottom-left-radius: 30px;
-        border-bottom-right-radius: 30px;
+        border-top-left-radius: 36px;
+        border-top-right-radius: 36px;
+        border-bottom-left-radius: 36px;
+        border-bottom-right-radius: 36px;
         overflow: hidden;
         display: block;
         margin: 0;
