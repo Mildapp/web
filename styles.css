@@ -500,7 +500,7 @@ body {
     width: 393px;
     height: 864px;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     background: var(--background-white);
     border-radius: 40px;
 }
@@ -525,7 +525,7 @@ body {
     top: 0;
     left: 0;
     background: var(--background-dark);
-    overflow: hidden;
+    overflow: visible;
     border-radius: 40px;
     box-sizing: border-box;
     opacity: 0;
@@ -1116,7 +1116,7 @@ body {
     height: 676px;
     position: relative;
     background: transparent;
-    overflow: hidden;
+    overflow: visible;
     border-top-left-radius: 36px;
     border-top-right-radius: 36px;
     border-bottom-left-radius: 36px;
@@ -1132,7 +1132,7 @@ body {
     border-top-right-radius: 36px;
     border-bottom-right-radius: 36px;
     border-bottom-left-radius: 36px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .phone-image {
@@ -1434,7 +1434,7 @@ body {
         scroll-snap-stop: always;
         border-radius: 32px !important; 
         outline: none !important;
-        overflow: hidden !important;
+        overflow: visible !important;
         opacity: 1 !important;
         transform: translateX(0) !important;
         pointer-events: auto;
@@ -1664,7 +1664,7 @@ body {
         border-top-right-radius: 36px;
         border-bottom-left-radius: 36px;
         border-bottom-right-radius: 36px;
-        overflow: hidden;
+        overflow: visible;
         display: block;
         margin: 0;
     }
