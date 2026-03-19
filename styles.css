@@ -214,7 +214,7 @@ body {
     gap: 72px;
     padding: 10px 10px;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .hero-container {
