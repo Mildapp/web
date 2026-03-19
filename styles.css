@@ -2723,6 +2723,7 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: 0;
+    pointer-events: none;
 }
 
 .waitlist-inner {
@@ -2733,7 +2734,7 @@ body {
     align-items: center;
     gap: 104px;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .waitlist-title {
@@ -2825,7 +2826,6 @@ body {
     .waitlist-card {
         min-height: 520px;
         padding: 104px 32px 72px;
-        background-position: 58% center;
     }
 
     .waitlist-inner {
@@ -2862,15 +2862,19 @@ body {
     }
 
     .waitlist-card {
-        min-height: auto;
+        min-height: 500px;
         border-radius: 24px;
         padding: 72px 16px 32px;
-        background-image: url("images/top info body visual.svg");
-        background-position: 62% center;
+    }
+
+    .waitlist-video {
+        object-position: center center;
     }
 
     .waitlist-inner {
         gap: 28px;
+        z-index: 2;
+        position: relative;
     }
 
     .waitlist-title {
