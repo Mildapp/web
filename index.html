@@ -300,7 +300,7 @@
                 </div>
             </div>
             <div class="reasons-video-container">
-                <video class="reasons-video" autoplay muted loop playsinline webkit-playsinline>
+                <video class="reasons-video" muted loop playsinline preload="none">
                     <source src="Video/plate.mp4" type="video/mp4">
                 </video>
             </div>
@@ -737,14 +737,22 @@
             });
         })();
         
-        // Force autoplay for reasons-video (Safari fix)
+        // Reasons video hover-to-play (same as hero videos)
         (function() {
-            var reasonsVideo = document.querySelector('.reasons-video');
-            if (reasonsVideo) {
-                reasonsVideo.play().catch(function() {});
-                document.addEventListener('touchstart', function() {
-                    reasonsVideo.play().catch(function() {});
-                }, { once: true });
+            var video = document.querySelector('.reasons-video');
+            var container = document.querySelector('.reasons-video-container');
+            if (video && container) {
+                function playVideo() {
+                    video.play().catch(function() {});
+                }
+                function pauseVideo() {
+                    video.pause();
+                }
+                container.addEventListener('mouseenter', playVideo);
+                container.addEventListener('mouseleave', pauseVideo);
+                container.addEventListener('touchstart', function() {
+                    video.paused ? playVideo() : pauseVideo();
+                }, { passive: true });
             }
         })();
     </script>
