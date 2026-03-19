@@ -251,18 +251,18 @@ body {
     pointer-events: none;
     object-fit: contain;
     z-index: 1;
-    transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition: transform 0.8s ease-in-out, opacity 0.4s ease-in-out;
     opacity: 1;
-    will-change: transform;
+    will-change: transform, opacity;
 }
 
-/* Классы для скрытия элементов при скролле */
 .hero-decor.hide-behind-phone {
     z-index: 0;
+    opacity: 0;
+    /* Delays the opacity fade by 0.4s so it only disappears AFTER it slides behind the phone */
+    transition: transform 0.8s ease-in-out, opacity 0.4s ease-in-out 0.4s;
 }
 
-/* Все элементы двигаются к ОДНОЙ точке - центру телефона */
-/* Используем CSS переменные для точного позиционирования, вычисляемые через JavaScript */
 .hero-decor-1.hide-behind-phone {
     transform: translateX(var(--target-x, 578.5px)) translateY(var(--target-y, 515.5px)) rotate(-14deg);
     transform-origin: center center;
@@ -1260,7 +1260,7 @@ body {
         width: 100%;
         max-width: 100%;
         padding-top: 50px;
-        padding-bottom: 40px; /* Reduced by 20px to cut extra white space below */
+        padding-bottom: 40px; 
         padding-left: 30px;
         padding-right: 30px;
         gap: 40px;
@@ -1403,9 +1403,9 @@ body {
         flex-direction: row;
         gap: 40px !important; 
         position: relative;
-        z-index: 5 !important; /* Hides the floating ingredients during swipe */
+        z-index: 5 !important; 
         border-radius: 0 !important;
-        background: var(--background-white) !important; /* Solid background to cover gap */
+        background: transparent !important; 
         padding-top: 40px !important; 
         padding-bottom: 10px !important; 
         padding-left: calc(50vw - 140px) !important; 
