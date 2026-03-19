@@ -498,7 +498,7 @@ body {
 
 .phones-container {
     width: 440px;
-    height: 968px;
+    height: 1050px;
     position: relative;
     overflow: visible;
     background: transparent;
@@ -511,7 +511,7 @@ body {
 
 .phone-frame {
     width: 440px;
-    height: 968px;
+    height: 1050px;
     position: absolute;
     top: 0;
     left: 0;
@@ -1393,7 +1393,7 @@ body {
         width: 280px !important;
         min-width: 280px !important;
         max-width: 280px !important;
-        height: 700px !important;
+        height: 800px !important;
         position: relative;
         scroll-snap-align: center; 
         scroll-snap-stop: always;
