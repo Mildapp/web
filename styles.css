@@ -537,8 +537,8 @@ body {
     object-fit: cover;
     object-position: top center;
     display: block;
-    border-radius: min(36px, 2.5vw);
-    border: min(8px, 0.56vw) solid black;
+    border-radius: 48px;
+    border: 8px solid black;
     box-sizing: border-box;
 }
 
@@ -1119,12 +1119,13 @@ body {
 
 .phone-video {
     width: 100%;
+    max-width: 312px;
     aspect-ratio: 420 / 910;
     object-fit: cover;
     object-position: top center;
     display: block;
-    border-radius: min(36px, 2.5vw);
-    border: min(8px, 0.56vw) solid black;
+    border-radius: 36px;
+    border: 8px solid black;
     box-sizing: border-box;
 }
 
@@ -1646,9 +1647,9 @@ body {
     
     .feature-card .phone-video {
         width: 100%;
-        height: 100%;
+        aspect-ratio: 420 / 910;
         object-fit: cover;
-        object-position: top center;
+        object-position: center center;
         display: block;
         margin: 0 auto;
         border-radius: 10vw;
