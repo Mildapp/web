@@ -1646,15 +1646,16 @@ body {
     }
     
     .feature-card .phone-video {
-        width: 100%;
+        width: calc(100% - 2px);
         aspect-ratio: 418 / 910;
         object-fit: cover;
         object-position: center center;
         display: block;
-        margin: 0 auto;
+        margin: 1px auto 0;
         border-radius: 10vw;
         border: 2vw solid black;
         box-sizing: border-box;
+        background: black;
     }
     
     .feature-card .phone-image {
