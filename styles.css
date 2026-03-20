@@ -1651,7 +1651,7 @@ body {
         object-fit: cover;
         object-position: center center;
         display: block;
-        margin: 1px auto 0;
+        margin: 1px auto -1px;
         border-radius: 10vw;
         border: calc(2vw + 1px) solid black;
         box-sizing: border-box;
