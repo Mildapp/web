@@ -1653,10 +1653,9 @@ body {
         display: block;
         margin: 1px auto 0;
         border-radius: 10vw;
-        border: 2vw solid black;
+        border: calc(2vw + 1px) solid black;
         box-sizing: border-box;
         background: black;
-        box-shadow: inset 0 0 0 1px black;
     }
     
     .feature-card .phone-image {
