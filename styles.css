@@ -2108,6 +2108,10 @@ body {
     gap: 0;
 }
 
+.pricing-dots {
+    display: none;
+}
+
 .pricing-features-list {
     align-self: stretch;
     display: flex;
@@ -2446,19 +2450,55 @@ body {
     .pricing-plan-group {
         width: 100%;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         gap: 16px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding-bottom: 10px;
+    }
+    
+    .pricing-plan-group::-webkit-scrollbar {
+        display: none;
     }
 
     .pricing-plan {
-        width: 100%;
-        flex: none;
-        align-self: stretch;
+        flex: 0 0 100%;
+        min-width: 0;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
     }
     
     .pricing-plan {
         border-radius: 32px;
         overflow: hidden;
+    }
+    
+    .pricing-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 20px;
+    }
+    
+    .pricing-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 9999px;
+        background: #ccc;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: background 0.3s ease, width 0.3s ease, height 0.3s ease;
+    }
+    
+    .pricing-dot.active {
+        width: 8px;
+        height: 8px;
+        background: black;
     }
 
     .pricing-plan-content {
@@ -3256,5 +3296,237 @@ body {
     .founder-section {
         margin-top: 48px;
         padding: 0 20px 56px;
+    }
+}
+
+/* Waitlist Modal */
+.waitlist-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.waitlist-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.waitlist-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.waitlist-modal-content {
+    position: relative;
+    width: calc(100% - 20px);
+    max-width: 1900px;
+    height: calc(100vh - 20px);
+    max-height: 1020px;
+    background: var(--background-white);
+    border-radius: 32px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.waitlist-modal-video {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 32px;
+}
+
+.waitlist-modal-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 32px 110px;
+}
+
+.waitlist-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.waitlist-modal-logo {
+    color: var(--Text-primary);
+    font-size: 26px;
+    font-family: 'Druk Wide', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.waitlist-modal-logo:hover {
+    opacity: 0.8;
+}
+
+.waitlist-modal-badge {
+    height: 48px;
+    width: auto;
+}
+
+.waitlist-modal-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 200px;
+}
+
+.waitlist-modal-title {
+    max-width: 896px;
+    color: var(--Text-primary);
+    font-size: 72px;
+    font-family: 'Druk Wide', sans-serif;
+    font-weight: 500;
+    line-height: 76px;
+    opacity: 0.8;
+}
+
+.waitlist-modal-text {
+    max-width: 752px;
+    margin-top: 24px;
+    color: var(--Text-primary);
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 26px;
+}
+
+.waitlist-modal-text strong {
+    font-weight: 700;
+}
+
+.waitlist-modal-form-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 180px;
+    z-index: 2;
+}
+
+.waitlist-modal-form {
+    display: flex;
+    gap: 12px;
+}
+
+.waitlist-modal-input {
+    width: 550px;
+    height: 60px;
+    padding: 0 24px;
+    background: var(--background-white);
+    border: none;
+    border-radius: 16px;
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    line-height: 28px;
+    color: var(--Text-primary);
+}
+
+.waitlist-modal-input::placeholder {
+    color: var(--Text-secondary);
+}
+
+.waitlist-modal-input:focus {
+    outline: none;
+}
+
+.waitlist-modal-button {
+    width: 300px;
+    height: 60px;
+    padding: 16px 24px;
+    background: var(--Button-primary);
+    border: none;
+    border-radius: 16px;
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    line-height: 24px;
+    color: var(--Text-primary);
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.waitlist-modal-button:hover {
+    opacity: 0.8;
+}
+
+.waitlist-modal-close {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--Text-primary);
+    transition: opacity 0.2s;
+    z-index: 3;
+}
+
+.waitlist-modal-close:hover {
+    opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+    .waitlist-modal-inner {
+        padding: 24px 30px;
+    }
+    
+    .waitlist-modal-title {
+        font-size: 36px;
+        line-height: 42px;
+    }
+    
+    .waitlist-modal-text {
+        font-size: 15px;
+        line-height: 24px;
+    }
+    
+    .waitlist-modal-body {
+        padding-bottom: 280px;
+    }
+    
+    .waitlist-modal-form-container {
+        padding: 0 30px 120px;
+    }
+    
+    .waitlist-modal-form {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .waitlist-modal-input,
+    .waitlist-modal-button {
+        width: 100%;
+    }
+    
+    .waitlist-modal-close {
+        top: 24px;
+        right: 24px;
     }
 }

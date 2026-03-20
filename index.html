@@ -212,7 +212,7 @@
                         </div>
                     </div>
                     <div class="actions-section">
-                        <img src="images/App_Store_Badge.svg" alt="Download on the App Store" class="app-store-badge">
+                        <img src="images/App_Store_Badge.svg" alt="Download on the App Store" class="app-store-badge" id="openWaitlistModal" style="cursor: pointer;">
                     </div>
                 </div>
             </header>
@@ -434,75 +434,6 @@
                         </div>
                     </div>
                     <div class="pricing-plan-group">
-                        <div class="pricing-plan free-plan">
-                            <div class="pricing-plan-content">
-                                <div class="pricing-plan-header">
-                                    <div class="pricing-plan-meta">
-                                        <div class="pricing-plan-title">Free</div>
-                                    </div>
-                                    <div class="pricing-plan-price">
-                                        <span class="price-amount">$0</span>
-                                        <span class="price-period">/forever</span>
-                                    </div>
-                                    <button class="pricing-button pricing-button-free">Get App</button>
-                                </div>
-                                <div class="pricing-feature-check">
-                                    <div class="check-icon check-yes">
-                                        <img src="images/Icons/done.svg" alt="Done" class="check-icon-img">
-                                    </div>
-                                    <div class="pricing-feature-text">Select ingredients for quick recipe search</div>
-                                </div>
-                                <div class="pricing-feature-check">
-                                    <div class="check-icon check-yes">
-                                        <img src="images/Icons/done.svg" alt="Done" class="check-icon-img">
-                                    </div>
-                                    <div class="pricing-feature-text">Displaying missing ingredients</div>
-                                </div>
-                                <div class="pricing-feature-check">
-                                    <div class="check-icon check-yes">
-                                        <img src="images/Icons/done.svg" alt="Done" class="check-icon-img">
-                                    </div>
-                                    <div class="pricing-feature-text">Step-by-step cooking guides</div>
-                                </div>
-                                <div class="pricing-feature-check">
-                                    <div class="check-icon check-yes">
-                                        <img src="images/Icons/done.svg" alt="Done" class="check-icon-img">
-                                    </div>
-                                    <div class="pricing-feature-text">Ingredient facts and nutritional info</div>
-                                </div>
-                                <div class="pricing-feature-check">
-                                    <div class="check-icon check-yes">
-                                        <img src="images/Icons/done.svg" alt="Done" class="check-icon-img">
-                                    </div>
-                                    <div class="pricing-feature-text">AI photo, voice ingredient search</div>
-                                </div>
-                                <div class="pricing-feature-check">
-                                    <div class="check-icon check-no">
-                                        <img src="images/Icons/close.svg" alt="Close" class="check-icon-img-close">
-                                    </div>
-                                    <div class="pricing-feature-text">Filter recipes by time, calories, cuisine</div>
-                                </div>
-                                <div class="pricing-feature-check">
-                                    <div class="check-icon check-no">
-                                        <img src="images/Icons/close.svg" alt="Close" class="check-icon-img-close">
-                                    </div>
-                                    <div class="pricing-feature-text">Timers with sound alerts for each cooking step</div>
-                                </div>
-                                <div class="pricing-feature-check">
-                                    <div class="check-icon check-no">
-                                        <img src="images/Icons/close.svg" alt="Close" class="check-icon-img-close">
-                                    </div>
-                                    <div class="pricing-feature-text">Save favorite recipes</div>
-                                </div>
-                                <div class="pricing-feature-check">
-                                    <div class="check-icon check-no">
-                                        <img src="images/Icons/close.svg" alt="Close" class="check-icon-img-close">
-                                    </div>
-                                    <div class="pricing-feature-text">Quick access to recently used ingredients</div>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="pricing-plan subscription-plan weekly-plan">
                             <div class="pricing-plan-content">
                                 <div class="pricing-plan-header">
@@ -579,6 +510,36 @@
                                 <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Quick access to recently used ingredients</div></div>
                             </div>
                         </div>
+
+                        <div class="pricing-plan free-plan">
+                            <div class="pricing-plan-content">
+                                <div class="pricing-plan-header">
+                                    <div class="pricing-plan-meta">
+                                        <div class="pricing-plan-title">Free</div>
+                                    </div>
+                                    <div class="pricing-plan-price">
+                                        <span class="price-amount">$0</span>
+                                        <span class="price-period">/forever</span>
+                                    </div>
+                                    <button class="pricing-button pricing-button-free">Get App</button>
+                                </div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Select ingredients for quick recipe search</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Displaying missing ingredients</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Step-by-step cooking guides</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">Ingredient facts and nutritional info</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-yes"><img src="images/Icons/done.svg" alt="Done" class="check-icon-img"></div><div class="pricing-feature-text">AI photo, voice ingredient search</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-no"><img src="images/Icons/close.svg" alt="Close" class="check-icon-img-close"></div><div class="pricing-feature-text">Filter recipes by time, calories, cuisine</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-no"><img src="images/Icons/close.svg" alt="Close" class="check-icon-img-close"></div><div class="pricing-feature-text">Timers with sound alerts for each cooking step</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-no"><img src="images/Icons/close.svg" alt="Close" class="check-icon-img-close"></div><div class="pricing-feature-text">Save favorite recipes</div></div>
+                                <div class="pricing-feature-check"><div class="check-icon check-no"><img src="images/Icons/close.svg" alt="Close" class="check-icon-img-close"></div><div class="pricing-feature-text">Quick access to recently used ingredients</div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pricing-dots" aria-hidden="true">
+                        <button class="pricing-dot active" data-index="0"></button>
+                        <button class="pricing-dot" data-index="1"></button>
+                        <button class="pricing-dot" data-index="2"></button>
+                        <button class="pricing-dot" data-index="3"></button>
                     </div>
                 </div>
             </div>
@@ -820,6 +781,102 @@
             document.addEventListener('click', startAllVideos, { once: true });
             document.addEventListener('touchstart', startAllVideos, { once: true, passive: true });
             document.addEventListener('scroll', startAllVideos, { once: true, passive: true });
+        })();
+        
+        // Pricing carousel for mobile
+        (function() {
+            var pricingGroup = document.querySelector('.pricing-plan-group');
+            var pricingDots = document.querySelectorAll('.pricing-dot');
+            var pricingPlans = document.querySelectorAll('.pricing-plan');
+            
+            if (!pricingGroup || pricingDots.length === 0) return;
+            
+            function updatePricingDots() {
+                var scrollLeft = pricingGroup.scrollLeft;
+                var planWidth = pricingPlans[0].offsetWidth;
+                var gap = 16;
+                var index = Math.round(scrollLeft / (planWidth + gap));
+                
+                pricingDots.forEach(function(dot, i) {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
+            
+            pricingGroup.addEventListener('scroll', updatePricingDots);
+            
+            pricingDots.forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                    var index = parseInt(this.getAttribute('data-index'));
+                    var planWidth = pricingPlans[0].offsetWidth;
+                    var gap = 16;
+                    pricingGroup.scrollTo({
+                        left: index * (planWidth + gap),
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        })();
+    </script>
+    
+    <!-- Waitlist Modal -->
+    <div class="waitlist-modal" id="waitlistModal">
+        <div class="waitlist-modal-overlay"></div>
+        <div class="waitlist-modal-content">
+            <video class="waitlist-modal-video" autoplay muted loop playsinline>
+                <source src="Video/waiting.mp4" type="video/mp4">
+            </video>
+            <div class="waitlist-modal-inner">
+                <header class="waitlist-modal-header">
+                    <a href="index.html" class="waitlist-modal-logo">Mild</a>
+                    <img src="images/App_Store_Badge.svg" alt="Download on the App Store" class="waitlist-modal-badge">
+                </header>
+                <div class="waitlist-modal-body">
+                    <h2 class="waitlist-modal-title">Something tasty<br>is on the way!</h2>
+                    <p class="waitlist-modal-text">For those moments when the fridge is open, the clock is ticking, and dinner still feels far away. <strong>Join the waitlist and we'll let you know when Mild is ready.</strong></p>
+                </div>
+                <div class="waitlist-modal-form-container">
+                    <div class="waitlist-modal-form">
+                        <input class="waitlist-modal-input" type="email" placeholder="Enter your Email" aria-label="Enter your email">
+                        <button class="waitlist-modal-button" type="button">Get Early Access</button>
+                    </div>
+                </div>
+                <button class="waitlist-modal-close" id="closeWaitlistModal" aria-label="Close">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Waitlist Modal
+        (function() {
+            var modal = document.getElementById('waitlistModal');
+            var openBtn = document.getElementById('openWaitlistModal');
+            var closeBtn = document.getElementById('closeWaitlistModal');
+            var overlay = modal.querySelector('.waitlist-modal-overlay');
+            
+            function openModal() {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            openBtn.addEventListener('click', openModal);
+            closeBtn.addEventListener('click', closeModal);
+            overlay.addEventListener('click', closeModal);
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
         })();
     </script>
 </body>
