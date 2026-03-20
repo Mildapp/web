@@ -1431,7 +1431,7 @@ body {
     
     .hero-frame-video {
         width: 100% !important;
-        aspect-ratio: 406 / 865;
+        aspect-ratio: 406 / 863;
         object-fit: cover !important;
         object-position: top center;
         border-radius: 10vw !important;
