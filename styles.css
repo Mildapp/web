@@ -3338,9 +3338,10 @@ body {
 .waitlist-modal-video {
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 60%;
+    left: 70px;
+    right: 70px;
+    width: calc(100% - 140px);
+    height: 50%;
     object-fit: cover;
     object-position: center top;
     border-radius: 32px;
@@ -3411,12 +3412,13 @@ body {
 
 .waitlist-modal-form-container {
     position: absolute;
-    bottom: 0;
+    bottom: 25%;
     left: 0;
     right: 0;
     display: flex;
     justify-content: center;
-    padding-bottom: 180px;
+    z-index: 2;
+}
     z-index: 2;
 }
 
@@ -3467,10 +3469,13 @@ body {
     opacity: 0.8;
 }
 
+.waitlist-modal-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .waitlist-modal-close {
-    position: absolute;
-    top: 32px;
-    right: 32px;
     width: 48px;
     height: 48px;
     background: transparent;
@@ -3481,7 +3486,6 @@ body {
     justify-content: center;
     color: var(--Text-primary);
     transition: opacity 0.2s;
-    z-index: 3;
 }
 
 .waitlist-modal-close:hover {

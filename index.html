@@ -828,7 +828,15 @@
             <div class="waitlist-modal-inner">
                 <header class="waitlist-modal-header">
                     <a href="index.html" class="waitlist-modal-logo">Mild</a>
-                    <img src="images/App_Store_Badge.svg" alt="Download on the App Store" class="waitlist-modal-badge">
+                    <div class="waitlist-modal-header-right">
+                        <img src="images/App_Store_Badge.svg" alt="Download on the App Store" class="waitlist-modal-badge">
+                        <button class="waitlist-modal-close" id="closeWaitlistModal" aria-label="Close">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
                 </header>
                 <div class="waitlist-modal-body">
                     <h2 class="waitlist-modal-title">Something tasty<br>is on the way!</h2>
@@ -840,19 +848,13 @@
                         <button class="waitlist-modal-button" type="button">Get Early Access</button>
                     </div>
                 </div>
-                <button class="waitlist-modal-close" id="closeWaitlistModal" aria-label="Close">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
             </div>
         </div>
     </div>
     
     <script>
         // Waitlist Modal
-        (function() {
+        document.addEventListener('DOMContentLoaded', function() {
             var modal = document.getElementById('waitlistModal');
             var openBtn = document.getElementById('openWaitlistModal');
             var closeBtn = document.getElementById('closeWaitlistModal');
@@ -877,7 +879,7 @@
                     closeModal();
                 }
             });
-        })();
+        });
     </script>
 </body>
 </html>
