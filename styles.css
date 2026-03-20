@@ -1647,7 +1647,7 @@ body {
     
     .feature-card .phone-video {
         width: 100%;
-        aspect-ratio: 420 / 910;
+        aspect-ratio: 418 / 910;
         object-fit: cover;
         object-position: center center;
         display: block;
