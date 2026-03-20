@@ -1081,12 +1081,6 @@ body {
     position: relative;
 }
 
-.feature-card[data-number="1"],
-.feature-card[data-number="2"],
-.feature-card[data-number="3"] {
-    background: black;
-}
-
 .feature-phone-mockup {
     width: 312px;
     height: 676px;
@@ -1121,6 +1115,12 @@ body {
     position: absolute;
     inset: 0;
     pointer-events: none;
+}
+
+.video-wrapper {
+    background: black;
+    border-radius: 36px;
+    display: inline-block;
 }
 
 .phone-video {
@@ -1613,12 +1613,6 @@ body {
         overflow: visible;
     }
     
-    .feature-card[data-number="1"],
-    .feature-card[data-number="2"],
-    .feature-card[data-number="3"] {
-        background: black;
-    }
-    
     .feature-card .feature-phone-mockup {
         width: 100%;
         max-width: 528px;
@@ -1657,6 +1651,12 @@ body {
         margin: 0;
     }
     
+    .feature-card .video-wrapper {
+        background: black;
+        border-radius: 10vw;
+        width: 100%;
+    }
+    
     .feature-card .phone-video {
         width: calc(100% - 2px);
         aspect-ratio: 418 / 910;
@@ -1665,7 +1665,7 @@ body {
         display: block;
         margin: 1px auto -1px;
         border-radius: 10vw;
-        border: calc(2vw + 1px) solid black;
+        border: 2vw solid black;
         box-sizing: border-box;
         background: black;
     }
