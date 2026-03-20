@@ -1114,12 +1114,12 @@ body {
 
 .phone-video {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    aspect-ratio: 420 / 910;
+    object-fit: cover;
     object-position: top center;
     display: block;
-    border-radius: 8.1%;
-    border: min(8px, 2.5vw) solid black;
+    border-radius: min(34px, 2.4vw);
+    border: min(8px, 0.56vw) solid black;
     box-sizing: border-box;
 }
 
