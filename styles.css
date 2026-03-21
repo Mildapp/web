@@ -1959,6 +1959,8 @@ body {
     word-wrap: break-word;
 }
 
+@media (min-width: 769px) {
+
 .pricing-table {
     align-self: stretch;
     display: inline-flex;
@@ -2247,6 +2249,8 @@ body {
 
 .check-no svg { width: 24px; height: 24px; }
 .check-icon-img-close { width: 24px; height: 24px; display: block; object-fit: contain; }
+
+} /* end @media (min-width: 769px) pricing desktop */
 
 .footer {
     width: 100%;
