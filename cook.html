@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cook Quinoa - Mild</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .cook-page {
+            background: white;
+            min-height: 100vh;
+            padding-bottom: 120px;
+        }
+
+        .cook-page .header {
+            padding: 32px 70px;
+        }
+
+        .cook-container {
+            max-width: 630px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .cook-progress-bar {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .cook-progress-bar-inner {
+            width: 36px;
+            height: 5px;
+            background: #CCCCCA;
+            border-radius: 2.5px;
+        }
+
+        .cook-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 56px;
+        }
+
+        .cook-step {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .cook-step-time {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cook-step-time-icon {
+            width: 20px;
+            height: 20px;
+            position: relative;
+        }
+
+        .cook-step-time-icon::after {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid #A1A09F;
+            border-radius: 50%;
+        }
+
+        .cook-step-time-text {
+            color: #7E7E7E;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 22px;
+        }
+
+        .cook-step-title {
+            text-align: center;
+            color: black;
+            font-size: 24px;
+            font-family: 'Druk Wide', sans-serif;
+            font-weight: 500;
+            line-height: 26.4px;
+        }
+
+        .cook-step-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            object-fit: cover;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .cook-step-content {
+            display: flex;
+            flex-direction: column;
+            gap: 23px;
+        }
+
+        .cook-step-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .cook-step-ingredients {
+            padding: 26px 30px;
+            background: #F4F5F0;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .cook-step-ingredient {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .cook-step-ingredient-amount {
+            flex: 1;
+            color: #7E7E7E;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 22.4px;
+        }
+
+        .cook-step-ingredient-name {
+            flex: 1;
+            color: black;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 22px;
+        }
+
+        .cook-step-tools {
+            padding: 20px 30px;
+            background: #F4F5F0;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cook-step-tool {
+            padding: 11px 10px;
+            color: black;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 15px;
+        }
+
+        .cook-step-instructions {
+            color: black;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 23.4px;
+            position: relative;
+        }
+
+        .cook-step-timer-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            background: black;
+            border-radius: 6px;
+            color: white;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 23.4px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .cook-step-timer-tag:hover {
+            opacity: 0.8;
+        }
+
+        /* Timer Modal */
+        .timer-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+        }
+
+        .timer-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .timer-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        }
+
+        .timer-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 630px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 1;
+        }
+
+        .timer-modal-hint {
+            padding: 16px;
+            background: #F4F5F0;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .timer-modal-hint span {
+            color: black;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 21px;
+        }
+
+        .timer-modal-hint strong {
+            font-weight: 600;
+        }
+
+        .timer-modal-picker {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .timer-picker-wrapper {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .timer-picker-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .timer-picker-item {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #CCCCCC;
+            font-size: 32px;
+            font-weight: 500;
+            letter-spacing: 2.56px;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .timer-picker-item.selected {
+            background: #ECECE5;
+            border-radius: 10px;
+            color: black;
+        }
+
+        .timer-picker-item .min-label {
+            font-size: 22px;
+            font-weight: 500;
+        }
+
+        .timer-modal-btn {
+            width: 100%;
+            height: 60px;
+            background: black;
+            border-radius: 20px;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .timer-modal-btn:hover {
+            opacity: 0.9;
+        }
+
+        .cook-step-enlarge {
+            display: flex;
+            justify-content: center;
+        }
+
+        .cook-step-enlarge-btn {
+            padding: 7px 12px;
+            background: #F4F5F0;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            color: black;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 22.4px;
+        }
+
+        .cook-complete-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 630px;
+            height: 60px;
+            padding: 0 32px;
+            background: black;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            z-index: 100;
+        }
+
+        .cook-home-indicator {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0 20px;
+        }
+
+        .cook-home-indicator-bar {
+            width: 134px;
+            height: 5px;
+            background: black;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .cook-page .header {
+                padding: 20px;
+            }
+
+            .cook-step-title {
+                font-size: 20px;
+                line-height: 24px;
+            }
+
+            .cook-step-image {
+                width: 234px;
+                height: 234px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cook-page">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-container">
+                <div class="logo-section">
+                    <a href="index.html" class="logo-link">Mild</a>
+                </div>
+                <img src="images/App_Store_Badge.svg" alt="Download on the App Store" class="header-badge">
+            </div>
+        </header>
+
+        <div class="cook-container">
+            <!-- Progress bar -->
+            <div class="cook-progress-bar">
+                <div class="cook-progress-bar-inner"></div>
+            </div>
+
+            <!-- Steps -->
+            <div class="cook-steps">
+                <!-- Step 1 -->
+                <div class="cook-step">
+                    <div class="cook-step-time">
+                        <div class="cook-step-time-icon"></div>
+                        <span class="cook-step-time-text">20 min</span>
+                    </div>
+                    <h2 class="cook-step-title">Cook Quinoa</h2>
+                    <div class="cook-step-content">
+                        <div class="cook-step-cards">
+                            <div class="cook-step-ingredients">
+                                <div class="cook-step-ingredient">
+                                    <span class="cook-step-ingredient-amount">600 g</span>
+                                    <span class="cook-step-ingredient-name">Cooked Brussels<br>Sprouts</span>
+                                </div>
+                                <div class="cook-step-ingredient">
+                                    <span class="cook-step-ingredient-amount">15-30 ml</span>
+                                    <span class="cook-step-ingredient-name">Maple Syrup</span>
+                                </div>
+                            </div>
+                            <div class="cook-step-tools">
+                                <span class="cook-step-tool">Saucepan</span>
+                                <span class="cook-step-tool">Strainer</span>
+                            </div>
+                        </div>
+                        <p class="cook-step-instructions">
+                            If the Brussels sprouts are already cooked, heat them in a skillet over medium heat by adding 15-30 ml of maple syrup. Cook for <span class="cook-step-timer-tag">2-3 min</span> until they become caramelized and glossy. Once done, set them aside to cool.
+                        </p>
+                    </div>
+                    <div class="cook-step-enlarge">
+                        <button class="cook-step-enlarge-btn">Tap to enlarge the text</button>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="cook-step">
+                    <div class="cook-step-time">
+                        <div class="cook-step-time-icon"></div>
+                        <span class="cook-step-time-text">20 min</span>
+                    </div>
+                    <h2 class="cook-step-title">Cook Quinoa</h2>
+                    <div class="cook-step-content">
+                        <div class="cook-step-cards">
+                            <div class="cook-step-ingredients">
+                                <div class="cook-step-ingredient">
+                                    <span class="cook-step-ingredient-amount">600 g</span>
+                                    <span class="cook-step-ingredient-name">Cooked Brussels<br>Sprouts</span>
+                                </div>
+                                <div class="cook-step-ingredient">
+                                    <span class="cook-step-ingredient-amount">15-30 ml</span>
+                                    <span class="cook-step-ingredient-name">Maple Syrup</span>
+                                </div>
+                            </div>
+                            <div class="cook-step-tools">
+                                <span class="cook-step-tool">Saucepan</span>
+                                <span class="cook-step-tool">Strainer</span>
+                            </div>
+                        </div>
+                        <p class="cook-step-instructions">
+                            If the Brussels sprouts are already cooked, heat them in a skillet over medium heat by adding 15-30 ml of maple syrup. Cook for <span class="cook-step-timer-tag">2-3 min</span> until they become caramelized and glossy. Once done, set them aside to cool.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="cook-step">
+                    <div class="cook-step-time">
+                        <div class="cook-step-time-icon"></div>
+                        <span class="cook-step-time-text">20 min</span>
+                    </div>
+                    <h2 class="cook-step-title">Cook Quinoa</h2>
+                    <div class="cook-step-content">
+                        <div class="cook-step-cards">
+                            <div class="cook-step-ingredients">
+                                <div class="cook-step-ingredient">
+                                    <span class="cook-step-ingredient-amount">600 g</span>
+                                    <span class="cook-step-ingredient-name">Cooked Brussels<br>Sprouts</span>
+                                </div>
+                                <div class="cook-step-ingredient">
+                                    <span class="cook-step-ingredient-amount">15-30 ml</span>
+                                    <span class="cook-step-ingredient-name">Maple Syrup</span>
+                                </div>
+                            </div>
+                            <div class="cook-step-tools">
+                                <span class="cook-step-tool">Saucepan</span>
+                                <span class="cook-step-tool">Strainer</span>
+                            </div>
+                        </div>
+                        <p class="cook-step-instructions">
+                            If the Brussels sprouts are already cooked, heat them in a skillet over medium heat by adding 15-30 ml of maple syrup. Cook for <span class="cook-step-timer-tag">2-3 min</span> until they become caramelized and glossy. Once done, set them aside to cool.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 4 with image -->
+                <div class="cook-step">
+                    <div class="cook-step-time">
+                        <div class="cook-step-time-icon"></div>
+                        <span class="cook-step-time-text">20 min</span>
+                    </div>
+                    <h2 class="cook-step-title">Cook Quinoa</h2>
+                    <img src="images/recipes/step-4.jpg" alt="Step 4" class="cook-step-image">
+                    <div class="cook-step-content">
+                        <div class="cook-step-cards">
+                            <div class="cook-step-ingredients">
+                                <div class="cook-step-ingredient">
+                                    <span class="cook-step-ingredient-amount">600 g</span>
+                                    <span class="cook-step-ingredient-name">Cooked Brussels<br>Sprouts</span>
+                                </div>
+                                <div class="cook-step-ingredient">
+                                    <span class="cook-step-ingredient-amount">15-30 ml</span>
+                                    <span class="cook-step-ingredient-name">Maple Syrup</span>
+                                </div>
+                            </div>
+                            <div class="cook-step-tools">
+                                <span class="cook-step-tool">Saucepan</span>
+                                <span class="cook-step-tool">Strainer</span>
+                            </div>
+                        </div>
+                        <p class="cook-step-instructions">
+                            If the Brussels sprouts are already cooked, heat them in a skillet over medium heat by adding 15-30 ml of maple syrup. Cook for <span class="cook-step-timer-tag">2-3 min</span> until they become caramelized and glossy. Once done, set them aside to cool.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Complete Button -->
+        <button class="cook-complete-btn">Complete</button>
+
+        <!-- Timer Modal -->
+        <div class="timer-modal" id="timerModal">
+            <div class="timer-modal-overlay" id="timerModalOverlay"></div>
+            <div class="timer-modal-content">
+                <div class="timer-modal-hint">
+                    <span>Pick up between <strong>1-5 minutes</strong></span>
+                </div>
+                <div class="timer-modal-picker">
+                    <div class="timer-picker-wrapper">
+                        <div class="timer-picker-list" id="timerPickerList">
+                            <div class="timer-picker-item" data-value="1">1 <span class="min-label">min</span></div>
+                            <div class="timer-picker-item" data-value="2">2 <span class="min-label">min</span></div>
+                            <div class="timer-picker-item selected" data-value="3">3 <span class="min-label">min</span></div>
+                            <div class="timer-picker-item" data-value="4">4 <span class="min-label">min</span></div>
+                            <div class="timer-picker-item" data-value="5">5 <span class="min-label">min</span></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="timer-modal-btn" id="timerSetBtn">Set up</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const timerModal = document.getElementById('timerModal');
+            const timerOverlay = document.getElementById('timerModalOverlay');
+            const timerSetBtn = document.getElementById('timerSetBtn');
+            const timerTags = document.querySelectorAll('.cook-step-timer-tag');
+            const pickerItems = document.querySelectorAll('.timer-picker-item');
+            
+            let selectedMinutes = 3;
+            let currentTimerTag = null;
+
+            // Open modal on timer tag click
+            timerTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    currentTimerTag = this;
+                    timerModal.classList.add('active');
+                });
+            });
+
+            // Close modal on overlay click
+            timerOverlay.addEventListener('click', function() {
+                timerModal.classList.remove('active');
+            });
+
+            // Select time
+            pickerItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    pickerItems.forEach(i => i.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedMinutes = parseInt(this.dataset.value);
+                });
+            });
+
+            // Set up timer
+            timerSetBtn.addEventListener('click', function() {
+                timerModal.classList.remove('active');
+                if (currentTimerTag) {
+                    startTimer(selectedMinutes, currentTimerTag);
+                }
+            });
+
+            // Timer function
+            function startTimer(minutes, tagElement) {
+                let totalSeconds = minutes * 60;
+                tagElement.dataset.originalText = tagElement.textContent;
+                
+                const interval = setInterval(function() {
+                    const mins = Math.floor(totalSeconds / 60);
+                    const secs = totalSeconds % 60;
+                    tagElement.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+                    
+                    if (totalSeconds <= 0) {
+                        clearInterval(interval);
+                        tagElement.textContent = 'Done!';
+                        // Play microwave ding sound
+                        const audio = new Audio('sounds/timer-done.mp3');
+                        audio.play();
+                        
+                        setTimeout(() => {
+                            tagElement.textContent = tagElement.dataset.originalText;
+                        }, 3000);
+                    }
+                    totalSeconds--;
+                }, 1000);
+            }
+
+            // Close on Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && timerModal.classList.contains('active')) {
+                    timerModal.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
