@@ -2464,15 +2464,19 @@ body {
     }
 
     .pricing-plan {
-        flex: 0 0 calc(100% - 20px);
-        min-width: calc(100% - 20px);
+        flex: 0 0 calc(100% - 40px);
+        min-width: calc(100% - 40px);
         scroll-snap-align: center;
         scroll-snap-stop: always;
-    }
-    
-    .pricing-plan {
         border-radius: 32px;
         overflow: hidden;
+        background: var(--background-white);
+    }
+    
+    .subscription-plan {
+        margin-top: 0;
+        padding-top: 0;
+        background: var(--background-white);
     }
     
     .pricing-dots {
@@ -2516,6 +2520,7 @@ body {
     .monthly-plan,
     .yearly-plan {
         margin-left: 0;
+        min-width: calc(100% - 40px);
     }
 
     .pricing-plan-header {
