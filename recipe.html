@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wholemeal Penne with Pesto and Spinach - Mild</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .recipe-page {
+            background: white;
+            min-height: 100vh;
+            padding-bottom: 100px;
+        }
+
+        .recipe-page .header {
+            padding: 32px 70px;
+        }
+
+        .recipe-header {
+            padding-top: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .recipe-image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .recipe-toolbar {
+            width: 100%;
+            max-width: 630px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .recipe-toolbar-left,
+        .recipe-toolbar-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .recipe-toolbar-center {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .toolbar-icon {
+            width: 32px;
+            height: 32px;
+            background: #F4F5F0;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .recipe-image {
+            width: 542px;
+            height: 542px;
+            border-radius: 20px;
+            object-fit: cover;
+            position: relative;
+        }
+
+        .recipe-image-wrapper {
+            position: relative;
+        }
+
+        .recipe-play-btn {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 37px;
+            height: 37px;
+            background: #FFF066;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .recipe-play-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .recipe-meta {
+            text-align: center;
+            color: #7E7E7E;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 23.4px;
+        }
+
+        .recipe-title {
+            text-align: center;
+            color: black;
+            font-size: 48px;
+            font-family: 'Druk Wide', sans-serif;
+            font-weight: 500;
+            line-height: 52.8px;
+            padding: 0 22px;
+            max-width: 630px;
+        }
+
+        .recipe-share-btn {
+            width: 84px;
+            height: 64px;
+            background: #ECECE5;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .recipe-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 0 20px;
+            margin-top: 28px;
+        }
+
+        .recipe-card {
+            max-width: 630px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 56px;
+            background: #F4F5F0;
+            border-radius: 20px;
+        }
+
+        .recipe-card-title {
+            text-align: center;
+            color: black;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 24px;
+            margin-bottom: 21px;
+        }
+
+        .recipe-description {
+            color: black;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 28px;
+            letter-spacing: 0.38px;
+            text-align: center;
+        }
+
+        .recipe-card-title-centered {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .ingredients-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .ingredient-row {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .ingredient-amount {
+            flex: 1;
+            color: #7E7E7E;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 28px;
+            letter-spacing: 0.38px;
+        }
+
+        .ingredient-name {
+            flex: 1;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 28px;
+            letter-spacing: 0.38px;
+        }
+
+        .ingredient-name.available {
+            color: black;
+        }
+
+        .ingredient-name.missing {
+            color: #7E7E7E;
+        }
+
+        .ingredient-or {
+            color: #7E7E7E;
+            font-size: 20px;
+            margin-left: -30px;
+            margin-right: 5px;
+        }
+
+        .optional-section {
+            margin-top: 56px;
+        }
+
+        .servings-control {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 56px;
+        }
+
+        .servings-btn {
+            width: 124px;
+            height: 64px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+        }
+
+        .servings-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .servings-count {
+            font-size: 24px;
+            font-weight: 500;
+            color: black;
+        }
+
+        .tools-list {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tool-tag {
+            height: 36px;
+            padding: 11px 10px;
+            background: #ECECE5;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 500;
+            color: black;
+            display: flex;
+            align-items: center;
+        }
+
+        .nutrition-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .nutrition-row {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .nutrition-label {
+            flex: 1;
+            color: #7E7E7E;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 28px;
+            letter-spacing: 0.38px;
+        }
+
+        .nutrition-value {
+            flex: 1;
+            color: black;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 28px;
+            letter-spacing: 0.38px;
+        }
+
+        .see-all-btn {
+            width: 100%;
+            height: 64px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 56px;
+            cursor: pointer;
+            border: none;
+            font-size: 20px;
+            font-weight: 600;
+            color: black;
+        }
+
+        .allergens-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .allergen-icon {
+            width: 64px;
+            height: 64px;
+            background: white;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 400;
+            color: black;
+        }
+
+        .allergen-name {
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 28px;
+            letter-spacing: 0.38px;
+            color: black;
+        }
+
+        .cook-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 630px;
+            height: 64px;
+            padding: 0 28px;
+            background: black;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            border: none;
+            z-index: 100;
+        }
+
+        .cook-button-text {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .cook-button-time {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cook-button-time span {
+            color: #CCCCCA;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .cook-button-time svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .recipe-title {
+                font-size: 32px;
+                line-height: 38px;
+            }
+
+            .recipe-image {
+                width: calc(100vw - 40px);
+                height: calc(100vw - 40px);
+                max-width: 400px;
+                max-height: 400px;
+            }
+
+            .recipe-card {
+                padding: 32px 24px;
+            }
+
+            .recipe-card-title {
+                font-size: 20px;
+            }
+
+            .recipe-description,
+            .ingredient-amount,
+            .ingredient-name,
+            .nutrition-label,
+            .nutrition-value,
+            .tool-tag {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="recipe-page">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-container">
+                <div class="logo-section">
+                    <a href="index.html" class="logo-link">Mild</a>
+                </div>
+                <img src="images/App_Store_Badge.svg" alt="Download on the App Store" class="header-badge">
+            </div>
+        </header>
+
+        <!-- Recipe Header -->
+        <div class="recipe-header">
+            <div class="recipe-image-container">
+                <div class="recipe-toolbar">
+                    <div class="recipe-toolbar-left">
+                        <a href="index.html" style="display: flex; align-items: center;">
+                            <svg width="13" height="26" viewBox="0 0 13 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 1L2 13L12 25" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="recipe-toolbar-center">
+                        <div class="toolbar-icon">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="22" height="22" fill="#F4F5F0"/>
+                            </svg>
+                        </div>
+                        <div class="toolbar-icon">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="20" height="20" fill="#F4F5F0"/>
+                            </svg>
+                        </div>
+                        <div class="toolbar-icon">
+                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="21" height="21" fill="#F4F5F0"/>
+                            </svg>
+                        </div>
+                        <div class="toolbar-icon">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="20" height="20" fill="#F4F5F0"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="recipe-toolbar-right">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1.6" y="1.6" width="28.8" height="28.8" rx="1" stroke="black" stroke-width="2"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="recipe-image-wrapper">
+                    <img src="images/recipes/penne-pesto.jpg" alt="Wholemeal Penne with Pesto and Spinach" class="recipe-image">
+                    <div class="recipe-play-btn">
+                        <svg viewBox="0 0 20 20" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 4L16 10L6 16V4Z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 40px;">
+                <div class="recipe-meta">400 kcal  •  Vegetarian  •  Easy</div>
+                <h1 class="recipe-title">Wholemeal Penne with<br/>Pesto and Spinach</h1>
+                <div class="recipe-share-btn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="17" cy="3" r="2" stroke="black" stroke-width="2"/>
+                        <circle cx="10" cy="10" r="2" stroke="black" stroke-width="2"/>
+                        <circle cx="3" cy="17" r="2" stroke="black" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recipe Content -->
+        <div class="recipe-content">
+            <!-- Description -->
+            <div class="recipe-card">
+                <h2 class="recipe-card-title">Description</h2>
+                <p class="recipe-description">A succulent and herb-infused chicken breast poached to perfection with fresh vegetables and herbs. This versatile preparation is ideal for enhancing your salads, enriching soups, or creating delicious sandwiches</p>
+            </div>
+
+            <!-- Ingredients -->
+            <div class="recipe-card">
+                <h2 class="recipe-card-title recipe-card-title-centered">Ingredients</h2>
+                <div class="ingredients-list">
+                    <div class="ingredient-row">
+                        <span class="ingredient-amount">4.4 oz</span>
+                        <span class="ingredient-name available">Feta</span>
+                    </div>
+                    <div class="ingredient-row">
+                        <span class="ingredient-amount">2 medium</span>
+                        <span class="ingredient-name missing">Bell Pepper</span>
+                    </div>
+                    <div class="ingredient-row">
+                        <span class="ingredient-amount" style="opacity: 0;">-</span>
+                        <span class="ingredient-name"><span class="ingredient-or">or</span> <span class="available">Pepper</span></span>
+                    </div>
+                    <div class="ingredient-row">
+                        <span class="ingredient-amount">1 small</span>
+                        <span class="ingredient-name missing">Red Onion</span>
+                    </div>
+                    <div class="ingredient-row">
+                        <span class="ingredient-amount" style="opacity: 0;">-</span>
+                        <span class="ingredient-name"><span class="ingredient-or">or</span> <span class="available">Onion</span></span>
+                    </div>
+                    <div class="ingredient-row">
+                        <span class="ingredient-amount">1 medium</span>
+                        <span class="ingredient-name missing">Cucumber</span>
+                    </div>
+                    <div class="ingredient-row">
+                        <span class="ingredient-amount">5 ripe</span>
+                        <span class="ingredient-name missing">Tomato</span>
+                    </div>
+                    <div class="ingredient-row">
+                        <span class="ingredient-amount">1 oz</span>
+                        <span class="ingredient-name missing">Olives</span>
+                    </div>
+                    <div class="ingredient-row">
+                        <span class="ingredient-amount">1 tsp</span>
+                        <span class="ingredient-name missing">Dried Oregano</span>
+                    </div>
+                </div>
+
+                <div class="optional-section">
+                    <h2 class="recipe-card-title recipe-card-title-centered">Optional</h2>
+                    <div class="ingredients-list">
+                        <div class="ingredient-row">
+                            <span class="ingredient-amount">3-4 tbsp</span>
+                            <span class="ingredient-name available">Olive Oil</span>
+                        </div>
+                        <div class="ingredient-row">
+                            <span class="ingredient-amount">3-4 tbsp</span>
+                            <span class="ingredient-name available">Red Wine Vinegar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="servings-control">
+                    <button class="servings-btn">
+                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 10H16" stroke="black" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <span class="servings-count">1</span>
+                    <button class="servings-btn">
+                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 4V16M4 10H16" stroke="black" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tools -->
+            <div class="recipe-card">
+                <h2 class="recipe-card-title" style="margin-bottom: 28px;">Tools</h2>
+                <div class="tools-list">
+                    <span class="tool-tag">Saucepan</span>
+                    <span class="tool-tag">Strainer</span>
+                </div>
+            </div>
+
+            <!-- Health benefits -->
+            <div class="recipe-card">
+                <h2 class="recipe-card-title recipe-card-title-centered">Health benefits</h2>
+                <div class="nutrition-list">
+                    <div class="nutrition-row">
+                        <span class="nutrition-label">Calories</span>
+                        <span class="nutrition-value">222 Cal</span>
+                    </div>
+                    <div class="nutrition-row">
+                        <span class="nutrition-label">Protein</span>
+                        <span class="nutrition-value">5.5 grm</span>
+                    </div>
+                    <div class="nutrition-row">
+                        <span class="nutrition-label">Carbohydrates</span>
+                        <span class="nutrition-value">9 grm</span>
+                    </div>
+                    <div class="nutrition-row">
+                        <span class="nutrition-label">Fat</span>
+                        <span class="nutrition-value">15 grm</span>
+                    </div>
+                </div>
+                <button class="see-all-btn">See all</button>
+            </div>
+
+            <!-- Allergens -->
+            <div class="recipe-card">
+                <h2 class="recipe-card-title" style="margin-bottom: 28px;">Allergens</h2>
+                <div class="allergens-content">
+                    <div class="allergen-icon">7</div>
+                    <span class="allergen-name">Milk</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cook Button -->
+        <button class="cook-button">
+            <span class="cook-button-text">Let's cook</span>
+            <div class="cook-button-time">
+                <span>45min</span>
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="10" cy="10" r="9" stroke="#CCCCCA" stroke-width="1.5"/>
+                </svg>
+            </div>
+        </button>
+    </div>
+</body>
+</html>
