@@ -1188,7 +1188,7 @@ html {
         max-width: 100%;
         padding-top: 50px;
         padding-bottom: 0px; 
-        margin-bottom: -120px;
+        margin-bottom: 0;
         padding-left: 30px;
         padding-right: 30px;
         gap: 40px;
@@ -1317,7 +1317,7 @@ html {
         z-index: 5 !important; 
         border-radius: 0 !important;
         background: transparent !important; 
-        padding-top: 40px !important; 
+        padding-top: 10px !important; 
         padding-bottom: 10px !important; 
         padding-left: calc(50vw - 140px) !important; 
         padding-right: calc(50vw - 140px) !important;
