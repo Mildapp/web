@@ -1648,6 +1648,7 @@ body {
         padding: 0;
         gap: 0;
         align-items: flex-start;
+        flex-direction: column;
     }
 
     .pricing-plan-meta {
@@ -1656,8 +1657,12 @@ body {
         width: 100%;
     }
 
+    .pricing-plan-meta::before {
+        display: none !important;
+    }
+
     .pricing-plan-badge {
-        margin-bottom: 12px;
+        margin-bottom: 8px;
     }
 
     .pricing-plan-title {
@@ -1665,11 +1670,22 @@ body {
         font-size: 32px;
         line-height: 36px;
         text-align: left;
+        margin-bottom: 0;
     }
 
     .pricing-plan-trial {
         text-align: left;
         margin-top: 4px;
+    }
+
+    .pricing-plan-price {
+        margin-top: 12px;
+        margin-bottom: 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: baseline;
+        width: 100%;
+        gap: 4px;
     }
 
     .price-amount {
@@ -1680,23 +1696,21 @@ body {
     .price-period {
         font-size: 16px;
         line-height: 24px;
-        margin-bottom: 4px;
+        margin-bottom: 0;
     }
 
     .pricing-button {
         width: 100%;
-        height: 48px;
+        height: 48px !important;
+        min-height: 48px !important;
+        max-height: 48px !important;
         border-radius: 16px;
-        margin-top: 24px;
-        margin-bottom: 24px;
-    }
-
-    .pricing-plan-price {
-        margin-top: 16px;
-        margin-bottom: 0;
-        justify-content: flex-start;
-        align-items: flex-end;
-        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 16px !important;
+        line-height: 48px !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
 
     .pricing-feature-check {
@@ -1725,6 +1739,7 @@ body {
     .pricing-feature-check .check-icon {
         width: 32px !important;
         height: 32px !important;
+        min-width: 32px !important;
         border-radius: 50%;
         flex-shrink: 0;
         display: flex !important;
@@ -1738,13 +1753,21 @@ body {
 
     .pricing-feature-check .check-no {
         background: transparent !important;
+        width: 32px !important;
+        height: 32px !important;
     }
 
-    .pricing-feature-check .check-icon-img,
-    .pricing-feature-check .check-icon-img-close {
+    .pricing-feature-check .check-icon-img {
         width: 16px !important;
         height: 16px !important;
         object-fit: contain;
+    }
+
+    .pricing-feature-check .check-icon-img-close {
+        width: 14px !important;
+        height: 14px !important;
+        object-fit: contain;
+        opacity: 0.5;
     }
 
     .pricing-plan .pricing-feature-check:last-child {
