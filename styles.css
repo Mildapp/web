@@ -1700,17 +1700,21 @@ body {
     }
 
     .pricing-feature-check {
-        height: auto;
-        min-height: unset;
-        padding: 16px 0;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 16px;
+        display: flex !important;
+        height: auto !important;
+        min-height: unset !important;
+        padding: 16px 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 16px !important;
         border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: none !important;
     }
 
     .pricing-feature-check .pricing-feature-text {
-        display: block;
+        display: block !important;
         font-size: 16px;
         line-height: 22px;
         text-align: left;
@@ -1719,28 +1723,27 @@ body {
     }
 
     .pricing-feature-check .check-icon {
-        width: 24px;
-        height: 24px;
+        width: 32px !important;
+        height: 32px !important;
         border-radius: 50%;
         flex-shrink: 0;
-        display: flex;
+        display: flex !important;
         justify-content: center;
         align-items: center;
-        margin-top: -1px;
     }
 
     .pricing-feature-check .check-yes {
-        background: var(--Button-primary);
+        background: var(--Button-primary) !important;
     }
 
     .pricing-feature-check .check-no {
-        background: transparent;
+        background: transparent !important;
     }
 
     .pricing-feature-check .check-icon-img,
     .pricing-feature-check .check-icon-img-close {
-        width: 14px;
-        height: 14px;
+        width: 16px !important;
+        height: 16px !important;
         object-fit: contain;
     }
 
