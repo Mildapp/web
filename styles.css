@@ -1606,7 +1606,7 @@ html {
         scroll-snap-stop: always;
         border-radius: 32px !important;
         background: white !important;
-        padding: 32px 24px !important;
+        padding: 48px 24px 32px !important;
         box-sizing: border-box !important;
         margin: 0 !important;
         display: flex !important;
@@ -1693,6 +1693,8 @@ html {
         text-align: left !important;
         transform: none !important;
         margin-bottom: 0 !important;
+        font-family: 'Druk Wide', sans-serif !important;
+        font-weight: 500 !important;
     }
 
     .pricing-plan-trial {
