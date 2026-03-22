@@ -1563,10 +1563,8 @@ html {
         font-size: 32px !important;
         line-height: 40px !important;
         padding: 0 20px;
-        margin-top: -30px !important;
+        margin-top: 10px !important;
         margin-bottom: 60px !important;
-        position: relative !important;
-        z-index: 1 !important;
     }
 
     .pricing-table {
@@ -2015,23 +2013,29 @@ html {
 
 .try-section {
     width: 100%;
-    padding: 104px 10px 26px;
+    padding: 10px 10px 26px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }
 
+@media (min-width: 769px) {
+    .try-section {
+        padding: 104px 10px 26px;
+    }
+}
+
 .try-container {
     width: 100%;
     height: 100%;
-    background: var(--background-white);
+    background: transparent;
     border-radius: 32px;
     display: inline-flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 72px;
+    gap: 0;
     padding: 0;
 }
 
@@ -2041,7 +2045,17 @@ html {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 126px;
+    gap: 0;
+}
+
+@media (min-width: 769px) {
+    .try-container {
+        background: var(--background-white);
+        gap: 72px;
+    }
+    .try-content {
+        gap: 126px;
+    }
 }
 
 @media (min-width: 769px) {
