@@ -1556,7 +1556,7 @@ html {
 
     .try-content {
         gap: 0 !important;
-        overflow: hidden !important;
+        overflow: visible !important;
     }
 
     .try-title {
