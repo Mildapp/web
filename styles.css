@@ -1560,8 +1560,8 @@ html {
     }
 
     .try-title {
-        font-size: 32px;
-        line-height: 40px;
+        font-size: 32px !important;
+        line-height: 40px !important;
         padding: 0 20px;
     }
 
