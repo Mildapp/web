@@ -1405,7 +1405,7 @@ html {
         margin: 0 -10px;
         position: relative;
         overflow-x: auto;
-        overflow-y: visible;
+        overflow-y: clip;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
@@ -1413,6 +1413,7 @@ html {
         -ms-overflow-style: none;
         padding: 10px 10px 10px 10px;
         box-sizing: border-box;
+        touch-action: pan-x;
     }
     
     .features-carousel-wrapper::-webkit-scrollbar { display: none; }
