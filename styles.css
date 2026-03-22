@@ -1570,7 +1570,7 @@ html {
     .pricing-table {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 0;
         overflow: hidden !important;
         max-width: 100% !important;
     }
@@ -1639,7 +1639,7 @@ html {
         align-items: center;
         gap: 8px;
         margin-top: 0;
-        padding-top: 24px;
+        padding-top: 30px;
         padding-bottom: 40px;
     }
 
