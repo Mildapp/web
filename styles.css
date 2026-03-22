@@ -1405,12 +1405,12 @@ html {
         margin: 0 -10px;
         position: relative;
         overflow-x: auto;
-        overflow-y: visible !important; 
+        overflow-y: hidden;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; 
-        -ms-overflow-style: none; 
+        scrollbar-width: none;
+        -ms-overflow-style: none;
         padding: 10px 10px 20px 10px;
         box-sizing: border-box;
     }
@@ -1522,7 +1522,7 @@ html {
         width: 6px;
         height: 6px;
         border-radius: 9999px;
-        background: white;
+        background: #ccc;
         border: none;
         padding: 0;
         cursor: pointer;

@@ -788,6 +788,39 @@
             document.addEventListener('scroll', startAllVideos, { once: true, passive: true });
         })();
         
+        // Features carousel for mobile (swipe + dot click navigation)
+        (function() {
+            var wrapper = document.querySelector('.features-carousel-wrapper');
+            var dots = document.querySelectorAll('.feature-dot');
+            var cards = document.querySelectorAll('.feature-card');
+            
+            if (!wrapper || dots.length === 0 || cards.length === 0) return;
+            
+            function updateDots() {
+                var scrollLeft = wrapper.scrollLeft;
+                var cardWidth = cards[0].offsetWidth;
+                var index = Math.round(scrollLeft / cardWidth);
+                dots.forEach(function(d, i) {
+                    d.classList.toggle('active', i === index);
+                });
+            }
+            
+            wrapper.addEventListener('scroll', updateDots);
+            
+            dots.forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                    var index = parseInt(this.getAttribute('data-index'));
+                    var card = cards[index];
+                    if (card) {
+                        wrapper.scrollTo({
+                            left: card.offsetLeft - 10,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        })();
+        
         // Pricing carousel for mobile
         (function() {
             var pricingGroup = document.querySelector('.pricing-plan-group');
