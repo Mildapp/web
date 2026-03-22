@@ -1405,13 +1405,13 @@ html {
         margin: 0 -10px;
         position: relative;
         overflow-x: auto;
-        overflow-y: hidden;
+        overflow-y: visible;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
         -ms-overflow-style: none;
-        padding: 10px 10px 20px 10px;
+        padding: 10px 10px 10px 10px;
         box-sizing: border-box;
     }
     
@@ -1431,7 +1431,7 @@ html {
         scroll-snap-align: center;
         scroll-snap-stop: always;
         margin: 0;
-        padding: 60px 60px 100px 60px;
+        padding: 60px;
         box-sizing: border-box;
         border-radius: 42px;
         background: white;
