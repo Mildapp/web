@@ -77,6 +77,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            /* Center content to match card grid width */
+            width: calc(470px * 3 + 24px * 2);
+            max-width: calc(100% - 80px);
+            box-sizing: content-box;
+            padding: 0;
         }
 
         .recipes-title {
@@ -120,6 +125,7 @@
         .recipes-row {
             display: flex;
             gap: 24px;
+            justify-content: center;
         }
 
         /* Recipe card */
