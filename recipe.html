@@ -10,14 +10,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        .nav-indicator,
-        .nav-indicator::after,
-        .nav-indicator::before,
-        body.recipe-page > .nav-indicator,
-        .recipe-shell ~ .nav-indicator,
-        .header .nav-indicator { display: none !important; visibility: hidden !important; height: 0 !important; overflow: hidden !important; }
+        body.recipe-page { font-size: 0; line-height: 0; }
+        body.recipe-page > * { font-size: initial; line-height: initial; }
 
 ```
+    .nav-indicator,
+    .nav-indicator::after,
+    .nav-indicator::before,
+    body.recipe-page > .nav-indicator,
+    .recipe-shell ~ .nav-indicator,
+    .header .nav-indicator { display: none !important; visibility: hidden !important; height: 0 !important; overflow: hidden !important; }
+
     /* Hide stray dots */
     .recipe-card-wrap { font-size: 0; }
     .recipe-card-wrap > * { font-size: initial; }
