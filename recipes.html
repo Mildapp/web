@@ -295,13 +295,15 @@
             max-width: 1760px;
             margin: 40px auto 0;
             padding: 0 40px;
+            max-height: 2000px;
             overflow: hidden;
-            transition: max-height 0.4s ease, opacity 0.3s ease;
+            transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
         }
         .ingredients-filter.collapsed {
             max-height: 0 !important;
             opacity: 0;
             margin-top: 0;
+            margin-bottom: 0;
         }
         .ingredients-filter-card {
             background: white;
@@ -1100,17 +1102,30 @@
             }
 
             function checkSticky() {
+                var filterSection = document.querySelector('.ingredients-filter');
                 if (selected.length === 0) {
                     stickyBar.classList.remove('visible');
+                    filterSection.classList.remove('collapsed');
                     return;
                 }
                 var rect = filterCard.getBoundingClientRect();
                 if (rect.bottom < 0) {
                     stickyBar.classList.add('visible');
+                    filterSection.classList.add('collapsed');
                 } else {
                     stickyBar.classList.remove('visible');
+                    filterSection.classList.remove('collapsed');
                 }
             }
+
+            // Click sticky bar to scroll back to filter and expand
+            stickyBar.addEventListener('click', function(e) {
+                if (e.target.closest('.ing-sticky-clear')) return; // don't trigger on clear
+                var filterSection = document.querySelector('.ingredients-filter');
+                filterSection.classList.remove('collapsed');
+                stickyBar.classList.remove('visible');
+                document.querySelector('.ingredients-filter').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
 
             function clearAll(e) {
                 e.preventDefault();
