@@ -378,35 +378,21 @@
             color: black;
         }
 
-        /* Sticky bar (in header row) */
+        /* Sticky bar - just the pill centered */
         .ing-sticky-bar {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--background-dark, #F4F5F0);
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
             z-index: 999;
-            padding: 20px 110px;
-            box-sizing: border-box;
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            pointer-events: none;
         }
         .ing-sticky-bar.visible {
-            transform: translateY(0);
-        }
-        .ing-sticky-inner {
-            max-width: 1760px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .ing-sticky-logo {
-            font-size: 26px;
-            font-family: 'Druk Wide', sans-serif;
-            font-weight: 700;
-            color: black;
-            text-decoration: none;
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+            pointer-events: auto;
         }
         .ing-sticky-pill {
             display: flex;
@@ -415,7 +401,7 @@
             background: white;
             border-radius: 20px;
             padding: 8px 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
         }
         .ing-sticky-tags {
             display: flex;
@@ -423,7 +409,7 @@
             gap: 6px;
             overflow-x: auto;
             scrollbar-width: none;
-            max-width: 600px;
+            max-width: 500px;
         }
         .ing-sticky-tags::-webkit-scrollbar { display: none; }
         .ing-sticky-tag {
@@ -436,7 +422,9 @@
             flex-shrink: 0;
             outline: 2px solid black;
             outline-offset: -2px;
+            cursor: pointer;
         }
+        .ing-sticky-tag:hover { opacity: 0.6; }
         .ing-sticky-tag img { width: 24px; height: 24px; border-radius: 4px; object-fit: contain; }
         .ing-sticky-tag span {
             font-size: 14px; font-family: 'Inter', sans-serif;
@@ -448,10 +436,6 @@
             white-space: nowrap; flex-shrink: 0;
         }
         .ing-sticky-viewall:hover { opacity: 0.6; }
-        .ing-sticky-badge {
-            display: flex; align-items: center;
-        }
-        .ing-sticky-badge img { height: 40px; }
 
         .ing-group-wide {
             grid-column: span 2;
@@ -1037,17 +1021,11 @@
                 </a>
             </div>
         </div>
-    <!-- Sticky header bar (on scroll) -->
+    <!-- Sticky pill (on scroll) -->
     <div class="ing-sticky-bar" id="ingStickyBar">
-        <div class="ing-sticky-inner">
-            <a href="index.html" class="ing-sticky-logo">Mild</a>
-            <div class="ing-sticky-pill" id="ingStickyPill">
-                <div class="ing-sticky-tags" id="ingStickyTags"></div>
-                <a href="#" class="ing-sticky-viewall" id="ingStickyViewAll">View all Ingredients</a>
-            </div>
-            <div class="ing-sticky-badge">
-                <img src="images/App_Store_Badge.svg" alt="Download on the App Store">
-            </div>
+        <div class="ing-sticky-pill">
+            <div class="ing-sticky-tags" id="ingStickyTags"></div>
+            <a href="#" class="ing-sticky-viewall" id="ingStickyViewAll">View all Ingredients</a>
         </div>
     </div>
     </main>
@@ -1084,7 +1062,6 @@
             var stickyBar = document.getElementById('ingStickyBar');
             var stickyTags = document.getElementById('ingStickyTags');
             var stickyViewAll = document.getElementById('ingStickyViewAll');
-            var stickyPill = document.getElementById('ingStickyPill');
             var filterCard = document.querySelector('.ingredients-filter-card');
             var selected = [];
 
@@ -1107,6 +1084,17 @@
                     var tag = document.createElement('div');
                     tag.className = 'ing-sticky-tag';
                     tag.innerHTML = '<img src="' + item.img + '" alt=""><span>' + item.name + '</span>';
+                    // Click on sticky tag to deselect
+                    tag.addEventListener('click', function() {
+                        // Find and deselect the original tag
+                        tags.forEach(function(t) {
+                            if (t.querySelector('span').textContent === item.name && t.classList.contains('selected')) {
+                                t.classList.remove('selected');
+                            }
+                        });
+                        selected = selected.filter(function(s) { return s.name !== item.name; });
+                        updateUI();
+                    });
                     stickyTags.appendChild(tag);
                 });
                 // Show "View all Ingredients" when no selection, hide when has selection
@@ -1119,10 +1107,8 @@
                 var rect = filterCard.getBoundingClientRect();
                 if (rect.bottom < 0) {
                     stickyBar.classList.add('visible');
-                    filterSection.classList.add('collapsed');
                 } else {
                     stickyBar.classList.remove('visible');
-                    filterSection.classList.remove('collapsed');
                 }
             }
 
@@ -1159,6 +1145,7 @@
 
             clearBtn.addEventListener('click', clearAll);
             window.addEventListener('scroll', checkSticky);
+            checkSticky(); // check on load
         })();
     </script>
 </body>
