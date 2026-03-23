@@ -1685,6 +1685,7 @@ top: var(--feature-text-offset, 20px);
     content: none !important;
 }
 
+<<<<<<< HEAD
 .pricing-plan-badge {
     margin-bottom: 8px !important;
     min-height: 24px !important;
@@ -1698,6 +1699,257 @@ top: var(--feature-text-offset, 20px);
     line-height: 20px !important;
     display: inline-block !important;
 }
+=======
+    .hero-cta-button {
+        width: 100%;
+        max-width: 472px;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    
+    .hero-title {
+        font-size: 42px;
+        font-family: 'Druk Wide', sans-serif;
+        font-weight: 600;
+        line-height: 46.20px;
+        word-wrap: break-word;
+        color: black;
+    }
+    
+    .hero-description {
+        width: 100%;
+        padding: 0 20px;
+        margin-top: 10px;
+    }
+    
+    .hero-tabs { flex-wrap: nowrap; gap: 8px; }
+    
+    .hero-tab {
+        width: auto;
+        min-width: 100px;
+        padding: 11px 16px;
+        transition: none !important;
+    }
+    
+    .hero-tab:not(:last-child) { margin-right: 0; }
+    
+    .phone-mockup {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 0 !important;
+    }
+    
+    .phones-container {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        height: auto !important;
+        aspect-ratio: auto !important; 
+        overflow-x: auto !important;
+        overflow-y: visible !important; 
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        display: flex;
+        flex-direction: row;
+        gap: 40px !important; 
+        position: relative;
+        z-index: 5 !important; 
+        border-radius: 0 !important;
+        background: transparent !important; 
+        padding-top: 10px !important; 
+        padding-bottom: 10px !important; 
+        padding-left: calc(50vw - 140px) !important; 
+        padding-right: calc(50vw - 140px) !important;
+        box-sizing: border-box !important;
+        margin: 0 !important; 
+    }
+    
+    .phones-container::before { display: none !important; }
+    .phones-container::-webkit-scrollbar { display: none; }
+    
+    .phone-frame {
+        flex: 0 0 280px !important; 
+        width: 280px !important;
+        min-width: 280px !important;
+        max-width: 280px !important;
+        height: 640px !important;
+        position: relative;
+        scroll-snap-align: center; 
+        scroll-snap-stop: always;
+        border-radius: 32px !important; 
+        outline: none !important;
+        overflow: visible !important;
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+        pointer-events: auto;
+        z-index: 1;
+        transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        box-sizing: border-box !important;
+        margin: 0 !important; 
+    }
+    
+    .phone-frame::after { display: none; }
+    .phone-frame.active { z-index: 2; }
+    .phone-frame:not(:first-child) { margin-left: 0; }
+    
+    .hero-frame-video {
+        width: 100% !important;
+        aspect-ratio: 404 / 863;
+        object-fit: cover !important;
+        object-position: top center;
+        border-radius: 10vw !important;
+        border: 2vw solid black;
+        box-sizing: border-box;
+    }
+    
+    .phone-status-bar {
+        width: calc(100% - 6px);
+        max-width: 468px;
+    }
+    
+    .phone-content {
+        width: 100%;
+        max-width: 472px;
+    }
+    
+    .hero-decor-1 { width: 80px; height: 82px; left: calc(20px + var(--decor-inset-1, 0px)); right: auto; top: calc(var(--decor-row1-top, 180px) + 28px); }
+    .hero-decor-2 { width: 80px; height: 82px; left: calc(20px + var(--decor-inset-2, 0px)); right: auto; top: calc(var(--decor-row2-top, 280px) + 10px); }
+    .hero-decor-3 { width: 80px; height: 75px; right: calc(20px + var(--decor-inset-1, 0px)); left: auto; top: calc(var(--decor-row1-top, 180px) + 28px); }
+    .hero-decor-4 { width: 80px; height: 82px; right: calc(15px + var(--decor-inset-2, 0px)); left: auto; top: calc(var(--decor-row2-top, 280px) + 10px); }
+    .hero-decor-5 { width: 70px; height: 72px; left: calc(15px + var(--decor-inset-3, 0px)); right: auto; top: var(--decor-row3-top, 460px); bottom: auto; display: none; }
+    .hero-decor-6 { width: 82px; height: 82px; right: calc(20px + var(--decor-inset-3, 0px)); left: auto; top: var(--decor-row3-top, 460px); bottom: auto; display: none; }
+    
+    .reasons-section { padding: 60px 20px; gap: 40px; }
+    .reasons-title { font-size: 32px; line-height: 40px; }
+    .reasons-content { flex-direction: column; gap: 32px; align-items: stretch; }
+    .reasons-cards { width: 100%; max-width: 100%; }
+    .reason-title-text { width: auto; flex: 1; }
+    .reason-header { display: block; }
+    .reason-percent, .reason-title-text { display: inline; }
+    .reasons-video-container { width: 100%; height: auto; max-width: 564px; align-self: center; }
+    .reason-card { padding: 32px 24px; }
+    
+    .features-section {
+        padding: 70px 20px 30px !important;
+        gap: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .features-title { font-size: 32px; line-height: 40px; }
+    
+    .features-carousel-wrapper {
+        width: calc(100% + 20px);
+        margin: 0 -10px;
+        position: relative;
+        overflow-x: auto;
+        overflow-y: visible;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: 10px 10px 10px 10px;
+        box-sizing: border-box;
+    }
+    
+    .features-carousel-wrapper::-webkit-scrollbar { display: none; }
+    
+    .features-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 0;
+        padding-bottom: 0; 
+        align-items: flex-start;
+    }
+    
+    .feature-card {
+        flex: 0 0 100%;
+        min-width: 0;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+        margin: 0;
+        padding: 60px;
+        box-sizing: border-box;
+        border-radius: 42px;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0;
+        align-self: stretch;
+        width: 100%;
+        overflow: visible;
+    }
+    
+    .feature-card .feature-phone-mockup {
+        width: 100%;
+        max-width: 528px;
+        min-width: 0;
+        height: auto;
+        aspect-ratio: 312 / 676;
+        position: relative;
+        background: transparent;
+        overflow: visible;
+        border-top-left-radius: 36px;
+        border-top-right-radius: 36px;
+        border-bottom-left-radius: 36px;
+        border-bottom-right-radius: 36px;
+        margin: 0 auto;
+        flex-shrink: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .feature-card .phone-screen {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: auto;
+        height: auto;
+        background: var(--background-dark);
+        border-top-left-radius: 36px;
+        border-top-right-radius: 36px;
+        border-bottom-left-radius: 36px;
+        border-bottom-right-radius: 36px;
+        overflow: visible;
+        display: block;
+        margin: 0;
+    }
+    
+    .feature-card .phone-video {
+        width: calc(100% - 2px);
+        aspect-ratio: 418 / 910;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+        margin: 1px auto -1px;
+        border-radius: 10vw;
+        border: 2vw solid black;
+        box-sizing: border-box;
+        background: black;
+    }
+    
+    .feature-card .phone-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+        margin: 0 auto;
+    }
+    
+    .feature-card .feature-description { display: none; }
+>>>>>>> parent of f283b07 (Lock features carousel to horizontal swipe only on mobile)
 
 .pricing-plan-title {
     font-size: 32px !important;
