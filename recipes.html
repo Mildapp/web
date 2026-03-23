@@ -332,6 +332,28 @@
         }
         .ing-view-all a:hover { opacity: 0.6; }
 
+        .ing-group-wide {
+            grid-column: span 2;
+        }
+        .ing-group-wide .ing-tags {
+            columns: 2;
+            column-gap: 6px;
+        }
+        .ing-group-wide .ing-tag {
+            break-inside: avoid;
+            margin-bottom: 6px;
+        }
+
+        .ing-hidden-groups {
+            display: none;
+            grid-column: 1 / -1;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+        .ing-hidden-groups.visible {
+            display: grid;
+        }
+
         /* ====== RESPONSIVE ====== */
 
         @media (max-width: 1400px) {
@@ -339,6 +361,7 @@
             .recipes-header { padding: 0 120px; }
             .ingredients-filter { padding: 0 120px; }
             .ingredients-filter-card { grid-template-columns: repeat(3, 1fr); }
+            .ing-hidden-groups { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media (max-width: 1100px) {
@@ -346,6 +369,8 @@
             .recipes-header { padding: 0 40px; }
             .ingredients-filter { padding: 0 40px; }
             .ingredients-filter-card { grid-template-columns: repeat(2, 1fr); }
+            .ing-hidden-groups { grid-template-columns: repeat(2, 1fr); }
+            .ing-group-wide { grid-column: span 2; }
         }
 
         @media (max-width: 768px) {
@@ -362,6 +387,9 @@
             .rcard-time-text { font-size: 14px; }
             .ingredients-filter { padding: 0; margin-top: 24px; }
             .ingredients-filter-card { grid-template-columns: 1fr; padding: 32px 24px; border-radius: 24px; gap: 30px; }
+            .ing-group-wide { grid-column: span 1; }
+            .ing-group-wide .ing-tags { columns: 1; }
+            .ing-hidden-groups { grid-template-columns: 1fr; gap: 30px; }
         }
     </style>
 </head>
@@ -423,7 +451,7 @@
                         <div class="ing-tag"><img src="images/ingredients/other.png" alt=""><span>Other</span></div>
                     </div>
                 </div>
-                <div class="ing-group">
+                <div class="ing-group ing-group-wide">
                     <div class="ing-group-title">Vegetables</div>
                     <div class="ing-tags">
                         <div class="ing-tag"><img src="images/ingredients/potatoes.png" alt=""><span>Potatoes</span></div>
@@ -462,6 +490,7 @@
                         <div class="ing-tag"><img src="images/ingredients/other.png" alt=""><span>Other</span></div>
                     </div>
                 </div>
+                <div class="ing-hidden-groups" id="ingHiddenGroups">
                 <div class="ing-group">
                     <div class="ing-group-title">Berries</div>
                     <div class="ing-tags">
@@ -642,7 +671,8 @@
                         <div class="ing-tag"><img src="images/ingredients/spirits.png" alt=""><span>Spirits</span></div>
                     </div>
                 </div>
-                <div class="ing-view-all"><a href="#">View all</a></div>
+                </div>
+                <div class="ing-view-all"><a href="#" id="ingToggle" onclick="(function(e){e.preventDefault();var h=document.getElementById('ingHiddenGroups');var t=document.getElementById('ingToggle');if(h.classList.contains('visible')){h.classList.remove('visible');t.textContent='View all';}else{h.classList.add('visible');t.textContent='Hide';}})(event)">View all</a></div>
             </div>
         </div>
 
