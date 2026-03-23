@@ -843,11 +843,9 @@ display: none !important;
 }
 
 .nav-indicator::after {
-content: ‘’;
-width: 134px;
-height: 5px;
-left: 50%;
-top: 20px;
+display: none !important;
+content: none !important;
+}
 transform: translateX(-50%);
 position: absolute;
 background: var(–Text-primary);
