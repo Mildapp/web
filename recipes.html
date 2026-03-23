@@ -332,6 +332,78 @@
         }
         .ing-view-all a:hover { opacity: 0.6; }
 
+        /* Selection toolbar */
+        .ing-toolbar {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 8px;
+        }
+        .ing-toolbar-left { display: flex; align-items: center; }
+        .ing-count {
+            font-size: 16px; font-family: 'Inter', sans-serif;
+            font-weight: 600; line-height: 16px; color: black;
+        }
+        .ing-count-label {
+            font-size: 16px; font-family: 'Inter', sans-serif;
+            font-weight: 500; line-height: 22px; color: black;
+        }
+        .ing-clear {
+            display: flex; align-items: center; justify-content: center;
+            width: 32px; height: 32px; text-decoration: none;
+        }
+        .ing-clear:hover { opacity: 0.6; }
+
+        /* Selected tag state */
+        .ing-tag.selected {
+            background: black;
+        }
+        .ing-tag.selected span {
+            color: white;
+        }
+
+        /* Floating bubble */
+        .ing-float {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 20px;
+            padding: 10px 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            max-width: 90vw;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .ing-float-tags {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .ing-float-tags::-webkit-scrollbar { display: none; }
+        .ing-float-tag {
+            padding: 3px 6px 3px 3px;
+            background: black;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            flex-shrink: 0;
+        }
+        .ing-float-tag img { width: 24px; height: 24px; border-radius: 4px; object-fit: contain; }
+        .ing-float-tag span {
+            font-size: 14px; font-family: 'Inter', sans-serif;
+            font-weight: 500; color: white; white-space: nowrap;
+        }
+
         .ing-group-wide {
             grid-column: span 2;
         }
@@ -424,6 +496,16 @@
         <!-- Ingredients Filter -->
         <div class="ingredients-filter">
             <div class="ingredients-filter-card">
+                <!-- Selection toolbar -->
+                <div class="ing-toolbar" id="ingToolbar" style="display:none;">
+                    <div class="ing-toolbar-left">
+                        <span class="ing-count" id="ingCount">0</span>
+                        <span class="ing-count-label"> selected</span>
+                    </div>
+                    <a href="#" class="ing-clear" id="ingClear" aria-label="Clear selection">
+                        <img src="images/Icons/clear.svg" alt="Clear" width="20" height="20">
+                    </a>
+                </div>
                 <div class="ing-group">
                     <div class="ing-group-title">Meat</div>
                     <div class="ing-tags">
@@ -477,6 +559,7 @@
                         <div class="ing-tag"><img src="images/ingredients/other.png" alt=""><span>Other</span></div>
                     </div>
                 </div>
+                <div class="ing-hidden-groups" id="ingHiddenGroups">
                 <div class="ing-group">
                     <div class="ing-group-title">Fruits</div>
                     <div class="ing-tags">
@@ -490,7 +573,6 @@
                         <div class="ing-tag"><img src="images/ingredients/other.png" alt=""><span>Other</span></div>
                     </div>
                 </div>
-                <div class="ing-hidden-groups" id="ingHiddenGroups">
                 <div class="ing-group">
                     <div class="ing-group-title">Berries</div>
                     <div class="ing-tags">
@@ -902,6 +984,10 @@
                 </a>
             </div>
         </div>
+    <!-- Floating ingredients bubble -->
+    <div class="ing-float" id="ingFloat" style="display:none;">
+        <div class="ing-float-tags" id="ingFloatTags"></div>
+    </div>
     </main>
 
     <footer class="footer">
@@ -926,6 +1012,70 @@
             window.addEventListener('scroll', function() {
                 btn.classList.toggle('visible', window.scrollY > 300);
             });
+        })();
+
+        // Ingredient selection logic
+        (function() {
+            var tags = document.querySelectorAll('.ing-tag');
+            var toolbar = document.getElementById('ingToolbar');
+            var countEl = document.getElementById('ingCount');
+            var clearBtn = document.getElementById('ingClear');
+            var floatEl = document.getElementById('ingFloat');
+            var floatTags = document.getElementById('ingFloatTags');
+            var filterCard = document.querySelector('.ingredients-filter-card');
+            var selected = [];
+
+            function updateUI() {
+                countEl.textContent = selected.length;
+                toolbar.style.display = selected.length > 0 ? 'flex' : 'none';
+                // Update floating bubble
+                floatTags.innerHTML = '';
+                selected.forEach(function(item) {
+                    var tag = document.createElement('div');
+                    tag.className = 'ing-float-tag';
+                    tag.innerHTML = '<img src="' + item.img + '" alt=""><span>' + item.name + '</span>';
+                    floatTags.appendChild(tag);
+                });
+                // Show/hide float based on scroll position
+                checkFloat();
+            }
+
+            function checkFloat() {
+                if (selected.length === 0) {
+                    floatEl.style.display = 'none';
+                    return;
+                }
+                var rect = filterCard.getBoundingClientRect();
+                if (rect.bottom < 0) {
+                    floatEl.style.display = 'flex';
+                } else {
+                    floatEl.style.display = 'none';
+                }
+            }
+
+            tags.forEach(function(tag) {
+                tag.addEventListener('click', function() {
+                    var name = this.querySelector('span').textContent;
+                    var img = this.querySelector('img').src;
+                    if (this.classList.contains('selected')) {
+                        this.classList.remove('selected');
+                        selected = selected.filter(function(s) { return s.name !== name; });
+                    } else {
+                        this.classList.add('selected');
+                        selected.push({ name: name, img: img });
+                    }
+                    updateUI();
+                });
+            });
+
+            clearBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                selected = [];
+                tags.forEach(function(t) { t.classList.remove('selected'); });
+                updateUI();
+            });
+
+            window.addEventListener('scroll', checkFloat);
         })();
     </script>
 </body>
