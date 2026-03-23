@@ -353,7 +353,7 @@
             align-items: center;
             height: 110px;
         }
-        .ing-toolbar-left { display: flex; align-items: center; }
+        .ing-toolbar-left { display: flex; align-items: center; gap: 4px; }
         .ing-count {
             font-size: 16px; font-family: 'Inter', sans-serif;
             font-weight: 600; line-height: 16px; color: black;
@@ -378,52 +378,56 @@
             color: black;
         }
 
-        /* Sticky bar (top of screen) */
+        /* Sticky bar (in header row) */
         .ing-sticky-bar {
             position: fixed;
-            top: -70px;
+            top: 0;
             left: 0;
             right: 0;
-            background: white;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            background: var(--background-dark, #F4F5F0);
             z-index: 999;
-            transition: top 0.3s ease;
-            padding: 14px 40px;
+            padding: 20px 110px;
+            box-sizing: border-box;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
         }
         .ing-sticky-bar.visible {
-            top: 0;
+            transform: translateY(0);
         }
         .ing-sticky-inner {
             max-width: 1760px;
             margin: 0 auto;
             display: flex;
             align-items: center;
-            gap: 16px;
+            justify-content: space-between;
         }
-        .ing-sticky-left {
+        .ing-sticky-logo {
+            font-size: 26px;
+            font-family: 'Druk Wide', sans-serif;
+            font-weight: 700;
+            color: black;
+            text-decoration: none;
+        }
+        .ing-sticky-pill {
             display: flex;
             align-items: center;
-            flex-shrink: 0;
-        }
-        .ing-sticky-count {
-            font-size: 16px; font-family: 'Inter', sans-serif;
-            font-weight: 600; color: black;
-        }
-        .ing-sticky-label {
-            font-size: 16px; font-family: 'Inter', sans-serif;
-            font-weight: 500; color: black;
+            gap: 8px;
+            background: white;
+            border-radius: 20px;
+            padding: 8px 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
         }
         .ing-sticky-tags {
             display: flex;
             align-items: center;
             gap: 6px;
-            flex: 1;
             overflow-x: auto;
             scrollbar-width: none;
+            max-width: 600px;
         }
         .ing-sticky-tags::-webkit-scrollbar { display: none; }
         .ing-sticky-tag {
-            padding: 3px 6px 3px 3px;
+            padding: 3px 8px 3px 3px;
             background: #F4F5F0;
             border-radius: 10px;
             display: inline-flex;
@@ -438,11 +442,16 @@
             font-size: 14px; font-family: 'Inter', sans-serif;
             font-weight: 500; color: black; white-space: nowrap;
         }
-        .ing-sticky-clear {
-            display: flex; align-items: center; justify-content: center;
-            width: 32px; height: 32px; flex-shrink: 0; text-decoration: none;
+        .ing-sticky-viewall {
+            font-size: 14px; font-family: 'Inter', sans-serif;
+            font-weight: 500; color: black; text-decoration: none;
+            white-space: nowrap; flex-shrink: 0;
         }
-        .ing-sticky-clear:hover { opacity: 0.6; }
+        .ing-sticky-viewall:hover { opacity: 0.6; }
+        .ing-sticky-badge {
+            display: flex; align-items: center;
+        }
+        .ing-sticky-badge img { height: 40px; }
 
         .ing-group-wide {
             grid-column: span 2;
@@ -540,7 +549,7 @@
         <div class="ing-toolbar" id="ingToolbar">
             <div class="ing-toolbar-left" id="ingToolbarContent" style="visibility:hidden;">
                 <span class="ing-count" id="ingCount">0</span>
-                <span class="ing-count-label"> selected</span>
+                <span class="ing-count-label"> Selected</span>
             </div>
             <a href="#" class="ing-clear" id="ingClear" aria-label="Clear selection" style="visibility:hidden;">
                 <img src="images/Icons/clear.svg" alt="Clear" width="20" height="20">
@@ -1028,17 +1037,17 @@
                 </a>
             </div>
         </div>
-    <!-- Floating sticky bar (top of screen on scroll) -->
+    <!-- Sticky header bar (on scroll) -->
     <div class="ing-sticky-bar" id="ingStickyBar">
         <div class="ing-sticky-inner">
-            <div class="ing-sticky-left">
-                <span class="ing-sticky-count" id="ingStickyCount">0</span>
-                <span class="ing-sticky-label"> selected</span>
+            <a href="index.html" class="ing-sticky-logo">Mild</a>
+            <div class="ing-sticky-pill" id="ingStickyPill">
+                <div class="ing-sticky-tags" id="ingStickyTags"></div>
+                <a href="#" class="ing-sticky-viewall" id="ingStickyViewAll">View all Ingredients</a>
             </div>
-            <div class="ing-sticky-tags" id="ingStickyTags"></div>
-            <a href="#" class="ing-sticky-clear" id="ingStickyClear" aria-label="Clear">
-                <img src="images/Icons/clear.svg" alt="Clear" width="20" height="20">
-            </a>
+            <div class="ing-sticky-badge">
+                <img src="images/App_Store_Badge.svg" alt="Download on the App Store">
+            </div>
         </div>
     </div>
     </main>
@@ -1073,14 +1082,14 @@
             var clearBtn = document.getElementById('ingClear');
             var countEl = document.getElementById('ingCount');
             var stickyBar = document.getElementById('ingStickyBar');
-            var stickyCount = document.getElementById('ingStickyCount');
             var stickyTags = document.getElementById('ingStickyTags');
-            var stickyClear = document.getElementById('ingStickyClear');
+            var stickyViewAll = document.getElementById('ingStickyViewAll');
+            var stickyPill = document.getElementById('ingStickyPill');
             var filterCard = document.querySelector('.ingredients-filter-card');
             var selected = [];
 
             function updateUI() {
-                // Update toolbar content visibility (toolbar always takes space)
+                // Update toolbar content visibility
                 var toolbarLeft = document.getElementById('ingToolbarContent');
                 var toolbarClear = document.getElementById('ingClear');
                 countEl.textContent = selected.length;
@@ -1092,8 +1101,7 @@
                     toolbarClear.style.visibility = 'hidden';
                 }
 
-                // Update sticky bar
-                stickyCount.textContent = selected.length;
+                // Update sticky pill tags
                 stickyTags.innerHTML = '';
                 selected.forEach(function(item) {
                     var tag = document.createElement('div');
@@ -1101,16 +1109,13 @@
                     tag.innerHTML = '<img src="' + item.img + '" alt=""><span>' + item.name + '</span>';
                     stickyTags.appendChild(tag);
                 });
+                // Show "View all Ingredients" when no selection, hide when has selection
+                stickyViewAll.textContent = selected.length > 0 ? 'View all' : 'View all Ingredients';
                 checkSticky();
             }
 
             function checkSticky() {
                 var filterSection = document.querySelector('.ingredients-filter');
-                if (selected.length === 0) {
-                    stickyBar.classList.remove('visible');
-                    filterSection.classList.remove('collapsed');
-                    return;
-                }
                 var rect = filterCard.getBoundingClientRect();
                 if (rect.bottom < 0) {
                     stickyBar.classList.add('visible');
@@ -1121,13 +1126,13 @@
                 }
             }
 
-            // Click sticky bar to scroll back to filter and expand
-            stickyBar.addEventListener('click', function(e) {
-                if (e.target.closest('.ing-sticky-clear')) return; // don't trigger on clear
+            // Click "View all" on sticky bar to scroll back
+            stickyViewAll.addEventListener('click', function(e) {
+                e.preventDefault();
                 var filterSection = document.querySelector('.ingredients-filter');
                 filterSection.classList.remove('collapsed');
                 stickyBar.classList.remove('visible');
-                document.querySelector('.ingredients-filter').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                filterSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
 
             function clearAll(e) {
@@ -1153,7 +1158,6 @@
             });
 
             clearBtn.addEventListener('click', clearAll);
-            stickyClear.addEventListener('click', clearAll);
             window.addEventListener('scroll', checkSticky);
         })();
     </script>
