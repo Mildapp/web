@@ -293,7 +293,7 @@
         /* ====== INGREDIENTS FILTER ====== */
         .ingredients-filter {
             max-width: 1760px;
-            margin: 40px auto 0;
+            margin: 0 auto;
             padding: 0 40px;
             max-height: 2000px;
             overflow: hidden;
@@ -344,15 +344,12 @@
         /* Selection toolbar (between header and filter) */
         .ing-toolbar {
             max-width: 1760px;
-            margin: 16px auto 0;
+            margin: 0 auto;
             padding: 0 40px;
-            display: none;
+            display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 32px;
-        }
-        .ing-toolbar.visible {
-            display: flex;
+            height: 110px;
         }
         .ing-toolbar-left { display: flex; align-items: center; }
         .ing-count {
@@ -500,7 +497,7 @@
             .rcard-name { font-size: 16px; line-height: 21px; }
             .rcard-meta { font-size: 14px; }
             .rcard-time-text { font-size: 14px; }
-            .ing-toolbar { padding: 0; margin-top: 12px; }
+            .ing-toolbar { padding: 0; height: 60px; }
             .ingredients-filter { padding: 0; margin-top: 24px; }
             .ingredients-filter-card { grid-template-columns: 1fr; padding: 32px 24px; border-radius: 24px; gap: 30px; }
             .ing-group-wide { grid-column: span 1; }
@@ -539,11 +536,11 @@
 
         <!-- Selection toolbar (between logo and filter card) -->
         <div class="ing-toolbar" id="ingToolbar">
-            <div class="ing-toolbar-left" id="ingToolbarContent">
+            <div class="ing-toolbar-left" id="ingToolbarContent" style="visibility:hidden;">
                 <span class="ing-count" id="ingCount">0</span>
                 <span class="ing-count-label"> selected</span>
             </div>
-            <a href="#" class="ing-clear" id="ingClear" aria-label="Clear selection">
+            <a href="#" class="ing-clear" id="ingClear" aria-label="Clear selection" style="visibility:hidden;">
                 <img src="images/Icons/clear.svg" alt="Clear" width="20" height="20">
             </a>
         </div>
@@ -1081,12 +1078,16 @@
             var selected = [];
 
             function updateUI() {
-                // Update toolbar between header and filter
+                // Update toolbar content visibility (toolbar always takes space)
+                var toolbarLeft = document.getElementById('ingToolbarContent');
+                var toolbarClear = document.getElementById('ingClear');
                 countEl.textContent = selected.length;
                 if (selected.length > 0) {
-                    document.getElementById('ingToolbar').classList.add('visible');
+                    toolbarLeft.style.visibility = 'visible';
+                    toolbarClear.style.visibility = 'visible';
                 } else {
-                    document.getElementById('ingToolbar').classList.remove('visible');
+                    toolbarLeft.style.visibility = 'hidden';
+                    toolbarClear.style.visibility = 'hidden';
                 }
 
                 // Update sticky bar
