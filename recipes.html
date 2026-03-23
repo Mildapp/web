@@ -338,7 +338,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 8px;
+            padding-top: 8px;
         }
         .ing-toolbar-left { display: flex; align-items: center; }
         .ing-count {
@@ -357,10 +357,12 @@
 
         /* Selected tag state */
         .ing-tag.selected {
-            background: black;
+            background: #F4F5F0;
+            outline: 2px solid black;
+            outline-offset: -2px;
         }
         .ing-tag.selected span {
-            color: white;
+            color: black;
         }
 
         /* Floating bubble */
@@ -391,17 +393,19 @@
         .ing-float-tags::-webkit-scrollbar { display: none; }
         .ing-float-tag {
             padding: 3px 6px 3px 3px;
-            background: black;
+            background: #F4F5F0;
             border-radius: 10px;
             display: inline-flex;
             align-items: center;
             gap: 3px;
             flex-shrink: 0;
+            outline: 2px solid black;
+            outline-offset: -2px;
         }
         .ing-float-tag img { width: 24px; height: 24px; border-radius: 4px; object-fit: contain; }
         .ing-float-tag span {
             font-size: 14px; font-family: 'Inter', sans-serif;
-            font-weight: 500; color: white; white-space: nowrap;
+            font-weight: 500; color: black; white-space: nowrap;
         }
 
         .ing-group-wide {
@@ -496,16 +500,6 @@
         <!-- Ingredients Filter -->
         <div class="ingredients-filter">
             <div class="ingredients-filter-card">
-                <!-- Selection toolbar -->
-                <div class="ing-toolbar" id="ingToolbar" style="display:none;">
-                    <div class="ing-toolbar-left">
-                        <span class="ing-count" id="ingCount">0</span>
-                        <span class="ing-count-label"> selected</span>
-                    </div>
-                    <a href="#" class="ing-clear" id="ingClear" aria-label="Clear selection">
-                        <img src="images/Icons/clear.svg" alt="Clear" width="20" height="20">
-                    </a>
-                </div>
                 <div class="ing-group">
                     <div class="ing-group-title">Meat</div>
                     <div class="ing-tags">
@@ -755,6 +749,16 @@
                 </div>
                 </div>
                 <div class="ing-view-all"><a href="#" id="ingToggle" onclick="(function(e){e.preventDefault();var h=document.getElementById('ingHiddenGroups');var t=document.getElementById('ingToggle');if(h.classList.contains('visible')){h.classList.remove('visible');t.textContent='View all';}else{h.classList.add('visible');t.textContent='Hide';}})(event)">View all</a></div>
+                <!-- Selection toolbar (bottom) -->
+                <div class="ing-toolbar" id="ingToolbar" style="display:none;">
+                    <div class="ing-toolbar-left">
+                        <span class="ing-count" id="ingCount">0</span>
+                        <span class="ing-count-label"> selected</span>
+                    </div>
+                    <a href="#" class="ing-clear" id="ingClear" aria-label="Clear selection">
+                        <img src="images/Icons/clear.svg" alt="Clear" width="20" height="20">
+                    </a>
+                </div>
             </div>
         </div>
 
