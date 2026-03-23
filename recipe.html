@@ -100,12 +100,19 @@
         font-weight: 500; line-height: 52.8px; max-width: 900px;
     }
 
+    .recipe-action-buttons {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+    }
+
     .recipe-share-btn {
-        width: 84px; height: 64px; background: #ECECE5;
-        border-radius: 20px; display: flex;
+        width: 76px; height: 58px; background: #ECECE5;
+        border-radius: 18px; display: flex;
         align-items: center; justify-content: center; cursor: pointer;
     }
     .recipe-share-btn svg { width: 20px; height: 20px; }
+    .recipe-share-btn img { width: 24px; height: 24px; }
 
     .recipe-body {
         max-width: 960px; margin: 48px auto 0;
@@ -275,8 +282,13 @@
 
             <div class="recipe-meta">400 kcal  •  Vegetarian  •  Easy</div>
             <h1 class="recipe-title">Wholemeal Penne with<br>Pesto and Spinach</h1>
-            <div class="recipe-share-btn">
-                <img src="images/Icons/filter.svg" alt="Filter" width="24" height="24">
+            <div class="recipe-action-buttons">
+                <div class="recipe-share-btn">
+                    <img src="images/Icons/share.svg" alt="Share" width="24" height="24">
+                </div>
+                <div class="recipe-share-btn">
+                    <img src="images/Icons/filter.svg" alt="Filter" width="24" height="24">
+                </div>
             </div>
         </div>
 
