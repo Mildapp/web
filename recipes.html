@@ -1190,7 +1190,7 @@
         })();
 
         // Filter modal
-        (function() {
+        document.addEventListener('DOMContentLoaded', function() {
             var modal = document.getElementById('filterModal');
             var overlay = document.getElementById('filterOverlay');
             var closeBtn = document.getElementById('filterClose');
@@ -1220,7 +1220,7 @@
                     this.classList.toggle('active');
                 });
             });
-        })();
+        });
     </script>
 
     <!-- Filter Modal -->
