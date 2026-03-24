@@ -277,6 +277,15 @@
         }
 
         /* Card image */
+        /* Image loading spinner */
+        .rcard-img-wrap, .recipes-hero-img-wrap, .fm-meal-img {
+            background: #F4F5F0 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cstyle%3E%40keyframes s%7Bto%7Btransform:rotate(360deg)%7D%7D%3C/style%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='%23ccc' stroke-width='2' stroke-dasharray='31.4 31.4' style='animation:s 1s linear infinite'/%3E%3C/svg%3E") center center no-repeat;
+            background-size: 24px 24px;
+        }
+        .rcard-img-wrap img, .recipes-hero-img-wrap img, .fm-meal-img img {
+            position: relative; z-index: 1;
+        }
+
         .rcard-img-wrap {
             position: relative;
             align-self: center;
@@ -285,6 +294,7 @@
             height: 264px;
             flex-shrink: 0;
             overflow: visible;
+            border-radius: 50%;
         }
 
         .rcard-img {
@@ -377,10 +387,11 @@
             font-weight: 600; line-height: 26px;
         }
         .recipes-hero-right {
-            flex: 1;
+            flex: 0 0 608px;
             display: flex;
             flex-direction: column;
-            gap: 34px;
+            align-items: flex-start;
+            gap: 57px;
         }
         .recipes-hero-title {
             color: black;
@@ -389,11 +400,19 @@
             font-weight: 500;
             line-height: 55px;
             margin: 0;
+            text-align: left;
+        }
+        .recipes-hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 34px;
         }
         .recipes-hero-tags {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
+            align-items: flex-start;
         }
         .recipes-hero-text {
             color: black;
@@ -402,6 +421,7 @@
             font-weight: 400;
             line-height: 22.4px;
             margin: 0;
+            text-align: left;
         }
 
         /* Section header (Search by ingredients) */
@@ -689,13 +709,15 @@
                 </div>
                 <div class="recipes-hero-right">
                     <h2 class="recipes-hero-title">Cook from what you already have!</h2>
-                    <div class="recipes-hero-tags">
-                        <div class="ing-tag"><img src="images/ingredients/chicken.png" alt=""><span>Chicken</span></div>
-                        <div class="ing-tag"><img src="images/ingredients/beef.png" alt=""><span>Beef</span></div>
-                        <div class="ing-tag"><img src="images/ingredients/pork.png" alt=""><span>Pork</span></div>
-                        <div class="ing-tag"><img src="images/ingredients/other.png" alt=""><span>Fish</span></div>
+                    <div class="recipes-hero-content">
+                        <div class="recipes-hero-tags">
+                            <div class="ing-tag"><img src="images/ingredients/chicken.png" alt=""><span>Chicken</span></div>
+                            <div class="ing-tag"><img src="images/ingredients/beef.png" alt=""><span>Beef</span></div>
+                            <div class="ing-tag"><img src="images/ingredients/pork.png" alt=""><span>Pork</span></div>
+                            <div class="ing-tag"><img src="images/ingredients/other.png" alt=""><span>Fish</span></div>
+                        </div>
+                        <p class="recipes-hero-text">Take a photo of your ingredients, add them by voice, or type them in. Mild finds matching recipes from what you already have, shows missing ingredients, and guides you step by step with built-in timers. Use smart filters for time, calories, or cuisine, save favorite recipes, and quickly access recent ingredients — all in one place.</p>
                     </div>
-                    <p class="recipes-hero-text">Take a photo of your ingredients, add them by voice, or type them in. Mild finds matching recipes from what you already have, shows missing ingredients, and guides you step by step with built-in timers. Use smart filters for time, calories, or cuisine, save favorite recipes, and quickly access recent ingredients — all in one place.</p>
                 </div>
             </div>
         </div>
