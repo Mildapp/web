@@ -475,6 +475,18 @@
         }
         .recipes-section-link:hover { opacity: 0.6; }
 
+        .recipes-section-tabs {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        .recipes-tab {
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .recipes-tab:hover { opacity: 0.8; }
+        .recipes-tab.active { opacity: 1; }
+
         /* ====== INGREDIENTS FILTER ====== */
         .ingredients-filter {
             width: calc(470px * 3 + 24px * 2);
@@ -780,9 +792,12 @@
             </div>
         </div>
 
-        <!-- Search by ingredients heading -->
+        <!-- Section tabs: Find by Ingredients / Browse Recipes -->
         <div class="recipes-section-header">
-            <h2 class="recipes-section-title">Search by ingredients</h2>
+            <div class="recipes-section-tabs">
+                <h2 class="recipes-section-title recipes-tab active" id="tabIngredients">Find by Ingredients</h2>
+                <h2 class="recipes-section-title recipes-tab" id="tabBrowse" style="opacity:0.6;">Browse Recipes</h2>
+            </div>
             <a href="#" class="recipes-section-link" id="ingShowAll">Show all</a>
         </div>
 
@@ -1396,6 +1411,36 @@
             clearPill.addEventListener('click', clearAll);
             window.addEventListener('scroll', checkSticky);
             checkSticky(); // check on load
+
+            // Tab switching: Find by Ingredients / Browse Recipes
+            var tabIngredients = document.getElementById('tabIngredients');
+            var tabBrowse = document.getElementById('tabBrowse');
+            var ingredientsFilter = document.querySelector('.ingredients-filter');
+            var ingToolbar = document.getElementById('ingToolbar');
+            var recipesHeader = document.querySelector('.recipes-header');
+            var showAllLink = document.getElementById('ingShowAll');
+
+            tabIngredients.addEventListener('click', function() {
+                tabIngredients.classList.add('active');
+                tabIngredients.style.opacity = '1';
+                tabBrowse.classList.remove('active');
+                tabBrowse.style.opacity = '0.6';
+                ingredientsFilter.style.display = '';
+                ingToolbar.style.display = '';
+                if (recipesHeader) recipesHeader.style.display = '';
+                if (showAllLink) showAllLink.style.display = '';
+            });
+
+            tabBrowse.addEventListener('click', function() {
+                tabBrowse.classList.add('active');
+                tabBrowse.style.opacity = '1';
+                tabIngredients.classList.remove('active');
+                tabIngredients.style.opacity = '0.6';
+                ingredientsFilter.style.display = 'none';
+                ingToolbar.style.display = 'none';
+                if (recipesHeader) recipesHeader.style.display = 'none';
+                if (showAllLink) showAllLink.style.display = 'none';
+            });
 
             // Show all ingredients toggle
             var showAllBtn = document.getElementById('ingShowAll');
