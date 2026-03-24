@@ -1188,6 +1188,277 @@
             window.addEventListener('scroll', checkSticky);
             checkSticky(); // check on load
         })();
+
+        // Filter modal
+        (function() {
+            var modal = document.getElementById('filterModal');
+            var overlay = document.getElementById('filterOverlay');
+            var closeBtn = document.getElementById('filterClose');
+            var showBtn = document.getElementById('filterShow');
+
+            // Open from filter icon on page
+            document.querySelectorAll('.recipes-filter-btn, .recipes-toolbar-right a[aria-label="Filter"]').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+            overlay.addEventListener('click', closeModal);
+            showBtn.addEventListener('click', closeModal);
+
+            // Toggle filter tags
+            modal.querySelectorAll('.fm-tag, .fm-meal-card, .fm-sort-tab, .fm-allergen, .fm-diet-tag').forEach(function(el) {
+                el.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+        })();
     </script>
+
+    <!-- Filter Modal -->
+    <div class="filter-modal" id="filterModal">
+        <div class="filter-modal-overlay" id="filterOverlay"></div>
+        <div class="filter-modal-content">
+            <button class="filter-modal-close" id="filterClose" aria-label="Close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+
+            <div class="fm-header">
+                <h2 class="fm-title">Filters</h2>
+                <p class="fm-subtitle">Sort the meals using the filters that suit you</p>
+            </div>
+
+            <!-- Types of meal -->
+            <div class="fm-section">
+                <div class="fm-section-label"><span class="fm-dot"></span><span>Types of meal</span></div>
+                <div class="fm-meals">
+                    <div class="fm-meal-card"><div class="fm-meal-img"><img src="images/ingredients/other.png" alt=""></div><span>Salads</span></div>
+                    <div class="fm-meal-card"><div class="fm-meal-img"><img src="images/ingredients/other.png" alt=""></div><span>Main</span></div>
+                    <div class="fm-meal-card"><div class="fm-meal-img"><img src="images/ingredients/other.png" alt=""></div><span>Soups</span></div>
+                    <div class="fm-meal-card"><div class="fm-meal-img"><img src="images/ingredients/other.png" alt=""></div><span>Side</span></div>
+                    <div class="fm-meal-card"><div class="fm-meal-img"><img src="images/ingredients/other.png" alt=""></div><span>Sauces</span></div>
+                    <div class="fm-meal-card"><div class="fm-meal-img"><img src="images/ingredients/other.png" alt=""></div><span>Snacks</span></div>
+                    <div class="fm-meal-card"><div class="fm-meal-img"><img src="images/ingredients/other.png" alt=""></div><span>Desserts</span></div>
+                    <div class="fm-meal-card"><div class="fm-meal-img"><img src="images/ingredients/other.png" alt=""></div><span>Other</span></div>
+                </div>
+            </div>
+
+            <!-- Sorted by -->
+            <div class="fm-section">
+                <div class="fm-section-label"><span class="fm-dot"></span><span>Sorted by</span></div>
+                <div class="fm-sort-tabs">
+                    <div class="fm-sort-tab active">Time</div>
+                    <div class="fm-sort-tab">Calories</div>
+                    <div class="fm-sort-tab">Meal time</div>
+                    <div class="fm-sort-tab">Cuisine</div>
+                    <div class="fm-sort-tab">Main ingredients</div>
+                </div>
+                <div class="fm-sort-options">
+                    <div class="fm-tag active">Up to 20 min</div>
+                    <div class="fm-tag">Up 40 min</div>
+                    <div class="fm-tag">Up 1 hr</div>
+                </div>
+            </div>
+
+            <!-- Allergies -->
+            <div class="fm-section">
+                <div class="fm-section-label"><span class="fm-dot"></span><span>Sorted by Allergies</span></div>
+                <div class="fm-allergens">
+                    <div class="fm-allergen"><span class="fm-allergen-num" style="background:#CCEBE2;">1</span><span>Celery</span></div>
+                    <div class="fm-allergen"><span class="fm-allergen-num" style="background:#EBE2CC;">2</span><span>Gluten</span></div>
+                    <div class="fm-allergen"><span class="fm-allergen-num" style="background:#EBCCD5;">3</span><span>Crustaceans</span></div>
+                    <div class="fm-allergen"><span class="fm-allergen-num" style="background:#F9F7CB;">4</span><span>Eggs</span></div>
+                    <div class="fm-allergen"><span class="fm-allergen-num" style="background:#CCE4EB;">5</span><span>Fish</span></div>
+                    <div class="fm-allergen"><span class="fm-allergen-num" style="background:#EAEBCC;">6</span><span>Lupin</span></div>
+                    <div class="fm-allergen"><span class="fm-allergen-num" style="background:#F4F5F0;">7</span><span>Milk</span></div>
+                    <div class="fm-allergen"><span class="fm-allergen-num" style="background:#D9C4B2;">8</span><span>Molluscs</span></div>
+                    <div class="fm-allergen"><span class="fm-allergen-num" style="background:#F6E5B9;">9</span><span>Mustard</span></div>
+                    <div class="fm-allergen"><span class="fm-allergen-num" style="background:#CCEBD1;">10</span><span>Nuts</span></div>
+                    <div class="fm-allergen"><span class="fm-allergen-num" style="background:#DFCCEB;">11</span><span>Peanuts</span></div>
+                    <div class="fm-allergen"><span class="fm-allergen-num" style="background:#F5F2E1;">12</span><span>Sesame seeds</span></div>
+                    <div class="fm-allergen"><span class="fm-allergen-num" style="background:#EBCECC;">13</span><span>Soya</span></div>
+                    <div class="fm-allergen"><span class="fm-allergen-num" style="background:#F6D3B9;">14</span><span>Sulphites</span></div>
+                </div>
+            </div>
+
+            <!-- Diet -->
+            <div class="fm-section">
+                <div class="fm-section-label"><span class="fm-dot"></span><span>Diet</span></div>
+                <div class="fm-diets">
+                    <div class="fm-diet-tag"><img src="images/ingredients/other.png" alt="" width="24" height="24"><span>Meatless</span></div>
+                    <div class="fm-diet-tag"><img src="images/ingredients/other.png" alt="" width="24" height="24"><span>Vegetarian</span></div>
+                    <div class="fm-diet-tag"><img src="images/ingredients/other.png" alt="" width="24" height="24"><span>Vegan</span></div>
+                    <div class="fm-diet-tag"><img src="images/ingredients/other.png" alt="" width="24" height="24"><span>Gluten-Free</span></div>
+                    <div class="fm-diet-tag"><img src="images/ingredients/other.png" alt="" width="24" height="24"><span>Sugar-Free</span></div>
+                    <div class="fm-diet-tag"><img src="images/ingredients/other.png" alt="" width="24" height="24"><span>Alcohol-Free</span></div>
+                </div>
+            </div>
+
+            <button class="fm-show-btn" id="filterShow">Show recipes</button>
+        </div>
+    </div>
+
+    <style>
+        /* Filter Modal */
+        .filter-modal {
+            position: fixed; inset: 0; z-index: 2000;
+            display: flex; justify-content: center; align-items: flex-end;
+            pointer-events: none; opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .filter-modal.active { pointer-events: auto; opacity: 1; }
+        .filter-modal-overlay {
+            position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+        }
+        .filter-modal-content {
+            position: relative; background: white; width: 100%; max-width: 900px;
+            max-height: 90vh; overflow-y: auto; border-radius: 20px 20px 0 0;
+            padding: 40px 48px 32px; box-sizing: border-box;
+            box-shadow: 0 -3px 4px rgba(0,0,0,0.1);
+            transform: translateY(100%); transition: transform 0.3s ease;
+        }
+        .filter-modal.active .filter-modal-content { transform: translateY(0); }
+        .filter-modal-close {
+            position: absolute; top: 20px; right: 20px;
+            background: none; border: none; cursor: pointer; padding: 8px;
+        }
+        .filter-modal-close:hover { opacity: 0.6; }
+
+        .fm-header { text-align: center; margin-bottom: 32px; }
+        .fm-title {
+            font-size: 30px; font-family: 'Druk Wide', sans-serif;
+            font-weight: 500; line-height: 30px; color: black; margin: 0 0 16px;
+        }
+        .fm-subtitle {
+            font-size: 16px; font-family: 'Inter', sans-serif;
+            font-weight: 500; line-height: 22px; color: #A1A09F; margin: 0;
+        }
+
+        .fm-section { margin-bottom: 32px; }
+        .fm-section-label {
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px; margin-bottom: 20px;
+            font-size: 16px; font-family: 'Inter', sans-serif;
+            font-weight: 500; line-height: 22px; color: black;
+        }
+        .fm-dot {
+            width: 8px; height: 8px; background: #FFF066;
+            border-radius: 9999px; flex-shrink: 0;
+        }
+
+        /* Meal type cards */
+        .fm-meals {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+        }
+        .fm-meal-card {
+            width: 110px; height: 110px; border-radius: 20px;
+            outline: 1px solid #CCCCCA; outline-offset: -1px;
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: flex-end; padding: 10px 15px; gap: 18px;
+            cursor: pointer; position: relative; box-sizing: border-box;
+            transition: outline-color 0.2s;
+        }
+        .fm-meal-card.active { outline: 2px solid black; outline-offset: -2px; }
+        .fm-meal-img {
+            width: 72px; height: 72px; position: absolute; top: 9px;
+            left: 50%; transform: translateX(-50%); overflow: hidden;
+        }
+        .fm-meal-img img { width: 72px; height: 72px; object-fit: contain; }
+        .fm-meal-card span {
+            font-size: 14px; font-family: 'Inter', sans-serif;
+            font-weight: 500; line-height: 14px; color: #7E7E7E;
+            text-align: center; position: relative; z-index: 1;
+        }
+
+        /* Sort tabs */
+        .fm-sort-tabs {
+            display: flex; justify-content: center; gap: 24px;
+            margin-bottom: 16px; flex-wrap: wrap;
+        }
+        .fm-sort-tab {
+            padding: 8px 10px; border-radius: 10px; cursor: pointer;
+            font-size: 16px; font-family: 'Inter', sans-serif;
+            font-weight: 500; line-height: 22px; color: #7E7E7E;
+            transition: background 0.2s, color 0.2s;
+        }
+        .fm-sort-tab.active { background: #ECECE5; color: black; }
+
+        .fm-sort-options {
+            display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+        }
+        .fm-tag {
+            padding: 11px 10px; border-radius: 10px; cursor: pointer;
+            font-size: 16px; font-family: 'Inter', sans-serif;
+            font-weight: 500; line-height: 22px; color: black;
+            background: white; transition: background 0.2s;
+        }
+        .fm-tag.active { background: #ECECE5; }
+
+        /* Allergens */
+        .fm-allergens {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+        }
+        .fm-allergen {
+            padding: 5px; border-radius: 10px;
+            outline: 1px solid #ECECE5; outline-offset: -1px;
+            display: flex; align-items: center; gap: 4px;
+            cursor: pointer; transition: outline-color 0.2s;
+        }
+        .fm-allergen.active { outline: 2px solid black; outline-offset: -2px; }
+        .fm-allergen-num {
+            width: 27px; height: 26px; border-radius: 100px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; font-family: 'Inter', sans-serif;
+            font-weight: 600; line-height: 19.6px; color: black; flex-shrink: 0;
+        }
+        .fm-allergen span:not(.fm-allergen-num) {
+            font-size: 16px; font-family: 'Inter', sans-serif;
+            font-weight: 500; line-height: 22px; color: black;
+        }
+
+        /* Diet tags */
+        .fm-diets {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+        }
+        .fm-diet-tag {
+            padding: 5px 7px; background: #F4F5F0; border-radius: 10px;
+            display: flex; align-items: center; gap: 4px; cursor: pointer;
+            transition: outline 0.2s;
+        }
+        .fm-diet-tag.active { outline: 2px solid black; outline-offset: -2px; }
+        .fm-diet-tag img { border-radius: 10px; }
+        .fm-diet-tag span {
+            font-size: 16px; font-family: 'Inter', sans-serif;
+            font-weight: 500; line-height: 22px; color: black;
+        }
+
+        /* Show button */
+        .fm-show-btn {
+            display: block; width: 100%; max-width: 342px;
+            margin: 32px auto 0; padding: 20px 32px;
+            background: black; color: white; border: none;
+            border-radius: 20px; cursor: pointer;
+            font-size: 16px; font-family: 'Inter', sans-serif;
+            font-weight: 600; line-height: 16px; text-align: center;
+            transition: opacity 0.2s;
+        }
+        .fm-show-btn:hover { opacity: 0.8; }
+
+        @media (max-width: 768px) {
+            .filter-modal-content { padding: 32px 20px 24px; max-width: 100%; border-radius: 20px 20px 0 0; }
+            .fm-title { font-size: 24px; }
+            .fm-meal-card { width: 90px; height: 90px; }
+            .fm-meal-img { width: 56px; height: 56px; }
+            .fm-meal-img img { width: 56px; height: 56px; }
+        }
+    </style>
 </body>
 </html>
