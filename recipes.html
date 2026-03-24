@@ -553,6 +553,17 @@
         }
         .ing-clear:hover { opacity: 0.6; }
 
+        /* Bottom bar (selected count inside card) */
+        .ing-bottom-bar {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid #ECECE5;
+        }
+        .ing-bottom-left { display: flex; align-items: center; gap: 4px; }
+
         /* Selected tag state */
         .ing-tag.selected {
             background: #F4F5F0;
@@ -1016,6 +1027,16 @@
                 </div>
                 </div>
                 <div class="ing-view-all"><a href="#" id="ingToggle" onclick="(function(e){e.preventDefault();var h=document.getElementById('ingHiddenGroups');var t=document.getElementById('ingToggle');if(h.classList.contains('visible')){h.classList.remove('visible');t.textContent='View all';}else{h.classList.add('visible');t.textContent='Hide';}})(event)">View all</a></div>
+                <!-- Selected count + clear (bottom of card) -->
+                <div class="ing-bottom-bar" id="ingBottomBar" style="display:none;">
+                    <div class="ing-bottom-left">
+                        <span class="ing-count" id="ingCountBottom">0</span>
+                        <span class="ing-count-label"> Selected</span>
+                    </div>
+                    <a href="#" class="ing-clear" id="ingClearBottom" aria-label="Clear selection">
+                        <img src="images/Icons/clear.svg" alt="Clear" width="20" height="20">
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -1273,9 +1294,10 @@
 
         // Ingredient selection logic
         (function() {
-            var tags = document.querySelectorAll('.ing-tag');
-            var clearBtn = document.getElementById('ingClear');
-            var countEl = document.getElementById('ingCount');
+            var tags = document.querySelectorAll('.ingredients-filter-card .ing-tag');
+            var bottomBar = document.getElementById('ingBottomBar');
+            var countBottom = document.getElementById('ingCountBottom');
+            var clearBottom = document.getElementById('ingClearBottom');
             var stickyBar = document.getElementById('ingStickyBar');
             var stickyTags = document.getElementById('ingStickyTags');
             var stickyViewAll = document.getElementById('ingStickyViewAll');
@@ -1283,17 +1305,9 @@
             var selected = [];
 
             function updateUI() {
-                // Update toolbar content visibility
-                var toolbarLeft = document.getElementById('ingToolbarContent');
-                var toolbarClear = document.getElementById('ingClear');
-                countEl.textContent = selected.length;
-                if (selected.length > 0) {
-                    toolbarLeft.style.visibility = 'visible';
-                    toolbarClear.style.visibility = 'visible';
-                } else {
-                    toolbarLeft.style.visibility = 'hidden';
-                    toolbarClear.style.visibility = 'hidden';
-                }
+                // Update bottom bar inside card
+                countBottom.textContent = selected.length;
+                bottomBar.style.display = selected.length > 0 ? 'flex' : 'none';
 
                 // Update sticky pill tags
                 stickyTags.innerHTML = '';
@@ -1360,7 +1374,7 @@
                 });
             });
 
-            clearBtn.addEventListener('click', clearAll);
+            clearBottom.addEventListener('click', clearAll);
             window.addEventListener('scroll', checkSticky);
             checkSticky(); // check on load
         })();
