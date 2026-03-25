@@ -693,7 +693,7 @@
         .browse-filter {
             width: calc(470px * 3 + 24px * 2);
             max-width: calc(100% - 80px);
-            margin: 40px auto 0;
+            margin: 60px auto 0;
         }
         .browse-filter-inner {
             display: flex;
@@ -701,55 +701,35 @@
             justify-content: center;
             gap: 40px;
         }
-        .browse-meal-cards {
+        .browse-meal-tags {
             display: flex;
+            flex-wrap: wrap;
             gap: 10px;
         }
-        .browse-meal-card {
-            width: 110px;
-            height: 110px;
-            border-radius: 20px;
-            outline: 1px solid #CCCCCA;
-            outline-offset: -1px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            padding: 10px 15px;
-            gap: 18px;
-            cursor: pointer;
-            position: relative;
-            box-sizing: border-box;
-            transition: outline-color 0.2s;
+        .browse-meal-tag {
+            padding: 5px 11px 5px 7px;
             background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: outline 0.2s;
         }
-        .browse-meal-card.active {
+        .browse-meal-tag.active {
             outline: 2px solid black;
             outline-offset: -2px;
         }
-        .browse-meal-img {
-            width: 72px;
-            height: 72px;
-            position: absolute;
-            top: 9px;
-            left: 50%;
-            transform: translateX(-50%);
-            overflow: hidden;
-        }
-        .browse-meal-img img {
-            width: 72px;
-            height: 72px;
+        .browse-meal-tag img {
+            border-radius: 10px;
             object-fit: contain;
         }
-        .browse-meal-card span {
-            font-size: 14px;
+        .browse-meal-tag span {
+            font-size: 16px;
             font-family: 'Inter', sans-serif;
             font-weight: 500;
-            line-height: 14px;
-            color: #7E7E7E;
-            text-align: center;
-            position: relative;
-            z-index: 1;
+            line-height: 22px;
+            color: black;
         }
         .browse-calories {
             display: flex;
@@ -776,7 +756,7 @@
         }
         .browse-cal-tag {
             height: 40px;
-            padding: 0 16px;
+            padding: 0 14px;
             border-radius: 10px;
             cursor: pointer;
             font-size: 16px;
@@ -851,10 +831,7 @@
             .recipes-section-title { font-size: 24px; line-height: 30px; }
             .browse-filter { max-width: 100%; padding: 0; margin-top: 24px; }
             .browse-filter-inner { flex-direction: column; gap: 20px; }
-            .browse-meal-cards { flex-wrap: wrap; justify-content: center; }
-            .browse-meal-card { width: 90px; height: 90px; }
-            .browse-meal-img { width: 56px; height: 56px; }
-            .browse-meal-img img { width: 56px; height: 56px; }
+            .browse-meal-tags { flex-wrap: wrap; justify-content: center; }
             .browse-calories { flex-wrap: wrap; justify-content: center; }
             .browse-calories-tags { flex-wrap: wrap; justify-content: center; }
         }
@@ -925,15 +902,15 @@
         <!-- Browse Recipes Filter (meal types + calories) -->
         <div class="browse-filter" id="browseFilter" style="display:none;">
             <div class="browse-filter-inner">
-                <div class="browse-meal-cards">
-                    <div class="browse-meal-card"><div class="browse-meal-img"><img src="images/types of meal/salads.jpg" alt=""></div><span>Salads</span></div>
-                    <div class="browse-meal-card"><div class="browse-meal-img"><img src="images/types of meal/main.jpg" alt=""></div><span>Main</span></div>
-                    <div class="browse-meal-card"><div class="browse-meal-img"><img src="images/types of meal/soups.jpg" alt=""></div><span>Soups</span></div>
-                    <div class="browse-meal-card"><div class="browse-meal-img"><img src="images/types of meal/side.jpg" alt=""></div><span>Side</span></div>
-                    <div class="browse-meal-card"><div class="browse-meal-img"><img src="images/types of meal/sauces.jpg" alt=""></div><span>Souses</span></div>
-                    <div class="browse-meal-card"><div class="browse-meal-img"><img src="images/types of meal/snacks.jpg" alt=""></div><span>Snacks</span></div>
-                    <div class="browse-meal-card"><div class="browse-meal-img"><img src="images/types of meal/desserts.jpg" alt=""></div><span>Desserts</span></div>
-                    <div class="browse-meal-card"><div class="browse-meal-img"><img src="images/types of meal/other.jpg" alt=""></div><span>Other</span></div>
+                <div class="browse-meal-tags">
+                    <div class="browse-meal-tag"><img src="images/types of meal/salads.jpg" alt="" width="24" height="24"><span>Salads</span></div>
+                    <div class="browse-meal-tag"><img src="images/types of meal/main.jpg" alt="" width="24" height="24"><span>Main</span></div>
+                    <div class="browse-meal-tag"><img src="images/types of meal/soups.jpg" alt="" width="24" height="24"><span>Soups</span></div>
+                    <div class="browse-meal-tag"><img src="images/types of meal/side.jpg" alt="" width="24" height="24"><span>Side</span></div>
+                    <div class="browse-meal-tag"><img src="images/types of meal/sauces.jpg" alt="" width="24" height="24"><span>Sauces</span></div>
+                    <div class="browse-meal-tag"><img src="images/types of meal/snacks.jpg" alt="" width="24" height="24"><span>Snacks</span></div>
+                    <div class="browse-meal-tag"><img src="images/types of meal/desserts.jpg" alt="" width="24" height="24"><span>Desserts</span></div>
+                    <div class="browse-meal-tag"><img src="images/types of meal/other.jpg" alt="" width="24" height="24"><span>Other</span></div>
                 </div>
                 <div class="browse-calories">
                     <div class="browse-calories-left">
@@ -942,7 +919,7 @@
                             <div class="browse-cal-tag">300 Kcal</div>
                             <div class="browse-cal-tag">400 Kcal</div>
                             <div class="browse-cal-tag">600 Kcal</div>
-                            <div class="browse-cal-tag">600 Kcal</div>
+                            <div class="browse-cal-tag">800 Kcal</div>
                         </div>
                     </div>
                     <a href="#" class="browse-filter-icon" aria-label="Filter">
@@ -1646,8 +1623,8 @@
                 });
             });
 
-            // Browse filter: meal cards toggle
-            document.querySelectorAll('.browse-meal-card').forEach(function(el) {
+            // Browse filter: meal tags toggle
+            document.querySelectorAll('.browse-meal-tag').forEach(function(el) {
                 el.addEventListener('click', function() {
                     this.classList.toggle('active');
                 });
