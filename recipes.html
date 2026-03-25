@@ -698,12 +698,29 @@
         .browse-filter-inner {
             display: flex;
             align-items: flex-end;
-            justify-content: center;
+            justify-content: space-between;
+        }
+        .browse-filter-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
             gap: 10px;
+        }
+        .browse-filter-left-label {
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            line-height: 22px;
+            color: #A1A09F;
         }
         .browse-meal-tags {
             display: flex;
             gap: 10px;
+        }
+        .browse-filter-right {
+            display: flex;
+            align-items: flex-end;
+            gap: 16px;
         }
         .browse-meal-tag {
             height: 40px;
@@ -898,28 +915,33 @@
         <!-- Browse Recipes Filter (meal types + calories) -->
         <div class="browse-filter" id="browseFilter" style="display:none;">
             <div class="browse-filter-inner">
-                <div class="browse-meal-tags">
-                    <div class="browse-meal-tag"><img src="images/types of meal/salads.jpg" alt="" width="24" height="24"><span>Salads</span></div>
-                    <div class="browse-meal-tag"><img src="images/types of meal/main.jpg" alt="" width="24" height="24"><span>Main</span></div>
-                    <div class="browse-meal-tag"><img src="images/types of meal/soups.jpg" alt="" width="24" height="24"><span>Soups</span></div>
-                    <div class="browse-meal-tag"><img src="images/types of meal/side.jpg" alt="" width="24" height="24"><span>Side</span></div>
-                    <div class="browse-meal-tag"><img src="images/types of meal/sauces.jpg" alt="" width="24" height="24"><span>Sauces</span></div>
-                    <div class="browse-meal-tag"><img src="images/types of meal/snacks.jpg" alt="" width="24" height="24"><span>Snacks</span></div>
-                    <div class="browse-meal-tag"><img src="images/types of meal/desserts.jpg" alt="" width="24" height="24"><span>Desserts</span></div>
-                    <div class="browse-meal-tag"><img src="images/types of meal/other.jpg" alt="" width="24" height="24"><span>Other</span></div>
-                </div>
-                <div class="browse-calories-left">
-                    <span class="browse-calories-label">Up to calories</span>
-                    <div class="browse-calories-tags">
-                        <div class="browse-cal-tag">300 Kcal</div>
-                        <div class="browse-cal-tag">400 Kcal</div>
-                        <div class="browse-cal-tag">600 Kcal</div>
-                        <div class="browse-cal-tag">800 Kcal</div>
+                <div class="browse-filter-left">
+                    <span class="browse-filter-left-label">Type of meal</span>
+                    <div class="browse-meal-tags">
+                        <div class="browse-meal-tag"><img src="images/types of meal/salads.jpg" alt="" width="24" height="24"><span>Salads</span></div>
+                        <div class="browse-meal-tag"><img src="images/types of meal/main.jpg" alt="" width="24" height="24"><span>Main</span></div>
+                        <div class="browse-meal-tag"><img src="images/types of meal/soups.jpg" alt="" width="24" height="24"><span>Soups</span></div>
+                        <div class="browse-meal-tag"><img src="images/types of meal/side.jpg" alt="" width="24" height="24"><span>Side</span></div>
+                        <div class="browse-meal-tag"><img src="images/types of meal/sauces.jpg" alt="" width="24" height="24"><span>Sauces</span></div>
+                        <div class="browse-meal-tag"><img src="images/types of meal/snacks.jpg" alt="" width="24" height="24"><span>Snacks</span></div>
+                        <div class="browse-meal-tag"><img src="images/types of meal/desserts.jpg" alt="" width="24" height="24"><span>Desserts</span></div>
+                        <div class="browse-meal-tag"><img src="images/types of meal/other.jpg" alt="" width="24" height="24"><span>Other</span></div>
                     </div>
                 </div>
-                <a href="#" class="browse-filter-icon" aria-label="Filter">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h20"/><path d="M6 12h12"/><path d="M9 19h6"/></svg>
-                </a>
+                <div class="browse-filter-right">
+                    <div class="browse-calories-left">
+                        <span class="browse-calories-label">Up to calories</span>
+                        <div class="browse-calories-tags">
+                            <div class="browse-cal-tag">300 Kcal</div>
+                            <div class="browse-cal-tag">400 Kcal</div>
+                            <div class="browse-cal-tag">600 Kcal</div>
+                            <div class="browse-cal-tag">800 Kcal</div>
+                        </div>
+                    </div>
+                    <a href="#" class="browse-filter-icon" aria-label="Filter">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h20"/><path d="M6 12h12"/><path d="M9 19h6"/></svg>
+                    </a>
+                </div>
             </div>
         </div>
 
