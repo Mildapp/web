@@ -723,13 +723,13 @@
             gap: 16px;
         }
         .browse-meal-tag {
-            height: 40px;
-            padding: 0 11px 0 7px;
+            height: 60px;
+            padding: 0 14px 0 10px;
             background: white;
             border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
             cursor: pointer;
             transition: outline 0.2s;
             box-sizing: border-box;
@@ -768,14 +768,14 @@
             gap: 8px;
         }
         .browse-cal-tag {
-            height: 40px;
+            height: 60px;
             padding: 0 14px;
             border-radius: 10px;
             cursor: pointer;
             font-size: 16px;
             font-family: 'Inter', sans-serif;
             font-weight: 500;
-            line-height: 40px;
+            line-height: 60px;
             color: black;
             background: white;
             transition: background 0.2s;
@@ -783,6 +783,52 @@
         }
         .browse-cal-tag.active {
             background: #ECECE5;
+        }
+        .browse-icon-btn {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            cursor: pointer;
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+        }
+        .browse-icon-btn:hover .browse-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        .browse-tooltip {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background: black;
+            color: white;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            line-height: 18px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .browse-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: black;
         }
         .browse-filter-icon {
             display: flex;
@@ -918,28 +964,33 @@
                 <div class="browse-filter-left">
                     <span class="browse-filter-left-label">Type of meal</span>
                     <div class="browse-meal-tags">
-                        <div class="browse-meal-tag"><img src="images/types of meal/salads.jpg" alt="" width="24" height="24"><span>Salads</span></div>
-                        <div class="browse-meal-tag"><img src="images/types of meal/main.jpg" alt="" width="24" height="24"><span>Main</span></div>
-                        <div class="browse-meal-tag"><img src="images/types of meal/soups.jpg" alt="" width="24" height="24"><span>Soups</span></div>
-                        <div class="browse-meal-tag"><img src="images/types of meal/side.jpg" alt="" width="24" height="24"><span>Side</span></div>
-                        <div class="browse-meal-tag"><img src="images/types of meal/sauces.jpg" alt="" width="24" height="24"><span>Sauces</span></div>
-                        <div class="browse-meal-tag"><img src="images/types of meal/snacks.jpg" alt="" width="24" height="24"><span>Snacks</span></div>
-                        <div class="browse-meal-tag"><img src="images/types of meal/desserts.jpg" alt="" width="24" height="24"><span>Desserts</span></div>
-                        <div class="browse-meal-tag"><img src="images/types of meal/other.jpg" alt="" width="24" height="24"><span>Other</span></div>
+                        <div class="browse-meal-tag" data-type="salads"><img src="images/types of meal/salads.jpg" alt="" width="24" height="24"><span>Salads</span></div>
+                        <div class="browse-meal-tag" data-type="main"><img src="images/types of meal/main.jpg" alt="" width="24" height="24"><span>Main</span></div>
+                        <div class="browse-meal-tag" data-type="soups"><img src="images/types of meal/soups.jpg" alt="" width="24" height="24"><span>Soups</span></div>
+                        <div class="browse-meal-tag" data-type="side"><img src="images/types of meal/side.jpg" alt="" width="24" height="24"><span>Side</span></div>
+                        <div class="browse-meal-tag" data-type="sauces"><img src="images/types of meal/sauces.jpg" alt="" width="24" height="24"><span>Sauces</span></div>
+                        <div class="browse-meal-tag" data-type="snacks"><img src="images/types of meal/snacks.jpg" alt="" width="24" height="24"><span>Snacks</span></div>
+                        <div class="browse-meal-tag" data-type="desserts"><img src="images/types of meal/desserts.jpg" alt="" width="24" height="24"><span>Desserts</span></div>
+                        <div class="browse-meal-tag" data-type="other"><img src="images/types of meal/other.jpg" alt="" width="24" height="24"><span>Other</span></div>
                     </div>
                 </div>
                 <div class="browse-filter-right">
                     <div class="browse-calories-left">
                         <span class="browse-calories-label">Up to calories</span>
                         <div class="browse-calories-tags">
-                            <div class="browse-cal-tag">300 Kcal</div>
-                            <div class="browse-cal-tag">400 Kcal</div>
-                            <div class="browse-cal-tag">600 Kcal</div>
-                            <div class="browse-cal-tag">800 Kcal</div>
+                            <div class="browse-cal-tag" data-cal="300">300 Kcal</div>
+                            <div class="browse-cal-tag" data-cal="400">400 Kcal</div>
+                            <div class="browse-cal-tag" data-cal="600">600 Kcal</div>
+                            <div class="browse-cal-tag" data-cal="800">800 Kcal</div>
                         </div>
                     </div>
-                    <a href="#" class="browse-filter-icon" aria-label="Filter">
+                    <a href="#" class="browse-icon-btn" id="browseFavorites" aria-label="Favorites">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                        <span class="browse-tooltip">Show saved recipes</span>
+                    </a>
+                    <a href="#" class="browse-icon-btn browse-filter-icon-btn" aria-label="Filter">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h20"/><path d="M6 12h12"/><path d="M9 19h6"/></svg>
+                        <span class="browse-tooltip">Sort by time, allergies, diet & cuisine</span>
                     </a>
                 </div>
             </div>
@@ -1231,7 +1282,7 @@
             <!-- Row 1 -->
             <div class="recipes-row">
                 <!-- Card 1 -- with heat badge -->
-                <a href="recipe.html" class="rcard">
+                <a href="recipe.html" class="rcard" data-type="main">
                     <div class="rcard-top">
                         <div class="rcard-time">
                             <img src="images/Icons/timer.svg" alt="" class="rcard-time-icon-img">
@@ -1257,7 +1308,7 @@
                 </a>
 
                 <!-- Card 2 -->
-                <a href="recipe.html" class="rcard">
+                <a href="recipe.html" class="rcard" data-type="main">
                     <div class="rcard-top">
                         <div class="rcard-time">
                             <img src="images/Icons/timer.svg" alt="" class="rcard-time-icon-img">
@@ -1280,7 +1331,7 @@
                 </a>
 
                 <!-- Card 3 -- with multiple ingredients -->
-                <a href="recipe.html" class="rcard">
+                <a href="recipe.html" class="rcard" data-type="salads">
                     <div class="rcard-top">
                         <div class="rcard-time">
                             <img src="images/Icons/timer.svg" alt="" class="rcard-time-icon-img">
@@ -1308,7 +1359,7 @@
 
             <!-- Row 2 -->
             <div class="recipes-row">
-                <a href="recipe.html" class="rcard">
+                <a href="recipe.html" class="rcard" data-type="salads">
                     <div class="rcard-top">
                         <div class="rcard-time">
                             <img src="images/Icons/timer.svg" alt="" class="rcard-time-icon-img">
@@ -1327,7 +1378,7 @@
                         <span class="rcard-name">Tomato Avocado Pepper Salad</span>
                     </div>
                 </a>
-                <a href="recipe.html" class="rcard">
+                <a href="recipe.html" class="rcard" data-type="salads">
                     <div class="rcard-top">
                         <div class="rcard-time">
                             <img src="images/Icons/timer.svg" alt="" class="rcard-time-icon-img">
@@ -1346,7 +1397,7 @@
                         <span class="rcard-name">Tomato Avocado Pepper Salad</span>
                     </div>
                 </a>
-                <a href="recipe.html" class="rcard">
+                <a href="recipe.html" class="rcard" data-type="main">
                     <div class="rcard-top">
                         <div class="rcard-time">
                             <img src="images/Icons/timer.svg" alt="" class="rcard-time-icon-img">
@@ -1639,27 +1690,76 @@
                 });
             });
 
-            // Browse filter: meal tags toggle
+            // Browse filter: meal tags toggle + filter cards
             document.querySelectorAll('.browse-meal-tag').forEach(function(el) {
                 el.addEventListener('click', function() {
                     this.classList.toggle('active');
+                    filterBrowseCards();
                 });
             });
 
-            // Browse filter: calorie tags toggle
+            // Browse filter: calorie tags toggle (single select) + filter cards
             document.querySelectorAll('.browse-cal-tag').forEach(function(el) {
                 el.addEventListener('click', function() {
-                    this.classList.toggle('active');
+                    var wasActive = this.classList.contains('active');
+                    document.querySelectorAll('.browse-cal-tag').forEach(function(t) { t.classList.remove('active'); });
+                    if (!wasActive) this.classList.add('active');
+                    filterBrowseCards();
                 });
             });
 
+            // Filter cards by type and calories
+            function filterBrowseCards() {
+                var activeTypes = [];
+                document.querySelectorAll('.browse-meal-tag.active').forEach(function(t) {
+                    activeTypes.push(t.getAttribute('data-type'));
+                });
+                var activeCal = null;
+                var activeCalTag = document.querySelector('.browse-cal-tag.active');
+                if (activeCalTag) activeCal = parseInt(activeCalTag.getAttribute('data-cal'));
+
+                var cards = document.querySelectorAll('.rcard');
+                cards.forEach(function(card) {
+                    var meta = card.querySelector('.rcard-meta');
+                    if (!meta) return;
+                    var text = meta.textContent;
+                    var show = true;
+
+                    // Filter by calories
+                    if (activeCal) {
+                        var calMatch = text.match(/(\d+)\s*kcal/i);
+                        if (calMatch) {
+                            var cardCal = parseInt(calMatch[1]);
+                            if (cardCal > activeCal) show = false;
+                        }
+                    }
+
+                    // Filter by type (check card name for keyword match)
+                    if (activeTypes.length > 0) {
+                        var cardType = card.getAttribute('data-type') || '';
+                        if (cardType && activeTypes.indexOf(cardType) === -1) show = false;
+                    }
+
+                    card.style.display = show ? '' : 'none';
+                });
+            }
+
             // Browse filter icon opens filter modal
-            var browseFilterIcon = document.querySelector('.browse-filter-icon');
-            if (browseFilterIcon) {
-                browseFilterIcon.addEventListener('click', function(e) {
+            var browseFilterIconBtn = document.querySelector('.browse-filter-icon-btn');
+            if (browseFilterIconBtn) {
+                browseFilterIconBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     modal.classList.add('active');
                     document.body.style.overflow = 'hidden';
+                });
+            }
+
+            // Favorites icon (placeholder)
+            var favBtn = document.getElementById('browseFavorites');
+            if (favBtn) {
+                favBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.classList.toggle('active');
                 });
             }
         });
@@ -1678,27 +1778,11 @@
                 <p class="fm-subtitle">Sort the meals using the filters that suit you</p>
             </div>
 
-            <!-- Types of meal -->
-            <div class="fm-section">
-                <div class="fm-section-label"><span>Types of meal</span></div>
-                <div class="fm-meals">
-                    <div class="fm-meal-card"><div class="fm-meal-img"><img src="images/types of meal/salads.jpg" alt=""></div><span>Salads</span></div>
-                    <div class="fm-meal-card"><div class="fm-meal-img"><img src="images/types of meal/main.jpg" alt=""></div><span>Main</span></div>
-                    <div class="fm-meal-card"><div class="fm-meal-img"><img src="images/types of meal/soups.jpg" alt=""></div><span>Soups</span></div>
-                    <div class="fm-meal-card"><div class="fm-meal-img"><img src="images/types of meal/side.jpg" alt=""></div><span>Side</span></div>
-                    <div class="fm-meal-card"><div class="fm-meal-img"><img src="images/types of meal/sauces.jpg" alt=""></div><span>Sauces</span></div>
-                    <div class="fm-meal-card"><div class="fm-meal-img"><img src="images/types of meal/snacks.jpg" alt=""></div><span>Snacks</span></div>
-                    <div class="fm-meal-card"><div class="fm-meal-img"><img src="images/types of meal/desserts.jpg" alt=""></div><span>Desserts</span></div>
-                    <div class="fm-meal-card"><div class="fm-meal-img"><img src="images/types of meal/other.jpg" alt=""></div><span>Other</span></div>
-                </div>
-            </div>
-
             <!-- Sorted by -->
             <div class="fm-section">
                 <div class="fm-section-label"><span>Sorted by</span></div>
                 <div class="fm-sort-tabs">
                     <div class="fm-sort-tab active">Time</div>
-                    <div class="fm-sort-tab">Calories</div>
                     <div class="fm-sort-tab">Meal time</div>
                     <div class="fm-sort-tab">Cuisine</div>
                     <div class="fm-sort-tab">Main ingredients</div>
