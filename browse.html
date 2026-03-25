@@ -838,6 +838,21 @@
             flex-shrink: 0;
         }
 
+        /* ====== LAZY LOAD ====== */
+        .recipes-lazy-loader {
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+        .recipes-lazy-spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid #E0E0E0;
+            border-top-color: #999;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
         /* ====== STICKY FILTER BAR ====== */
         .browse-sticky-bar {
             position: fixed;
@@ -1079,7 +1094,7 @@
                         <div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="24" height="24"></div>
                     </div>
                     <div class="rcard-img-wrap">
-                        <img src="images/meal/meal.png" alt="Grilled Chicken" class="rcard-img">
+                        <img src="images/meal/meal.png" alt="Grilled Chicken" class="rcard-img" loading="lazy">
                         <div class="rcard-heat-badge">
                             <img src="images/Icons/heat.svg" alt="Hot" width="24" height="24">
                         </div>
@@ -1103,7 +1118,7 @@
                         <div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="24" height="24"></div>
                     </div>
                     <div class="rcard-img-wrap">
-                        <img src="images/meal/meal.png" alt="Penne with Pesto" class="rcard-img">
+                        <img src="images/meal/meal.png" alt="Penne with Pesto" class="rcard-img" loading="lazy">
                     </div>
                     <div class="rcard-info">
                         <span class="rcard-meta">400 kcal  •  Vegetarian  •  Easy</span>
@@ -1127,7 +1142,7 @@
                         <div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="24" height="24"></div>
                     </div>
                     <div class="rcard-img-wrap">
-                        <img src="images/meal/meal.png" alt="Salad" class="rcard-img">
+                        <img src="images/meal/meal.png" alt="Salad" class="rcard-img" loading="lazy">
                     </div>
                     <div class="rcard-info">
                         <span class="rcard-meta">150 kcal  •  Vegetarian  •  Easy</span>
@@ -1150,7 +1165,7 @@
                         <div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="24" height="24"></div>
                     </div>
                     <div class="rcard-img-wrap">
-                        <img src="images/meal/meal.png" alt="Salad" class="rcard-img">
+                        <img src="images/meal/meal.png" alt="Salad" class="rcard-img" loading="lazy">
                     </div>
                     <div class="rcard-info">
                         <span class="rcard-meta">150 kcal  •  Vegetarian  •  Easy</span>
@@ -1169,7 +1184,7 @@
                         <div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="24" height="24"></div>
                     </div>
                     <div class="rcard-img-wrap">
-                        <img src="images/meal/meal.png" alt="Salad" class="rcard-img">
+                        <img src="images/meal/meal.png" alt="Salad" class="rcard-img" loading="lazy">
                     </div>
                     <div class="rcard-info">
                         <span class="rcard-meta">150 kcal  •  Vegetarian  •  Easy</span>
@@ -1188,13 +1203,83 @@
                         <div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="24" height="24"></div>
                     </div>
                     <div class="rcard-img-wrap">
-                        <img src="images/meal/meal.png" alt="Penne" class="rcard-img">
+                        <img src="images/meal/meal.png" alt="Penne" class="rcard-img" loading="lazy">
                     </div>
                     <div class="rcard-info">
                         <span class="rcard-meta">400 kcal  •  Vegetarian  •  Easy</span>
                         <span class="rcard-name">Wholemeal Penne with Pesto<br>and Spinach</span>
                     </div>
                 </a>
+            </div>
+
+            <!-- Featured row -->
+            <div class="recipes-row-featured">
+                <a href="recipe.html" class="rcard rcard-big" data-type="main">
+                    <div class="rcard-top">
+                        <div class="rcard-time">
+                            <img src="images/Icons/timer.svg" alt="" class="rcard-time-icon-img">
+                            <span class="rcard-time-text">26 min</span>
+                        </div>
+                        <div class="rcard-ingredients">
+                            <div class="rcard-ingredient-thumb"><img src="images/meal/Olive oil.jpg" alt=""></div>
+                        </div>
+                        <div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="24" height="24"></div>
+                    </div>
+                    <div class="rcard-img-wrap rcard-img-wrap-big">
+                        <img src="images/meal/meal.png" alt="Penne" class="rcard-img rcard-img-big" loading="lazy">
+                    </div>
+                    <div class="rcard-info">
+                        <span class="rcard-meta">400 kcal  •  Vegetarian  •  Easy</span>
+                        <span class="rcard-name rcard-name-big">Wholemeal Penne with Pesto and Spinach</span>
+                    </div>
+                    <p class="rcard-description">A succulent and herb-infused chicken breast poached to perfection with fresh vegetables and herbs. This versatile preparation is ideal for enhancing your salads, enriching soups, or creating delicious sandwiches</p>
+                </a>
+                <div class="recipes-row-stack">
+                    <a href="recipe.html" class="rcard rcard-stack" data-type="salads">
+                        <div class="rcard-top">
+                            <div class="rcard-time">
+                                <img src="images/Icons/timer.svg" alt="" class="rcard-time-icon-img">
+                                <span class="rcard-time-text">26 min</span>
+                            </div>
+                            <div class="rcard-ingredients">
+                                <div class="rcard-ingredient-thumb"><img src="images/meal/whole-wheat bread_1.jpg" alt=""></div>
+                                <div class="rcard-ingredient-thumb"><img src="images/meal/sea salt flakes (1).jpg" alt=""></div>
+                                <div class="rcard-ingredient-thumb"><img src="images/meal/Olive oil.jpg" alt=""></div>
+                                <div class="rcard-ingredient-more">+2</div>
+                            </div>
+                            <div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="24" height="24"></div>
+                        </div>
+                        <div class="rcard-img-wrap">
+                            <img src="images/meal/meal.png" alt="Salad" class="rcard-img" loading="lazy">
+                        </div>
+                        <div class="rcard-info">
+                            <span class="rcard-meta">150 kcal  •  Vegetarian  •  Easy</span>
+                            <span class="rcard-name">Tomato Avocado Pepper Salad</span>
+                        </div>
+                    </a>
+                    <a href="recipe.html" class="rcard rcard-stack" data-type="salads">
+                        <div class="rcard-top">
+                            <div class="rcard-time">
+                                <img src="images/Icons/timer.svg" alt="" class="rcard-time-icon-img">
+                                <span class="rcard-time-text">26 min</span>
+                            </div>
+                            <div class="rcard-ingredients">
+                                <div class="rcard-ingredient-thumb"><img src="images/meal/whole-wheat bread_1.jpg" alt=""></div>
+                                <div class="rcard-ingredient-thumb"><img src="images/meal/sea salt flakes (1).jpg" alt=""></div>
+                                <div class="rcard-ingredient-thumb"><img src="images/meal/Olive oil.jpg" alt=""></div>
+                                <div class="rcard-ingredient-more">+2</div>
+                            </div>
+                            <div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="24" height="24"></div>
+                        </div>
+                        <div class="rcard-img-wrap">
+                            <img src="images/meal/meal.png" alt="Salad" class="rcard-img" loading="lazy">
+                        </div>
+                        <div class="rcard-info">
+                            <span class="rcard-meta">150 kcal  •  Vegetarian  •  Easy</span>
+                            <span class="rcard-name">Tomato Avocado Pepper Salad</span>
+                        </div>
+                    </a>
+                </div>
             </div>
 
             <!-- Row 3 -->
@@ -1211,7 +1296,7 @@
                         <div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="24" height="24"></div>
                     </div>
                     <div class="rcard-img-wrap">
-                        <img src="images/meal/meal.png" alt="Grilled Chicken" class="rcard-img">
+                        <img src="images/meal/meal.png" alt="Grilled Chicken" class="rcard-img" loading="lazy">
                         <div class="rcard-heat-badge">
                             <img src="images/Icons/heat.svg" alt="Hot" width="24" height="24">
                         </div>
@@ -1233,7 +1318,7 @@
                         <div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="24" height="24"></div>
                     </div>
                     <div class="rcard-img-wrap">
-                        <img src="images/meal/meal.png" alt="Salad" class="rcard-img">
+                        <img src="images/meal/meal.png" alt="Salad" class="rcard-img" loading="lazy">
                     </div>
                     <div class="rcard-info">
                         <span class="rcard-meta">150 kcal  •  Vegetarian  •  Easy</span>
@@ -1254,7 +1339,7 @@
                         <div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="24" height="24"></div>
                     </div>
                     <div class="rcard-img-wrap">
-                        <img src="images/meal/meal.png" alt="Penne" class="rcard-img">
+                        <img src="images/meal/meal.png" alt="Penne" class="rcard-img" loading="lazy">
                     </div>
                     <div class="rcard-info">
                         <span class="rcard-meta">400 kcal  •  Vegetarian  •  Easy</span>
@@ -1277,7 +1362,7 @@
                         <div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="24" height="24"></div>
                     </div>
                     <div class="rcard-img-wrap">
-                        <img src="images/meal/meal.png" alt="Salad" class="rcard-img">
+                        <img src="images/meal/meal.png" alt="Salad" class="rcard-img" loading="lazy">
                     </div>
                     <div class="rcard-info">
                         <span class="rcard-meta">150 kcal  •  Vegetarian  •  Easy</span>
@@ -1296,7 +1381,7 @@
                         <div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="24" height="24"></div>
                     </div>
                     <div class="rcard-img-wrap">
-                        <img src="images/meal/meal.png" alt="Penne" class="rcard-img">
+                        <img src="images/meal/meal.png" alt="Penne" class="rcard-img" loading="lazy">
                     </div>
                     <div class="rcard-info">
                         <span class="rcard-meta">400 kcal  •  Vegetarian  •  Easy</span>
@@ -1316,7 +1401,7 @@
                         <div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="24" height="24"></div>
                     </div>
                     <div class="rcard-img-wrap">
-                        <img src="images/meal/meal.png" alt="Soup" class="rcard-img">
+                        <img src="images/meal/meal.png" alt="Soup" class="rcard-img" loading="lazy">
                     </div>
                     <div class="rcard-info">
                         <span class="rcard-meta">280 kcal  •  Easy</span>
@@ -1324,6 +1409,11 @@
                     </div>
                 </a>
             </div>
+        </div>
+
+        <!-- Lazy load spinner -->
+        <div class="recipes-lazy-loader" id="lazyLoader">
+            <div class="recipes-lazy-spinner"></div>
         </div>
 
     <!-- Sticky filter bar -->
