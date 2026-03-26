@@ -138,26 +138,26 @@
             flex-direction: row-reverse;
         }
         .rcard-big {
-            width: calc(366px * 3 + 24px * 2) !important;
-            height: 784px !important;
-            flex: 0 0 calc(366px * 3 + 24px * 2) !important;
+            width: calc(366px * 2 + 24px) !important;
+            height: 728px !important;
+            flex: 0 0 calc(366px * 2 + 24px) !important;
             padding: 32px 32px 40px !important;
             overflow: hidden;
         }
         .rcard-img-wrap-big {
-            width: 440px !important;
-            height: 440px !important;
+            width: 380px !important;
+            height: 380px !important;
             overflow: hidden !important;
         }
         .rcard-img-big {
-            width: 440px !important;
-            height: 440px !important;
+            width: 380px !important;
+            height: 380px !important;
         }
         .rcard-name-big {
-            font-size: 28px !important;
+            font-size: 24px !important;
             font-family: 'Druk Wide', sans-serif !important;
             font-weight: 500 !important;
-            line-height: 34px !important;
+            line-height: 30px !important;
         }
         .rcard-description {
             text-align: center;
@@ -167,24 +167,24 @@
             font-weight: 400;
             line-height: 24px;
             padding: 0 40px;
-            margin-top: 32px;
+            margin-top: 24px;
         }
         .recipes-row-stack {
             display: flex;
             flex-direction: column;
             gap: 24px;
-            flex: 0 0 366px;
+            flex: 0 0 calc(366px * 2 + 24px);
         }
         .rcard-stack {
-            width: 366px !important;
-            height: 380px !important;
+            width: 100% !important;
+            height: 352px !important;
             flex: 0 0 auto !important;
         }
 
         /* Recipe card */
         .rcard {
             width: 366px;
-            height: 380px;
+            height: 352px;
             flex: 0 0 366px;
             background: white;
             border-radius: 20px;
@@ -303,15 +303,15 @@
             position: relative;
             align-self: center;
             margin-top: 0;
-            width: 220px;
-            height: 220px;
+            width: 200px;
+            height: 200px;
             flex-shrink: 0;
             overflow: visible;
             border-radius: 50%;
         }
 
         .rcard-img {
-            width: 220px; height: 220px;
+            width: 200px; height: 200px;
             object-fit: cover;
             display: block;
         }
@@ -477,8 +477,9 @@
 
         .recipes-section-tabs {
             display: flex;
-            align-items: center;
-            gap: 50px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
         }
         .recipes-tab {
             cursor: pointer;
@@ -954,62 +955,82 @@
             .browse-filter { width: auto; max-width: none; padding: 0 40px; }
             .browse-filter-inner { flex-wrap: wrap; }
             .rcard { width: calc((100% - 72px) / 4); flex: 0 0 calc((100% - 72px) / 4); }
-            .rcard-stack { width: calc((100% - 72px) / 4) !important; flex: 0 0 auto !important; }
-            .recipes-row-stack { flex: 0 0 calc((100% - 72px) / 4); }
+            .rcard-stack { width: 100% !important; }
+            .recipes-row-stack { flex: 0 0 calc((100% - 24px) / 2); }
+            .rcard-big { width: calc((100% - 24px) / 2) !important; flex: 0 0 calc((100% - 24px) / 2) !important; }
         }
 
-        @media (max-width: 1300px) {
-            .rcard { width: calc((100% - 48px) / 3); flex: 0 0 calc((100% - 48px) / 3); }
-            .rcard-stack { width: calc((100% - 48px) / 3) !important; }
-            .recipes-row-stack { flex: 0 0 calc((100% - 48px) / 3); }
-            .rcard-big { width: calc((100% - 48px) / 3 * 2 + 24px) !important; flex: 0 0 calc((100% - 48px) / 3 * 2 + 24px) !important; }
-            .ingredients-filter-card { grid-template-columns: repeat(3, 1fr); }
-            .ing-hidden-groups { grid-template-columns: repeat(3, 1fr); }
+        @media (max-width: 1280px) {
+            .recipes-grid-wrap { padding: 0 40px; }
+            .recipes-row { flex-wrap: wrap; }
+            .rcard { width: calc((100% - 24px) / 2); flex: 0 0 calc((100% - 24px) / 2); height: 352px; }
+            .rcard-stack { width: 100% !important; height: 352px !important; }
+            .recipes-row-stack { flex: 0 0 calc((100% - 24px) / 2); }
+            .rcard-big { width: calc((100% - 24px) / 2) !important; flex: 0 0 calc((100% - 24px) / 2) !important; height: 728px !important; }
+            .rcard-img-wrap-big { width: 300px !important; height: 300px !important; }
+            .rcard-img-big { width: 300px !important; height: 300px !important; }
+            .recipes-row-featured { flex-wrap: wrap; }
+            .recipes-row-featured.reversed { flex-wrap: wrap; }
+            .ingredients-filter-card { grid-template-columns: repeat(2, 1fr); }
+            .ing-hidden-groups { grid-template-columns: repeat(2, 1fr); }
+            .ing-group-wide { grid-column: span 2; }
+            .browse-filter-inner { flex-direction: column; gap: 20px; }
+            .browse-meal-tags { flex-wrap: wrap; }
         }
 
-        @media (max-width: 1100px) {
+        @media (max-width: 1024px) {
             .recipes-grid-wrap { padding: 0 40px; }
             .recipes-header { padding: 0 40px; }
             .ingredients-filter { padding: 0 40px; }
             .ing-toolbar { padding: 0 40px; }
-            .ingredients-filter-card { grid-template-columns: repeat(2, 1fr); }
-            .ing-hidden-groups { grid-template-columns: repeat(2, 1fr); }
-            .ing-group-wide { grid-column: span 2; }
             .browse-filter { padding: 0 40px; }
-            .browse-filter-inner { flex-wrap: wrap; }
+            .rcard { width: calc((100% - 24px) / 2); flex: 0 0 calc((100% - 24px) / 2); height: 352px; }
         }
 
-        @media (max-width: 768px) {
-            .recipes-toolbar-mobile { display: flex; margin-top: 40px; padding: 0; justify-content: space-between; align-items: center; }
+        @media (max-width: 834px) {
             .recipes-shell { padding: 10px 20px 0; }
-            .recipes-header { margin-top: 40px; padding: 0; text-align: center; flex-direction: column; }
-            .recipes-title { font-size: 28px; line-height: 34px; text-align: center; }
-            .recipes-filter-btn { display: none; }
             .recipes-grid-wrap { padding: 0; margin-top: 32px; gap: 16px; }
-            .recipes-row { flex-direction: column; gap: 16px; }
-            .rcard { width: 100%; flex: 0 0 auto; height: 381px; padding: 24px 24px 20px; }
-            .rcard-name { font-size: 16px; line-height: 21px; }
-            .rcard-meta { font-size: 14px; }
-            .rcard-time-text { font-size: 14px; }
-            .ing-toolbar { padding: 0; height: 60px; }
-            .ingredients-filter { padding: 0; margin-top: 24px; }
+            .recipes-row { gap: 16px; }
+            .rcard { width: calc((100% - 16px) / 2); flex: 0 0 calc((100% - 16px) / 2); height: 352px; padding: 20px 20px 18px; }
+            .rcard-big { width: calc((100% - 16px) / 2) !important; height: 720px !important; padding: 24px 24px 30px !important; }
+            .rcard-img-wrap-big { width: 260px !important; height: 260px !important; }
+            .rcard-img-big { width: 260px !important; height: 260px !important; }
+            .rcard-name-big { font-size: 20px !important; line-height: 26px !important; }
+            .recipes-row-stack { flex: 0 0 calc((100% - 16px) / 2); gap: 16px; }
+            .rcard-stack { height: 352px !important; }
+            .recipes-row-featured { gap: 16px; }
+            .recipes-row-featured.reversed { gap: 16px; }
+            .recipes-header { width: auto; max-width: none; padding: 0; margin-top: 40px; }
+            .recipes-section-header { max-width: 100%; margin-top: 40px; }
+            .recipes-section-title { font-size: 24px; line-height: 30px; }
+            .browse-filter { max-width: 100%; padding: 0; margin-top: 24px; }
+            .browse-filter-inner { flex-direction: column; gap: 16px; }
+            .browse-meal-tags { flex-wrap: wrap; }
+            .browse-calories-tags { flex-wrap: wrap; }
+            .ingredients-filter { max-width: 100%; padding: 0; margin-top: 24px; }
             .ingredients-filter-card { grid-template-columns: 1fr; padding: 32px 24px; border-radius: 24px; gap: 30px; }
             .ing-group-wide { grid-column: span 1; }
             .ing-group-wide .ing-tags { columns: 1; }
             .ing-hidden-groups { grid-template-columns: 1fr; gap: 30px; }
+            .ing-toolbar { padding: 0; height: 60px; }
+        }
+
+        @media (max-width: 768px) {
+            .recipes-toolbar-mobile { display: flex; margin-top: 40px; padding: 0; justify-content: space-between; align-items: center; }
+            .recipes-shell { padding: 10px 16px 0; }
+            .rcard { width: calc((100% - 16px) / 2); flex: 0 0 calc((100% - 16px) / 2); height: 352px; padding: 16px 16px 14px; }
+            .rcard-img-wrap { width: 170px !important; height: 170px !important; }
+            .rcard-img { width: 170px !important; height: 170px !important; }
+            .rcard-name { font-size: 14px; line-height: 18px; }
+            .rcard-meta { font-size: 13px; }
+            .rcard-time-text { font-size: 13px; }
+            .rcard-filter-btn { display: none; }
             .recipes-hero-block { max-width: 100%; margin-top: 24px; }
             .recipes-hero-card { flex-direction: column; padding: 24px; gap: 32px; border-radius: 24px; }
             .recipes-hero-left { flex: none; width: 100%; }
             .recipes-hero-img { height: 250px; }
             .recipes-hero-title { font-size: 28px; line-height: 34px; }
             .recipes-hero-right { gap: 20px; }
-            .recipes-section-header { max-width: 100%; margin-top: 40px; }
-            .recipes-section-title { font-size: 24px; line-height: 30px; }
-            .browse-filter { max-width: 100%; padding: 0; margin-top: 24px; }
-            .browse-filter-inner { flex-direction: column; gap: 20px; }
-            .browse-meal-tags { flex-wrap: wrap; justify-content: center; }
-            .browse-calories { flex-wrap: wrap; justify-content: center; }
-            .browse-calories-tags { flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
