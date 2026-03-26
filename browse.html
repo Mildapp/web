@@ -1068,6 +1068,31 @@
             </div>
         </div>
 
+        <!-- Hero: Cook from what you already have -->
+        <div class="recipes-hero-block">
+            <div class="recipes-hero-card">
+                <div class="recipes-hero-left">
+                    <div class="recipes-hero-img-wrap">
+                        <img src="images/meal/meal.png" alt="Dish" class="recipes-hero-img">
+                    </div>
+                    <span class="recipes-hero-meta">30 min  •  290 kcal  •  Easy</span>
+                    <span class="recipes-hero-name">Wholemeal Penne with Pesto and Spinach</span>
+                </div>
+                <div class="recipes-hero-right">
+                    <h2 class="recipes-hero-title">Cook from what you already have!</h2>
+                    <div class="recipes-hero-content">
+                        <div class="recipes-hero-tags">
+                            <div class="ing-tag"><img src="images/ingridients/Chicken.jpg" alt=""><span>Chicken</span></div>
+                            <div class="ing-tag"><img src="images/ingridients/Beef.jpg" alt=""><span>Beef</span></div>
+                            <div class="ing-tag"><img src="images/ingridients/Pork.jpg" alt=""><span>Pork</span></div>
+                            <div class="ing-tag"><img src="images/ingridients/Other.jpg" alt=""><span>Fish</span></div>
+                        </div>
+                        <p class="recipes-hero-text">Take a photo of your ingredients, add them by voice, or type them in. Mild finds matching recipes from what you already have, shows missing ingredients, and guides you step by step with built-in timers. Use smart filters for time, calories, or cuisine, save favorite recipes, and quickly access recent ingredients — all in one place.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Section tabs: Find by Ingredients / Browse Recipes -->
         <div class="recipes-section-header" style="margin-top:120px;">
             <div class="recipes-section-tabs">
@@ -1433,26 +1458,26 @@
             // Temporary simulation — remove when API is connected
             function simulateApiResponse(body) {
                 var demoRecipes = [
-                    { _id: '1', name: 'Grilled Chicken Breasts with Pesto and Cherry Tomatoes', calories: 478, difficulty: 3, est_total: [20, 26], type_id: 'main', media: [], tags: [] },
-                    { _id: '2', name: 'Wholemeal Penne with Pesto and Spinach', calories: 400, difficulty: 1, est_total: [25, 30], type_id: 'main', media: [], tags: ['vegetarian'] },
-                    { _id: '3', name: 'Tomato Avocado Pepper Salad', calories: 150, difficulty: 1, est_total: [10, 15], type_id: 'salads', media: [], tags: ['vegetarian'] },
-                    { _id: '4', name: 'Creamy Pumpkin Soup with Croutons', calories: 280, difficulty: 2, est_total: [35, 45], type_id: 'soups', media: [], tags: [] },
-                    { _id: '5', name: 'Roasted Sweet Potato Wedges', calories: 190, difficulty: 1, est_total: [15, 18], type_id: 'side', media: [], tags: ['vegan'] },
-                    { _id: '6', name: 'Hummus with Veggie Sticks', calories: 180, difficulty: 1, est_total: [10, 12], type_id: 'snacks', media: [], tags: ['vegetarian'] },
-                    { _id: '7', name: 'Berry Oat Crumble with Yogurt', calories: 320, difficulty: 2, est_total: [30, 40], type_id: 'desserts', media: [], tags: [] },
-                    { _id: '8', name: 'Classic Basil Pesto Sauce', calories: 120, difficulty: 1, est_total: [8, 10], type_id: 'sauces', media: [], tags: ['vegan'] },
-                    { _id: '9', name: 'Pan-Seared Salmon with Asparagus', calories: 520, difficulty: 3, est_total: [25, 35], type_id: 'main', media: [], tags: [] },
-                    { _id: '10', name: 'Fresh Cucumber Dill Salad', calories: 130, difficulty: 1, est_total: [5, 8], type_id: 'salads', media: [], tags: ['vegan'] },
-                    { _id: '11', name: 'Beef Stir-Fry with Bell Peppers', calories: 610, difficulty: 3, est_total: [40, 50], type_id: 'main', media: [], tags: [] },
-                    { _id: '12', name: 'Roasted Tomato Basil Soup', calories: 310, difficulty: 2, est_total: [40, 55], type_id: 'soups', media: [], tags: ['vegetarian'] },
-                    { _id: '13', name: 'Chocolate Avocado Mousse', calories: 280, difficulty: 1, est_total: [15, 25], type_id: 'desserts', media: [], tags: [] },
-                    { _id: '14', name: 'Garlic Roasted Broccoli', calories: 160, difficulty: 1, est_total: [15, 20], type_id: 'side', media: [], tags: ['vegan'] },
-                    { _id: '15', name: 'Lemon Herb Roasted Chicken Thighs', calories: 480, difficulty: 3, est_total: [35, 40], type_id: 'main', media: [], tags: [] },
-                    { _id: '16', name: 'Mediterranean Quinoa Bowl', calories: 170, difficulty: 1, est_total: [8, 10], type_id: 'salads', media: [], tags: ['vegetarian'] },
-                    { _id: '17', name: 'Bruschetta with Fresh Tomatoes', calories: 200, difficulty: 1, est_total: [10, 15], type_id: 'snacks', media: [], tags: ['vegetarian'] },
-                    { _id: '18', name: 'Slow-Cooked Lamb with Rosemary', calories: 550, difficulty: 4, est_total: [50, 60], type_id: 'main', media: [], tags: [] },
-                    { _id: '19', name: 'Coconut Lentil Curry Soup', calories: 240, difficulty: 1, est_total: [25, 35], type_id: 'soups', media: [], tags: ['vegan'] },
-                    { _id: '20', name: 'Baked Cinnamon Apple Slices', calories: 350, difficulty: 2, est_total: [25, 30], type_id: 'desserts', media: [], tags: [] },
+                    { _id: '1', name: 'Grilled Chicken Breasts with Pesto and Cherry Tomatoes', calories: 478, difficulty: 3, est_total: [20, 26], type_id: 'main', media: [], tags: [], description: 'A succulent and herb-infused chicken breast grilled to perfection with fresh pesto and sweet cherry tomatoes. Perfect for a hearty dinner.' },
+                    { _id: '2', name: 'Wholemeal Penne with Pesto and Spinach', calories: 400, difficulty: 1, est_total: [25, 30], type_id: 'main', media: [], tags: ['vegetarian'], description: 'A wholesome pasta dish with fresh basil pesto and tender spinach leaves. Quick, nutritious, and full of flavor.' },
+                    { _id: '3', name: 'Tomato Avocado Pepper Salad', calories: 150, difficulty: 1, est_total: [10, 15], type_id: 'salads', media: [], tags: ['vegetarian'], description: 'A vibrant mix of ripe tomatoes, creamy avocado, and crunchy bell peppers, tossed with olive oil and fresh herbs.' },
+                    { _id: '4', name: 'Creamy Pumpkin Soup with Croutons', calories: 280, difficulty: 2, est_total: [35, 45], type_id: 'soups', media: [], tags: [], description: 'Rich and velvety pumpkin soup topped with golden croutons. The ultimate comfort food for chilly evenings.' },
+                    { _id: '5', name: 'Roasted Sweet Potato Wedges', calories: 190, difficulty: 1, est_total: [15, 18], type_id: 'side', media: [], tags: ['vegan'], description: '' },
+                    { _id: '6', name: 'Hummus with Veggie Sticks', calories: 180, difficulty: 1, est_total: [10, 12], type_id: 'snacks', media: [], tags: ['vegetarian'], description: '' },
+                    { _id: '7', name: 'Berry Oat Crumble with Yogurt', calories: 320, difficulty: 2, est_total: [30, 40], type_id: 'desserts', media: [], tags: [], description: '' },
+                    { _id: '8', name: 'Classic Basil Pesto Sauce', calories: 120, difficulty: 1, est_total: [8, 10], type_id: 'sauces', media: [], tags: ['vegan'], description: '' },
+                    { _id: '9', name: 'Pan-Seared Salmon with Asparagus', calories: 520, difficulty: 3, est_total: [25, 35], type_id: 'main', media: [], tags: [], description: 'Perfectly seared salmon fillet served with tender asparagus spears. A restaurant-quality dish ready in under 35 minutes.' },
+                    { _id: '10', name: 'Fresh Cucumber Dill Salad', calories: 130, difficulty: 1, est_total: [5, 8], type_id: 'salads', media: [], tags: ['vegan'], description: '' },
+                    { _id: '11', name: 'Beef Stir-Fry with Bell Peppers', calories: 610, difficulty: 3, est_total: [40, 50], type_id: 'main', media: [], tags: [], description: 'A sizzling stir-fry with tender beef strips and colorful bell peppers in a savory sauce. Fast and satisfying.' },
+                    { _id: '12', name: 'Roasted Tomato Basil Soup', calories: 310, difficulty: 2, est_total: [40, 55], type_id: 'soups', media: [], tags: ['vegetarian'], description: '' },
+                    { _id: '13', name: 'Chocolate Avocado Mousse', calories: 280, difficulty: 1, est_total: [15, 25], type_id: 'desserts', media: [], tags: [], description: '' },
+                    { _id: '14', name: 'Garlic Roasted Broccoli', calories: 160, difficulty: 1, est_total: [15, 20], type_id: 'side', media: [], tags: ['vegan'], description: '' },
+                    { _id: '15', name: 'Lemon Herb Roasted Chicken Thighs', calories: 480, difficulty: 3, est_total: [35, 40], type_id: 'main', media: [], tags: [], description: '' },
+                    { _id: '16', name: 'Mediterranean Quinoa Bowl', calories: 170, difficulty: 1, est_total: [8, 10], type_id: 'salads', media: [], tags: ['vegetarian'], description: '' },
+                    { _id: '17', name: 'Bruschetta with Fresh Tomatoes', calories: 200, difficulty: 1, est_total: [10, 15], type_id: 'snacks', media: [], tags: ['vegetarian'], description: '' },
+                    { _id: '18', name: 'Slow-Cooked Lamb with Rosemary', calories: 550, difficulty: 4, est_total: [50, 60], type_id: 'main', media: [], tags: [], description: 'Tender slow-cooked lamb infused with rosemary and garlic. Fall-off-the-bone perfection for special occasions.' },
+                    { _id: '19', name: 'Coconut Lentil Curry Soup', calories: 240, difficulty: 1, est_total: [25, 35], type_id: 'soups', media: [], tags: ['vegan'], description: '' },
+                    { _id: '20', name: 'Baked Cinnamon Apple Slices', calories: 350, difficulty: 2, est_total: [25, 30], type_id: 'desserts', media: [], tags: [], description: '' },
                 ];
 
                 // Apply filters
@@ -1551,6 +1576,8 @@
                 var imgUrl = getRecipeImage(recipe);
                 var time = formatTime(recipe.est_total);
                 var meta = buildMeta(recipe);
+                // Description from recipe — fallback to empty
+                var desc = recipe.description || '';
 
                 return '<a href="recipe.html?id=' + recipe._id + '" class="rcard rcard-big" data-id="' + recipe._id + '" data-type="' + typeTag + '">' +
                     '<div class="rcard-top">' +
@@ -1559,6 +1586,29 @@
                     '</div>' +
                     '<div class="rcard-img-wrap rcard-img-wrap-big"><img src="' + imgUrl + '" alt="' + recipe.name + '" class="rcard-img rcard-img-big" loading="lazy"></div>' +
                     '<div class="rcard-info"><span class="rcard-meta">' + meta + '</span><span class="rcard-name rcard-name-big">' + recipe.name + '</span></div>' +
+                    (desc ? '<p class="rcard-description">' + desc + '</p>' : '') +
+                '</a>';
+            }
+
+            /**
+             * Build a stack card (small card inside featured row)
+             */
+            function createStackCardHTML(recipe) {
+                var typeTag = typeIdToTag[recipe.type_id] || recipe.type_id || '';
+                var imgUrl = getRecipeImage(recipe);
+                var time = formatTime(recipe.est_total);
+                var meta = buildMeta(recipe);
+                var heatBadge = (recipe.difficulty >= 3)
+                    ? '<div class="rcard-heat-badge"><img src="images/Icons/heat.svg" alt="Hot" width="24" height="24"></div>'
+                    : '';
+
+                return '<a href="recipe.html?id=' + recipe._id + '" class="rcard rcard-stack" data-id="' + recipe._id + '" data-type="' + typeTag + '">' +
+                    '<div class="rcard-top">' +
+                        '<div class="rcard-time"><img src="images/Icons/timer.svg" alt="" class="rcard-time-icon-img"><span class="rcard-time-text">' + time + '</span></div>' +
+                        '<div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="20" height="20"></div>' +
+                    '</div>' +
+                    '<div class="rcard-img-wrap"><img src="' + imgUrl + '" alt="' + recipe.name + '" class="rcard-img" loading="lazy">' + heatBadge + '</div>' +
+                    '<div class="rcard-info"><span class="rcard-meta">' + meta + '</span><span class="rcard-name">' + recipe.name + '</span></div>' +
                 '</a>';
             }
 
@@ -1590,7 +1640,7 @@
                 row.innerHTML = createBigCardHTML(bigRecipe);
                 var stack = document.createElement('div');
                 stack.className = 'recipes-row-stack';
-                stackRecipes.forEach(function(r) { stack.innerHTML += createCardHTML(r); });
+                stackRecipes.forEach(function(r) { stack.innerHTML += createStackCardHTML(r); });
                 row.appendChild(stack);
                 return row;
             }
