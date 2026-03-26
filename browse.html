@@ -1027,13 +1027,13 @@
             .recipes-row { flex-direction: column; gap: 16px; }
             .recipes-row-featured { flex-direction: column; gap: 16px; }
             .recipes-row-featured.reversed { flex-direction: column; }
-            .rcard { width: 100% !important; flex: 0 0 auto !important; height: auto !important; min-height: 390px; padding: 24px 24px 22px; }
-            .rcard-big { width: 100% !important; flex: 0 0 auto !important; height: auto !important; min-height: 390px; padding: 24px 24px 22px !important; }
+            .rcard { width: 100% !important; flex: 0 0 auto !important; height: 346px !important; padding: 24px 24px 22px; }
+            .rcard-big { width: 100% !important; flex: 0 0 auto !important; height: 346px !important; padding: 24px 24px 22px !important; }
             .rcard-img-wrap-big { width: 220px !important; height: 220px !important; }
             .rcard-img-big { width: 220px !important; height: 220px !important; }
             .rcard-name-big { font-size: 16px !important; line-height: 21px !important; font-family: 'Inter', sans-serif !important; }
             .rcard-description { display: none; }
-            .rcard-stack { width: 100% !important; height: auto !important; min-height: 390px; }
+            .rcard-stack { width: 100% !important; height: 346px !important; }
             .recipes-row-stack { flex: 0 0 auto !important; width: 100%; }
             .rcard-img-wrap { width: 220px !important; height: 220px !important; margin-top: -10px; }
             .rcard-img { width: 220px !important; height: 220px !important; }
@@ -1042,6 +1042,21 @@
             .rcard-time-text { font-size: 14px; }
             .rcard-filter-btn { display: none; }
             .recipes-hero-block { display: none; }
+
+            /* Calories tags inline like meal tags */
+            .browse-filter-right { margin-left: 0; }
+            .browse-calories-tags { flex-direction: row; flex-wrap: wrap; }
+            .browse-cal-tag { height: 36px; line-height: 36px; }
+
+            /* Meal tags height 36 */
+            .browse-meal-tag { height: 36px; }
+
+            /* Move bookmark + filter icons to top right */
+            .browse-filter-inner { flex-direction: column; gap: 16px; position: relative; }
+            .browse-filter-right { position: static; }
+            .browse-icon-btn { position: absolute; top: 0; }
+            #browseFavorites { right: 40px; margin-left: 0 !important; }
+            .browse-filter-icon-btn { right: 0; }
         }
     </style>
 </head>
