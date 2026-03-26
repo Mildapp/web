@@ -208,7 +208,7 @@
             justify-content: space-between;
             align-items: center;
             position: relative;
-            order: 1;
+            z-index: 3;
         }
 
         .rcard-time {
@@ -303,13 +303,13 @@
         .rcard-img-wrap {
             position: relative;
             align-self: center;
-            margin-top: auto;
+            margin-top: -10px;
             width: 220px;
             height: 220px;
             flex-shrink: 0;
             overflow: visible;
             border-radius: 50%;
-            order: 3;
+            z-index: 2;
         }
 
         .rcard-img {
@@ -342,8 +342,9 @@
             align-items: center;
             gap: 10px;
             min-height: 0;
-            margin-top: 4px;
-            order: 2;
+            margin-top: 1px;
+            position: relative;
+            z-index: 3;
         }
 
         .rcard-meta {
@@ -1537,8 +1538,8 @@
                         '<div class="rcard-time"><img src="images/Icons/timer.svg" alt="" class="rcard-time-icon-img"><span class="rcard-time-text">' + time + '</span></div>' +
                         '<div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="20" height="20"></div>' +
                     '</div>' +
-                    '<div class="rcard-info"><span class="rcard-meta">' + meta + '</span><span class="rcard-name">' + recipe.name + '</span></div>' +
                     '<div class="rcard-img-wrap"><img src="' + imgUrl + '" alt="' + recipe.name + '" class="rcard-img" loading="lazy">' + heatBadge + '</div>' +
+                    '<div class="rcard-info"><span class="rcard-meta">' + meta + '</span><span class="rcard-name">' + recipe.name + '</span></div>' +
                 '</a>';
             }
 
@@ -1556,8 +1557,8 @@
                         '<div class="rcard-time"><img src="images/Icons/timer.svg" alt="" class="rcard-time-icon-img"><span class="rcard-time-text">' + time + '</span></div>' +
                         '<div class="rcard-save"><img src="images/Icons/save.svg" alt="Save" width="20" height="20"></div>' +
                     '</div>' +
-                    '<div class="rcard-info"><span class="rcard-meta">' + meta + '</span><span class="rcard-name rcard-name-big">' + recipe.name + '</span></div>' +
                     '<div class="rcard-img-wrap rcard-img-wrap-big"><img src="' + imgUrl + '" alt="' + recipe.name + '" class="rcard-img rcard-img-big" loading="lazy"></div>' +
+                    '<div class="rcard-info"><span class="rcard-meta">' + meta + '</span><span class="rcard-name rcard-name-big">' + recipe.name + '</span></div>' +
                 '</a>';
             }
 
