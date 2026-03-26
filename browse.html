@@ -1563,15 +1563,19 @@
             }
 
             /**
-             * LAYOUT PATTERN (repeating cycle of 10 cards):
-             *   - 2 rows × 4 cards = 8 cards
-             *   - 1 featured row: 1 big (LEFT) + 2 small stacked = 3 cards  → 11 total
-             *   - 2 rows × 4 cards = 8 cards
-             *   - 1 featured row: 1 big (RIGHT) + 2 small stacked = 3 cards → 11 total
-             *   Total per cycle: 22 cards
+             * LAYOUT PATTERN (repeating block):
+             *   Row of 4, Row of 4, Featured (big+2stack), Row of 4, Row of 4, Featured reversed (big+2stack)
+             *   = 8 + 3 + 8 + 3 = 22 cards per full cycle
+             *
+             * blockStep tracks which step we're on: 0-5
+             *   0: row of 4
+             *   1: row of 4
+             *   2: featured LEFT (3 cards)
+             *   3: row of 4
+             *   4: row of 4
+             *   5: featured RIGHT (3 cards)
              */
-            var layoutIndex = 0; // tracks position in the pattern across loads
-            var featuredSide = 'left'; // alternates: left, right
+            var blockStep = 0;
 
             function buildRow(recipes) {
                 var row = document.createElement('div');
@@ -1591,43 +1595,30 @@
                 return row;
             }
 
-            /**
-             * Lay out recipes following the repeating pattern.
-             * Consumes from the recipes array and appends rows to gridWrap.
-             */
-            function layoutRecipes(recipes) {
-                var idx = 0;
+            // Buffer to accumulate cards across page loads
+            var cardBuffer = [];
 
-                while (idx < recipes.length) {
-                    // How many regular rows before next featured?
-                    var posInCycle = layoutIndex % 11; // 0-10: 0-7 = regular rows, 8-10 = featured
+            function flushBuffer() {
+                while (cardBuffer.length > 0) {
+                    var step = blockStep % 6;
 
-                    if (posInCycle < 8) {
-                        // Regular row of 4
-                        var remaining = 8 - posInCycle; // how many cards left before featured
-                        var rowCards = Math.min(4, remaining, recipes.length - idx);
-                        if (rowCards > 0) {
-                            gridWrap.insertBefore(buildRow(recipes.slice(idx, idx + rowCards)), lazyLoader);
-                            idx += rowCards;
-                            layoutIndex += rowCards;
-                        }
-                    } else if (posInCycle === 8) {
-                        // Featured row: need 3 cards (1 big + 2 stack)
-                        var available = recipes.length - idx;
-                        if (available >= 3) {
-                            gridWrap.insertBefore(
-                                buildFeaturedRow(recipes[idx], [recipes[idx + 1], recipes[idx + 2]], featuredSide),
-                                lazyLoader
-                            );
-                            featuredSide = (featuredSide === 'left') ? 'right' : 'left';
-                            idx += 3;
-                            layoutIndex += 3;
-                        } else {
-                            // Not enough for featured, just do regular row with what's left
-                            gridWrap.insertBefore(buildRow(recipes.slice(idx, idx + available)), lazyLoader);
-                            idx += available;
-                            layoutIndex += available;
-                        }
+                    if (step === 0 || step === 1 || step === 3 || step === 4) {
+                        // Regular row: need 4 cards
+                        if (cardBuffer.length < 4) break; // wait for more
+                        gridWrap.insertBefore(buildRow(cardBuffer.splice(0, 4)), lazyLoader);
+                        blockStep++;
+                    } else if (step === 2) {
+                        // Featured LEFT: need 3 cards
+                        if (cardBuffer.length < 3) break;
+                        var cards = cardBuffer.splice(0, 3);
+                        gridWrap.insertBefore(buildFeaturedRow(cards[0], [cards[1], cards[2]], 'left'), lazyLoader);
+                        blockStep++;
+                    } else if (step === 5) {
+                        // Featured RIGHT: need 3 cards
+                        if (cardBuffer.length < 3) break;
+                        var cards = cardBuffer.splice(0, 3);
+                        gridWrap.insertBefore(buildFeaturedRow(cards[0], [cards[1], cards[2]], 'right'), lazyLoader);
+                        blockStep++;
                     }
                 }
             }
@@ -1652,7 +1643,16 @@
                     }
 
                     totalPages = data.pages;
-                    layoutRecipes(data.recipes);
+
+                    // Add to buffer and flush
+                    cardBuffer.push.apply(cardBuffer, data.recipes);
+                    flushBuffer();
+
+                    // If last page, flush remaining as a partial row
+                    if (currentPage >= totalPages && cardBuffer.length > 0) {
+                        gridWrap.insertBefore(buildRow(cardBuffer.splice(0)), lazyLoader);
+                        lazyLoader.style.display = 'none';
+                    }
 
                     if (currentPage >= totalPages) {
                         lazyLoader.style.display = 'none';
@@ -1674,8 +1674,8 @@
 
                 currentPage = 0;
                 totalPages = Infinity;
-                layoutIndex = 0;
-                featuredSide = 'left';
+                blockStep = 0;
+                cardBuffer = [];
                 lazyLoader.style.display = 'flex';
                 await loadMoreCards();
             }
