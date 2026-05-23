@@ -5,4 +5,4 @@ Disallow: /admin/
 Disallow: /analytics/
 Disallow: /draft/
 
-Sitemap: https://mildcook.app/sitemap.xml
+Sitemap: https://mildcook.app/sitemap-main.xml
